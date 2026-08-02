@@ -1,0 +1,50 @@
+{
+  "name": "t-craft",
+  "owner": {
+    "name": "3072141364",
+    "url": "https://github.com/3072141364"
+  },
+  "metadata": {
+    "description": "跨项目复用的工程技能集,按分类拆为多个 plugin"
+  },
+  "plugins": [
+    {
+      "name": "basic-skills",
+      "description": "基础工程约定:changelog、git-flow、emoji。几乎所有项目都用。",
+      "source": "./skills/basic-skills",
+      "skills": [
+        "./changelog",
+        "./git-flow",
+        "./emoji-helper",
+        "./brainstorm"
+      ]
+    },
+    {
+      "name": "code-skills",
+      "description": "代码相关:代码阅读/理解路由、编码行为准则、代码格式化、代码审查命令、make 快捷命令。",
+      "source": "./skills/code-skills",
+      "skills": [
+        "./code-intelligence",
+        "./karpathy-guidelines",
+        "./code-format",
+        "./make-shortcut",
+        "./eval-report"
+      ]
+    },
+    {
+      "name": "obsidian-skills",
+      "description": "知识管理:联通 Obsidian,把项目方案/升级文档沉淀到 vault,自动生成知识卡片并维护标签。",
+      "source": "./skills/obsidian-skills",
+      "skills": [
+        "./obsidian-kb",
+        "./vault-query"
+      ]
+    },
+    {
+      "name": "fireworks-tech-graph",
+      "description": "技术图生成:自然语言 -> SVG/PNG 架构/泳道/UML/C4 图(外部 skill)。",
+      "source": {"source": "url", "url": "https://github.com/yizhiyanhua-ai/fireworks-tech-graph.git", "sha": "50c819d68fd4fee330b3010988cd13e98b678d44"},
+      "skills": ["./skills/fireworks-tech-graph"]
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+# OS / 编辑器
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# 工具产物
+__pycache__/
+node_modules/
+
+# Claude 本地配置(含机器特定的 vault 路径等,不进版本库)
+.claude/skills-config.json
+.claude/skills-config.local.json
