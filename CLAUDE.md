@@ -22,7 +22,7 @@
 - `code-skills`:代码相关(code-intelligence / karpathy-guidelines / code-format / make-shortcut / eval-report)+ 代码审查命令 `/code-review`(commands/)
 - `obsidian-skills`:Obsidian 知识库(obsidian-kb / vault-query)
 
-> `brainstorm` / `eval-report` / `vault-query` 是 **TODO 占位**(未实现),见各 SKILL.md;研发流程预设提示词见 `docs/workflow-prompts.md`。
+> `brainstorm` / `spec-doc` / `obsidian-query` / `dev-flow` 已实现;`spec-doc` 评估测试文档段(形态二)为 TODO 后补。研发流程预设提示词见 `docs/workflow-prompts.md`。
 
 ## 目录与命名
 

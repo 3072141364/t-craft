@@ -13,15 +13,19 @@
 | `basic-skills`(基础工程约定) | `changelog` | 按 Keep a Changelog 维护 CHANGELOG,类别带 emoji |
 | | `git-flow` | 分支/提交/CHANGELOG/封版工作流 |
 | | `emoji-helper` | emoji 选择与应用(自带速查表) |
-| | `brainstorm` ⚠️TODO | 需求深挖 / 头脑风暴(流程阶段①) |
+| | `brainstorm` | 需求深挖 / 头脑风暴(流程阶段①),弹性一次一问 + 内嵌 5-Whys/first-principles |
+| | `/brainstorm`(命令) | 触发 brainstorm 深挖流程 |
 | `code-skills`(代码相关) | `code-intelligence` | 代码阅读/理解路由:codegraph -> gitnexus -> grep/LSP |
 | | `karpathy-guidelines` | 编码行为准则(Karpathy 原则) |
 | | `code-format` | 格式化标准与工具:C++ Google/Python PEP8(ruff+mypy)/bash shfmt/.editorconfig |
 | | `make-shortcut` | 把开发意图路由到 make 目标(format/test/lint/build/init/clean) |
-| | `eval-report` ⚠️TODO | 评估 / 测试报告(流程阶段④,需求确认 + 回归) |
+| | `spec-doc` | 标准文档生成:方案文档(开发前,落 vault)+ 评估测试文档(开发后,后补);按读者分章(用户读+AI须知) |
+| | `dev-flow` | 研发流程调度器:识别阶段 → 激活 skill → 流转提示;六阶段 ①→⑥ |
 | | `/code-review`(命令) | 代码审查:常规/深度两档,VCS 无关,出报告(bash/python/cpp) |
-| `obsidian-skills`(Obsidian 知识库) | `obsidian-kb` | 联通 Obsidian:方案/升级文档沉淀、知识卡片、标签 |
-| | `vault-query` ⚠️TODO | vault 高效查询(概述 + 3-tier 读,省 token) |
+| | `/spec-doc` `/dev-flow`(命令) | 触发对应 skill |
+| `obsidian-skills`(Obsidian 知识库) | `obsidian-kb` | 联通 Obsidian:方案沉淀、知识卡片(方案/术语/周记)、标签、初始化 vault |
+| | `obsidian-query` | 省 token 查询 vault:summary frontmatter + 3-tier 分级读 |
+| | `/obsidian-query`(命令) | 触发 obsidian-query 查询 |
 
 ## 结构
 
@@ -31,13 +35,16 @@ t-craft/
 │   └── marketplace.json          # marketplace,定义多个分类 plugin
 ├── skills/
 │   ├── basic-skills/             # source: ./skills/basic-skills
-│   │   ├── changelog/  git-flow/  emoji-helper/
+│   │   ├── changelog/  git-flow/  emoji-helper/  brainstorm/
+│   │   └── commands/brainstorm.md
 │   ├── code-skills/              # source: ./skills/code-skills
-│   │   ├── commands/code-review.md   # /code-review 命令(自动发现)
+│   │   ├── commands/{code-review,spec-doc,dev-flow}.md
 │   │   ├── references/{bash,python,cpp}-review.md
 │   │   ├── code-intelligence/  karpathy-guidelines/  code-format/  make-shortcut/
+│   │   ├── spec-doc/  dev-flow/
 │   └── obsidian-skills/          # source: ./skills/obsidian-skills
-│       └── obsidian-kb/
+│       ├── obsidian-kb/  obsidian-query/
+│       └── commands/obsidian-query.md
 ├── template/
 │   └── SKILL.md                  # 新建 skill 的模板
 ├── CLAUDE.md                     # 本仓库开发约定
@@ -53,9 +60,9 @@ t-craft/
 按分类装:
 
 ```
-/plugin install basic-skills@t-craft      # changelog / git-flow / emoji
-/plugin install code-skills@t-craft        # code-intelligence / karpathy-guidelines / code-format / make-shortcut + /code-review
-/plugin install obsidian-skills@t-craft    # obsidian-kb
+/plugin install basic-skills@t-craft      # changelog / git-flow / emoji / brainstorm
+/plugin install code-skills@t-craft        # code-intelligence / karpathy-guidelines / code-format / make-shortcut / spec-doc / dev-flow + /code-review /spec-doc /dev-flow
+/plugin install obsidian-skills@t-craft    # obsidian-kb / obsidian-query + /obsidian-query
 ```
 
 本地试装:`/plugin marketplace add /home/wz/workspace/t-craft`。

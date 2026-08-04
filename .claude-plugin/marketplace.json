@@ -28,7 +28,8 @@
         "./karpathy-guidelines",
         "./code-format",
         "./make-shortcut",
-        "./eval-report"
+        "./spec-doc",
+        "./dev-flow"
       ]
     },
     {
@@ -37,7 +38,7 @@
       "source": "./skills/obsidian-skills",
       "skills": [
         "./obsidian-kb",
-        "./vault-query"
+        "./obsidian-query"
       ]
     },
     {
