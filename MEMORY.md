@@ -22,7 +22,7 @@ t-craft 开发过程中的关键偏好、决策、待办,记于此(随用随更)
 - [x] `spec-doc` 方案文档段(code-skills)- 标准文档生成 skill,两形态(方案文档已实现/评估测试文档后补)。骨架按读者分章:用户读(需求背景/方案设计/项目收益/行动清单/验收标准)+ AI 须知(范围外/代码变更清单/测试决策)。落 vault 方案卡。2026-08-03 实现,待 `/plugin update` 生效。
 - [x] `obsidian-query`(obsidian-skills,原名 vault-query)- 省 token 查询:summary frontmatter + 3-tier 读。2026-08-03 实现,待 `/plugin update` 生效。
 - [x] `dev-flow`(code-skills)- 研发流程调度器,识别阶段+激活 skill+流转提示。2026-08-03 实现,待 `/plugin update` 生效。
-- [ ] 提交推送 git(当前成果全在本地,未提交)
+- [x] 提交推送 git(2026-08-03 已推送 main:`6511334`)
 
 ## 参考
 
