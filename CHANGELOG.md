@@ -16,10 +16,17 @@ t-craft 的变更记录。遵循 [Keep a Changelog](https://keepachangelog.com/)
 
 ### 🔧 Changed
 
-- **`obsidian-kb`** 模块重构:① 模块三(查询)改为调用 `obsidian-query` 做 3-tier 省 token 查询,不重复实现;② 模块一(方案沉淀)骨架从「背景/目标/候选方案/权衡/决策/后续」改为 spec-doc 新骨架(用户读5节 + AI 须知)+ 加 summary 维护;③ 删模块二(升级文档),因升级卡片已删。
-- **卡片模板精简**:8 个 → 3 个,只保留方案 / 术语 / 周记。删会议 / 决策 / 升级 / 踩坑 / 问题修复(按需再加,不预设)。`init_vault.sh` 目录结构删 `日程/日记`;INDEX 模板列表、`vault-conventions.md`、标签速查表同步精简。
+- **`obsidian-kb` card_type 体系扩充**:从 方案/术语/周记 3 类扩到 6 类,新增 `技术`(技术知识/实践沉淀)、`流程`(可照着执行的规范操作)、`wiki`(概念/背景科普性解释)。card_type 表加"默认位置 + 文件名前缀"列,按需扩充、不强求每类有模板(当前方案/术语/周记有模板,余按需起草)。
+- **`obsidian-kb` 项目需求卡结构调整**:项目内工作卡(方案/技术)统一归 `项目/<名>/需求/` 下,文件名带类型前缀(`feat-`/`bugfix-`/`debug-`/`hotfix-`/`tech-`/`style-`/`refactor-`/`perf-`/`docs-`/`chore-`/`test-`)平铺;原 `项目/<名>/方案/`、`feat/`、`debug/` 废弃。跨项目通用技术卡(如 crun、overlayfs)放 `通用/技术/`,不带前缀、不绑 project。项目下固定 `需求/` + `wiki/` + `reference.md`(外部资料链接),init 脚本只建 `项目/` 空壳,项目内结构按需建。
+- **`obsidian-kb` 标签扁平化**:frontmatter `tags` 去前缀(`项目/general_process` → `general_process`),不再用 `项目/`、`类型/`、`状态/` 层级前缀;标签维护约定同步改"扁平无前缀"。
+- **`obsidian-kb` 周报规范化**:checkbox 用 Tasks 插件 + Minimal 主题扩展符号,仅允许默认状态(`[ ]`/`[x]`/`[/]`/`[-]`)+ 计划类(`[>]`/`[<]`)共 6 个,不用 `[w]`/`[!]`/`[*]` 等;搁置/进行中用 `[-]`/`[/]`,不再用 ⏸️/🔄 emoji 行内标注。父项描述一件事、子项是拆出的步骤,全 `[x]` 父项才 `[x]` 否则 `[/]`;todo 项描述简短,详情归关联需求卡。
+- **`obsidian-kb` 人员卡 + 人名 emoji**:建 `通用/人员.md`(init 生成空卡逐条维护),记中英文名(同一人 aliases 关联)+ 身份 emoji(👤其他同事/🧑‍💻组内同事/🦊我/🧑‍💼负责人/🤝外部/🧑‍🏫mentor/👥团队)。文档提到人名时用对应身份 emoji 前缀,人先登记到花名册。原"百立建"正名"白立建",卫泽恩(zane.wei)用 🦊。
+- **`obsidian-kb` 通用卡内容纯净铁律**:放 `通用/` 的卡只记纯通用知识,正文不掺项目细节(路径/环境变量/自研封装/脚本引用)。判断标准"换个项目内容还成立吗"——成立才是通用卡;项目耦合内容归项目卡。链接是例外:通用卡与项目卡可双向 `[[wikilink]]` 互链做导航,但不污染通用卡正文;从项目工作提炼通用卡时也去项目化。
+- **`obsidian-kb` 方案沉淀对齐 spec-doc**:模块一方案卡片骨架改为 spec-doc 新骨架——用户读(需求背景/方案设计/项目收益/行动清单/验收标准)+ AI 须知(范围外/代码变更清单/测试决策);加 frontmatter `summary` 维护。模块二文档查询改为转调 `obsidian-query` 做 3-tier 省 token 查询,不重复实现。
+- **`obsidian-kb` emoji 联动收口**:emoji 不在 skill 硬编码,统一向 `emoji-helper` 查询;vault 的 `通用/规范/emoji速查表.md` 是常用集对照。card_type 图标每卡标题行首带一个,章节可配语义 emoji。
 - `marketplace.json`:`./eval-report` → `./spec-doc`、`./vault-query` → `./obsidian-query`、code-skills 加 `./dev-flow`。
 - `CLAUDE.md`:TODO 占位描述更新为现状(已实现 + 评估段后补)。
+- **`obsidian-kb`/`obsidian-query` 技能组对齐与去冗余**:修 `vault-conventions.md`(card_type 表 6 类 + 文件名前缀、项目结构 需求/+wiki/+reference、扁平标签、补 `通用/技术/`)、周记卡片模板状态说明行(去 ⏸️/🔄 矛盾)、obsidian-query 的 `eval-report` 引用(改 spec-doc 评估段)、标签速查表补 `技术` 主题。vault 发现 + CLI 细节收口到 `vault-conventions.md` 两 SKILL 留指针;`/obsidian-query` 命令精简为只触发;obsidian-kb description 让出查询触发词给 obsidian-query 独占。
 
 ### 🗑️ Removed
 

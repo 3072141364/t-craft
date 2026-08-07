@@ -1,6 +1,6 @@
 ---
 name: obsidian-query
-description: Obsidian vault 高效省 token 查询。每文档维护 frontmatter summary 字段(一行全文概述);查询时按标签/关键词粗筛,再按 summary 判相关性做 3-tier 分级读(无关跳过/弱相关只读 summary/强相关精读全文),不倾倒全文。当用户说"查 vault""查 obsidian""之前怎么做的""有没有相关笔记""查旧方案""找一下笔记里有没有 X"等,或 brainstorm/spec-doc/eval-report 需要查历史方案/旧笔记时使用。只读不改 vault。
+description: Obsidian vault 高效省 token 查询。每文档维护 frontmatter summary 字段(一行全文概述);查询时按标签/关键词粗筛,再按 summary 判相关性做 3-tier 分级读(无关跳过/弱相关只读 summary/强相关精读全文),不倾倒全文。当用户说"查 vault""查 obsidian""之前怎么做的""有没有相关笔记""查旧方案""找一下笔记里有没有 X"等,或 brainstorm/spec-doc 需要查历史方案/旧笔记时使用。只读不改 vault。
 ---
 
 # Obsidian Query(省 token 查询)
@@ -20,7 +20,7 @@ Obsidian vault 的**省 token 查询** skill:不每次读全文,按相关性分�
 - 用户说"查 vault""查 obsidian""之前怎么做的""有没有相关笔记""查旧方案""找一下笔记里有没有 X"等。
 - brainstorm 深挖需求时联动查旧方案(阶段①)。
 - spec-doc 写方案时查相关旧方案/踩坑(阶段②)。
-- eval-report 评估时查历史评估/方案(阶段④)。
+- spec-doc 评估测试段(开发后,阶段④)查历史评估/方案对照。
 
 **不触发**:
 
@@ -28,18 +28,15 @@ Obsidian vault 的**省 token 查询** skill:不每次读全文,按相关性分�
 - 只是看代码/闲聊。
 - vault 路径未配置且用户不愿提供(停止,不猜测)。
 
-## 前置:读取项目约定(不硬编码)
+## 前置:发现 vault 与项目约定(不硬编码)
 
-本 skill 跨项目复用。每次触发先发现项目约定:
+vault 路径与联通方式同 obsidian-kb,细节见 `references/vault-conventions.md`:
 
-1. **读项目 `CLAUDE.md`**:取 vault 路径、文件夹结构、标签规范。若引用规范文档一并读。
-2. **约定优于配置**:探测标准位置。
-3. **可选描述文件**:`.claude/skills-config.json` 显式覆盖。
-4. **发现 vault 路径**(同 obsidian-kb 前置):从 `OBSIDIAN_VAULT` env / `.claude/skills-config.json` 的 `obsidian-kb.vault` / CLAUDE.md 里写明的路径。读不到就**直接问用户**(用 AskUserQuestion),不猜、不扫盘。
+1. **发现 vault 路径**:从 `OBSIDIAN_VAULT` env / `.claude/skills-config.json` 的 `obsidian-kb.vault` / 项目 CLAUDE.md 读。读不到就**直接问用户**(AskUserQuestion),不猜、不扫盘。
+2. **读项目 CLAUDE.md**:取文件夹结构、标签规范;若引用规范文档一并读。
+3. **联通方式**:文件操作为主(`rg`/`Read`),检测到 `obsidian` CLI(`obsidian help` 能跑)时优先用 `obsidian search`/`backlinks` 增强,无 CLI 文件操作兜底,不阻塞。
 
 以文件实际内容为准,不凭记忆。
-
-**联通方式**(同 obsidian-kb):文件操作为主(`rg`/`Read`),检测到 `obsidian` CLI(`obsidian help` 能跑)时优先用 `obsidian search`/`backlinks` 增强,无 CLI 文件操作兜底,不阻塞。
 
 ## 核心:3-tier 查询流程
 
@@ -96,12 +93,12 @@ obsidian search query="<词>"
 ## 查询结果:<查询意图>
 
 ### 强相关(精读全文)
-- [[方案名]] `项目/<名>/方案/方案名.md`
+- [[方案名]] `项目/<名>/需求/feat-方案名.md`
   summary: <一行概述>
   摘要:<几句关键点>
 
 ### 弱相关(只读 summary)
-- [[踩坑名]] `通用/踩坑名.md`
+- [[术语名]] `通用/术语/术语名.md`
   summary: <一行概述>
   (判断是否要用,需要再精读)
 
@@ -119,10 +116,10 @@ N 篇(列出标题供参考,不读)
 
 ## 与其他 skill 的关系
 
-- **obsidian-kb**:负责写卡 + 维护 summary + 沉淀;obsidian-query 负责查。obsidian-kb 模块三(查询)调用本 skill 做 3-tier 查询。
+- **obsidian-kb**:负责写卡 + 维护 summary + 沉淀;obsidian-query 负责查。obsidian-kb 模块二(文档查询)调用本 skill 做 3-tier 查询。
 - **brainstorm**(阶段①):深挖需求时联动查旧方案,用本 skill 省 token 读。
 - **spec-doc**(阶段②):写方案时查相关旧方案/踩坑。
-- **eval-report**(阶段④):查历史评估/方案对照。
+- **spec-doc 评估测试段**(阶段④):查历史评估/方案对照。
 
 ## 通用约定
 
