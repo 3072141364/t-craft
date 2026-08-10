@@ -38,7 +38,8 @@
       "source": "./skills/obsidian-skills",
       "skills": [
         "./obsidian-kb",
-        "./obsidian-query"
+        "./obsidian-query",
+        "./obsidian-answers"
       ]
     },
     {
