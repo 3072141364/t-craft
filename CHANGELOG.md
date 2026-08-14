@@ -8,6 +8,10 @@ t-craft 的变更记录。遵循 [Keep a Changelog](https://keepachangelog.com/)
 
 ### ✨ Added
 
+- **`code-guidelines`** skill:跨语言编码行为准则(注释哲学、不写长函数、命名自解释、注释与文档分工、标记指针),作为父 skill 承载语言无关原理。新增「结构化注释标记」节指向 `references/code-markers.md`。
+- **`python-guidelines`** skill:Python 语言专项编码约定(`#`/docstring 语法、snake_case 命名、类型注解替代注释、列表推导式/dataclass/AbstractTask 模板方法拆分),作为 `code-guidelines` 的子 skill,只补 Python 独有部分。
+- **`cpp-guidelines`** skill:C++ 语言专项编码约定(`//`/Doxygen 语法、Google 命名风格、const/`[[nodiscard]]`/`optional`/`enum class` 替代注释、header-impl 拆分 + RAII + `static_assert` 编译期约束),作为 `code-guidelines` 的子 skill,只补 C++ 独有部分。
+- **`references/code-markers.md`**:跨语言结构化注释标记基线(TODO/FIXME/NOTE/HACK/XXX/OPTIMIZE/REVIEW/DEPRECATED 八标记 + 逐标记「何时用/何时滥用」+ 管理约定:全大写冒号格式、内容具体不空泛、附 `@责任人 日期` 元信息、可 grep、定期清理 FIXME 优先)。不绑语言,Python `#`/C++ `//`/bash `#` 注释符随语言,前缀词固定。
 - **`brainstorm`** skill + `/brainstorm` 命令(从占位实现):需求深挖与头脑风暴,研发流程阶段①。弹性一次一问 + 推荐答案,内嵌 5-Whys / first-principles 追问工具(按需),联动 obsidian-query 查旧方案,产出需求要点(对话内)。
 - **`spec-doc`** skill + `/spec-doc` 命令:标准文档生成 skill,两形态。方案文档段已实现(开发前,落 vault 方案卡,骨架按读者分章:用户读[需求背景/方案设计/项目收益/行动清单/验收标准] + AI 须知[范围外/代码变更清单/测试决策]);评估测试文档段(开发后,给 peer review)后补。与 brainstorm 接力:要点→方案文档。
 - **`obsidian-query`** skill + `/obsidian-query` 命令(原名 vault-query 占位,改名实现):省 token 查询 vault。每文档 frontmatter `summary` + 3-tier 分级读(无关跳过 / 弱相关只读 summary / 强相关精读全文),只读不改。
@@ -16,6 +20,8 @@ t-craft 的变更记录。遵循 [Keep a Changelog](https://keepachangelog.com/)
 
 ### 🔧 Changed
 
+- **`/code-review` 命令 Standards 轴加「结构化注释标记」审查项**:改动里遇 `TODO`/`FIXME`/`HACK`/`XXX`/`REVIEW` 等标记,按 `references/code-markers.md` 判断——本次改动**新引入**的 `FIXME`/`XXX`(已知缺陷/可疑)该报;预存的 `TODO` 不报(预存技术债不在本次范围)。
+- `marketplace.json`:code-skills plugin `skills[]` 加 `./code-guidelines`、`./python-guidelines`、`./cpp-guidelines`。
 - **`obsidian-kb` card_type 体系扩充**:从 方案/术语/周记 3 类扩到 6 类,新增 `技术`(技术知识/实践沉淀)、`流程`(可照着执行的规范操作)、`wiki`(概念/背景科普性解释)。card_type 表加"默认位置 + 文件名前缀"列,按需扩充、不强求每类有模板(当前方案/术语/周记有模板,余按需起草)。
 - **`obsidian-kb` 项目需求卡结构调整**:项目内工作卡(方案/技术)统一归 `项目/<名>/需求/` 下,文件名带类型前缀(`feat-`/`bugfix-`/`debug-`/`hotfix-`/`tech-`/`style-`/`refactor-`/`perf-`/`docs-`/`chore-`/`test-`)平铺;原 `项目/<名>/方案/`、`feat/`、`debug/` 废弃。跨项目通用技术卡(如 crun、overlayfs)放 `通用/技术/`,不带前缀、不绑 project。项目下固定 `需求/` + `wiki/` + `reference.md`(外部资料链接),init 脚本只建 `项目/` 空壳,项目内结构按需建。
 - **`obsidian-kb` 标签扁平化**:frontmatter `tags` 去前缀(`项目/general_process` → `general_process`),不再用 `项目/`、`类型/`、`状态/` 层级前缀;标签维护约定同步改"扁平无前缀"。

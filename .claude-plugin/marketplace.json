@@ -29,7 +29,10 @@
         "./code-format",
         "./make-shortcut",
         "./spec-doc",
-        "./dev-flow"
+        "./dev-flow",
+        "./code-guidelines",
+        "./python-guidelines",
+        "./cpp-guidelines"
       ]
     },
     {

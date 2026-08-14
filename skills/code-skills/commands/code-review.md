@@ -39,6 +39,7 @@ argument-hint: [deep | <base..head>]
 - 代码注释约定:违反文件内注释里的约定。
 - 代码异味:命中 `references/code-smells.md` 的 12 味(命名 / 重复 / Feature Envy / Data Clumps / Primitive Obsession / Shotgun Surgery / …),标"可能 X",judgement call,项目规范覆盖。
 - 历史上下文:`git blame` 看是否回退既有修复、与历史意图冲突。
+- 结构化注释标记:改动里遇 `TODO`/`FIXME`/`HACK`/`XXX`/`REVIEW` 等标记,按 `references/code-markers.md` 判断——本次改动**新引入**的 `FIXME`/`XXX`(已知缺陷/可疑)该报;预存的 `TODO` 不报(预存技术债,不在本次范围)。
 
 **Spec 轴(需求)**--代码是否正确实现了所求:
 - 需求缺失 / 部分:spec 要的没做或没做完。
