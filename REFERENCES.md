@@ -28,6 +28,10 @@
 | [Cocoon-AI/architecture-diagram-generator](https://github.com/Cocoon-AI/architecture-diagram-generator) | 图表方案对比(claude.ai 暗色架构 HTML);未集成 |
 | [daydaylee1227/Blog #24](https://github.com/daydaylee1227/Blog/issues/24) | git-guidelines:Git 四区模型、fetch 详解、撤销三式、分支管理规范、stash |
 | [Dataquest: 10 Git Skills](https://www.dataquest.io/blog/10-git-skills-you-still-need-to-know-for-version-control/) | git-guidelines:原子提交、revert 优先于 reset、merge 冲突处理、PR 协作准则 |
+| [anthropics/skills](https://github.com/anthropics/skills) | web-guidelines:前端设计方法论(提炼其 `frontend-design`:钉主题、两遍法、避 AI 默认三样式、克制自评) |
+| [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills) | web-guidelines:React/Next.js 性能准则(70 条 8 类,`react-best-practices`)+ UI 审查(`web-design-guidelines`,动态拉取 vercel web-interface-guidelines) |
+| [voltagent/awesome-design-md](https://github.com/voltagent/awesome-design-md) | web-guidelines:DESIGN.md 设计语言库(74 款站点),索引 `design-styles.json`,按需拉取对应站点设计语言 |
+| [shadcn/ui](https://ui.shadcn.com) / [ant-design](https://github.com/ant-design/ant-design) | web-guidelines:应用型 UI(app-ui-design.md)组件基底选型——shadcn 首选 / antd 后台数据管理 |
 
 ## 工具与依赖(setup 脚本引用)
 

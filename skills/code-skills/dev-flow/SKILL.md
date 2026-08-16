@@ -105,6 +105,7 @@ dev-flow 管**需求维度**;周报是**时间维度**的独立动作,不由六�
 | 查旧方案 / 历史 | `obsidian-kb`(模块二 query) |
 | 方案 / prd / adr / test / review 文档 | `project-doc`(独立 skill,含 4 篇附属文档) |
 | 编码 | `code-guidelines`(总入口)→ 查语言激活 `python/cpp/bash-guidelines` |
+| 前端 / Web(设计 / React / UI 审查) | `web-guidelines`(独立 skill,4 篇附属文档) |
 | 代码理解 / 调用链 / 影响面 | `code-intelligence`(code-guidelines 附属文档) |
 | 跑构建 / 测试 / 格式化 | `make-shortcut`(code-guidelines 附属文档)+ 语言 format.md |
 | 代码审查 | `/tcraft-code-review` |

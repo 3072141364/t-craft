@@ -1,6 +1,6 @@
 # 命令速查
 
-t-craft 的 9 个快捷命令(`/xxx`),覆盖研发流程、知识体系、科研三条工作流。命令是**显式入口**(你明确叫某流程);skill 是**自动触发**(意图匹配即激活)。两者互补——命令给你掌控,skill 给你省事。
+t-craft 的 10 个快捷命令(`/xxx`),覆盖研发流程、前端、知识体系、科研四条工作流。命令是**显式入口**(你明确叫某流程);skill 是**自动触发**(意图匹配即激活)。两者互补——命令给你掌控,skill 给你省事。
 
 ## 全览
 
@@ -11,6 +11,7 @@ t-craft 的 9 个快捷命令(`/xxx`),覆盖研发流程、知识体系、科研
 | `/tcraft-code-review` | code-skills | ④ 验证 | 代码审查:影响面评估 / 全量评估 |
 | `/tcraft-release` | code-skills | ⑤ 发布 | 提交→合并→版本升级→上线 |
 | `/tcraft-dev-flow` | code-skills | 调度器 | 识别当前阶段,激活对应 skill |
+| `/tcraft-web` | code-skills | 前端 | 设计 / React / UI 审查 / 设计语言 |
 | `/tcraft-obsidian-kb` | obsidian-skills | vault 管理 | 初始化/落盘/沉淀/标签/问答/周报 |
 | `/tcraft-obsidian-query` | obsidian-skills | 查询 | 3-tier 省 token 查 vault |
 | `/tcraft-weekly` | obsidian-skills | 周报 | 建本周周报 |
@@ -70,6 +71,19 @@ t-craft 的 9 个快捷命令(`/xxx`),覆盖研发流程、知识体系、科研
 | `/tcraft-dev-flow <阶段号或名>` | 跳到指定阶段,如 `/tcraft-dev-flow 3`、`/tcraft-dev-flow 实现` |
 
 **六阶段**:①头脑风暴 → ②方案设计 → ③实现 → ④验证(影响面/全量测试/全量评估/修复/冒烟)→ ⑤发布 → ⑥沉淀。每阶段完成更新 progress.md。
+
+### `/tcraft-web` — 前端总入口
+**用途**:Web/前端四条线的显式入口——设计方法论 / React 性能 / UI 审查 / 设计语言。skill 自动触发之外,想明确走某条线时用。
+
+| 用法 | 说明 |
+|------|------|
+| `/tcraft-web` | 按当前对话意图自动路由(设计新界面 / React 编码 / UI 审查 / 设计语言) |
+| `/tcraft-web 设计` | 新 UI 或改样式 → 设计方法论(钉主题、两遍法、避 AI 默认三样式) |
+| `/tcraft-web react` | 写 / 改 React、Next.js 组件、性能优化 → 70 条规则 8 类,先 CRITICAL |
+| `/tcraft-web 审查` | review UI / 可访问性 / UX → 拉 vercel 最新规则,按 file:line 出报告 |
+| `/tcraft-web 语言` | 仿某站点风格 → 从 awesome-design-md 拉对应 DESIGN.md |
+
+**来源**:skill 提炼自 anthropics/skills(frontend-design)、vercel-labs/agent-skills、voltagent/awesome-design-md,不整库拷贝,来源已标注。
 
 ---
 

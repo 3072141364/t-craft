@@ -18,7 +18,7 @@
 
 当前分类:
 
-- `code-skills`:代码相关(code-guidelines(编码总入口:跨语言准则 + karpathy 行为准则 / make-shortcut / format / brainstorm / code-intelligence / code-markers / code-smells 附属文档)/ project-doc(独立子 skill,含 prd/adr/test/review)/ python-guidelines / cpp-guidelines / bash-guidelines(各含 format、review 附属文档)/ dev-flow / git-guidelines(含 commit、changelog、branch、readme 附属文档))+ 命令 `/tcraft-code-review` `/tcraft-project-doc` `/tcraft-brainstorm` `/tcraft-dev-flow` `/tcraft-release`(commands/)
+- `code-skills`:代码相关(code-guidelines(编码总入口:跨语言准则 + karpathy 行为准则 / make-shortcut / format / brainstorm / code-intelligence / code-markers / code-smells 附属文档)/ project-doc(独立子 skill,含 prd/adr/test/review)/ web-guidelines(Web/前端总入口:设计方法论 + React 性能 + UI 审查 + 设计语言库,提炼自开源)/ python-guidelines / cpp-guidelines / bash-guidelines(各含 format、review 附属文档)/ dev-flow / git-guidelines(含 commit、changelog、branch、readme 附属文档))+ 命令 `/tcraft-code-review` `/tcraft-project-doc` `/tcraft-brainstorm` `/tcraft-dev-flow` `/tcraft-release` `/tcraft-web`(commands/)
 - `obsidian-skills`:Obsidian 知识库(obsidian-kb,vault 统一管理:落盘/查询/沉淀/快速问答/周报/emoji 参考;技术学习在 tech/ 逐渐沉淀;命令 `/tcraft-obsidian-kb` `/tcraft-obsidian-query` `/tcraft-weekly`)
 - `research-skills`:科研管理(paper-study,论文阅读/笔记/待读队列,管 vault papers/;命令 `/tcraft-paper`)
 

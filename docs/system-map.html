@@ -242,12 +242,12 @@
   <header>
     <div class="eyebrow">t-craft · personal engineering skills for Claude Code</div>
     <h1>研发体系全景</h1>
-    <p class="lede">一个 marketplace、三个分类 plugin、九支 skill 与三十一篇参考文档,由 dev-flow 六阶段调度成一条闭环:接需求 → 头脑风暴 → 方案 → 实现 → 两档验证 → 发布 → 沉淀。</p>
+    <p class="lede">一个 marketplace、三个分类 plugin、十支 skill 与三十七篇参考文档,由 dev-flow 六阶段调度成一条闭环:接需求 → 头脑风暴 → 方案 → 实现 → 两档验证 → 发布 → 沉淀。</p>
     <div class="stats">
       <span class="stat">plugins <b>3</b></span>
-      <span class="stat">skills <b>9</b></span>
-      <span class="stat">references <b>31</b></span>
-      <span class="stat">commands <b>9</b></span>
+      <span class="stat">skills <b>10</b></span>
+      <span class="stat">references <b>37</b></span>
+      <span class="stat">commands <b>10</b></span>
       <span class="stat">dev-flow 阶段 <b>6</b></span>
       <span class="stat">文档 <b>随码 5 · 离码 5</b></span>
     </div>
@@ -276,7 +276,7 @@
       <div class="stage">
         <div class="stage-num">STAGE ③</div>
         <h3>实现</h3>
-        <div class="skills"><span class="chip hot">code-guidelines</span><span class="chip">python/cpp/bash</span><span class="chip">code-intelligence</span></div>
+        <div class="skills"><span class="chip hot">code-guidelines</span><span class="chip">python/cpp/bash</span><span class="chip">web-guidelines</span><span class="chip">code-intelligence</span></div>
         <div class="out">代码;动态调整 prd、补记 <b>adr</b>,progress ③</div>
         <div class="prog">state · ③实现</div>
       </div>
@@ -352,20 +352,21 @@
   <section>
     <div class="sec-label">the skills</div>
     <h2>三个 plugin,一支 skill 编队</h2>
-    <p class="sec-sub">code-guidelines 是编码总入口(查语言 → 激活对应语言 guideline);project-doc 与 git-guidelines 对仗管文档;obsidian-skills 管 vault。</p>
+    <p class="sec-sub">code-guidelines 是编码总入口(查语言 → 激活对应语言 guideline);web-guidelines 管前端(设计 / React / UI 审查);project-doc 与 git-guidelines 对仗管文档;obsidian-skills 管 vault。</p>
 
     <div class="plugins">
       <div class="plugin">
-        <div class="phead"><span class="ptag core">core</span><span class="pname">code-skills</span><span class="pdesc">代码 + 研发流程 · 7 skill + 5 命令</span></div>
+        <div class="phead"><span class="ptag core">core</span><span class="pname">code-skills</span><span class="pdesc">代码 + 研发流程 · 8 skill + 6 命令</span></div>
         <div class="grid">
           <div class="skill hub"><div class="sname">code-guidelines</div><div class="sdesc">编码总入口:语言路由 + 行为/命令/格式化/异味基线</div><div class="srefs">7 references</div></div>
+          <div class="skill hub"><div class="sname">web-guidelines</div><div class="sdesc">Web / 前端:应用型 UI(后台/仿真/本地工具)+ 设计方法论 + React 性能 + UI 审查 + 品牌语言 + 参考仿造</div><div class="srefs">6 references</div></div>
           <div class="skill"><div class="sname">project-doc</div><div class="sdesc">项目文档统一管理(离码)</div><div class="srefs">prd · adr · test · review</div></div>
           <div class="skill"><div class="sname">git-guidelines</div><div class="sdesc">git 操作 + 随码文档 + 合并上线/版本升级</div><div class="srefs">commit · changelog · branch · readme</div></div>
           <div class="skill"><div class="sname">dev-flow</div><div class="sdesc">研发流程调度器:识别 → 激活 → 流转</div><div class="srefs">六阶段 · 两档验证</div></div>
           <div class="skill"><div class="sname">python-guidelines</div><div class="sdesc">Python 专项:命名/注释/类型注解</div><div class="srefs">format · review</div></div>
           <div class="skill"><div class="sname">cpp-guidelines</div><div class="sdesc">C++ 专项:Google 命名/RAII/header-impl</div><div class="srefs">format · review</div></div>
           <div class="skill"><div class="sname">bash-guidelines</div><div class="sdesc">bash 专项:三件套/引号/trap</div><div class="srefs">format · review</div></div>
-          <div class="skill"><div class="sname">commands</div><div class="sdesc">/tcraft-code-review · /tcraft-project-doc · /tcraft-brainstorm · /tcraft-dev-flow · /tcraft-release</div><div class="srefs">5 命令</div></div>
+          <div class="skill"><div class="sname">commands</div><div class="sdesc">/tcraft-code-review · /tcraft-project-doc · /tcraft-brainstorm · /tcraft-dev-flow · /tcraft-release · /tcraft-web</div><div class="srefs">6 命令</div></div>
         </div>
       </div>
 
@@ -411,7 +412,7 @@
     <h2>五条设计原则</h2>
     <div class="principles">
       <div class="principle"><div class="pn">01 · 调度链</div><p>dev-flow 识别阶段 → 激活 skill → 更新 progress → 流转,每个环节都有 skill 和文档归位。</p></div>
-      <div class="principle"><div class="pn">02 · 渐进披露</div><p>SKILL.md 只留要点,细则全在 references(31 篇),用到才读。</p></div>
+      <div class="principle"><div class="pn">02 · 渐进披露</div><p>SKILL.md 只留要点,细则全在 references(37 篇),用到才读。</p></div>
       <div class="principle"><div class="pn">03 · 状态真源唯一</div><p>需求状态只在 progress.md;周报记事情、progress 记状态,不互相复制。</p></div>
       <div class="principle"><div class="pn">04 · 通用知识回流</div><p>跨项目可复用知识去项目化后沉淀进 skill 仓库,随插件跨机器生效。</p></div>
       <div class="principle"><div class="pn">05 · 两档验证</div><p>轻档(影响面/冒烟)看方向,重档(全量测试/全量评估)看细节,前后各一道轻档兜底。</p></div>

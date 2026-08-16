@@ -10,7 +10,7 @@
   "plugins": [
     {
       "name": "code-skills",
-      "description": "代码相关:代码阅读/理解路由、编码准则与行为准则、格式化、需求深挖、头脑风暴(code-guidelines 及各语言 skill 的附属文档)、项目文档统一管理(project-doc)、代码审查命令、git 体系(含 CHANGELOG)。",
+      "description": "代码相关:代码阅读/理解路由、编码准则与行为准则、格式化、需求深挖、头脑风暴(code-guidelines 及各语言 skill 的附属文档)、项目文档统一管理(project-doc)、Web/前端设计 + React 准则 + UI 审查(web-guidelines)、代码审查命令、git 体系(含 CHANGELOG)。",
       "source": "./skills/code-skills",
       "skills": [
         "./bash-guidelines",
@@ -19,7 +19,8 @@
         "./python-guidelines",
         "./cpp-guidelines",
         "./project-doc",
-        "./git-guidelines"
+        "./git-guidelines",
+        "./web-guidelines"
       ]
     },
     {
