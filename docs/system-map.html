@@ -242,11 +242,11 @@
   <header>
     <div class="eyebrow">t-craft · personal engineering skills for Claude Code</div>
     <h1>研发体系全景</h1>
-    <p class="lede">一个 marketplace、三个分类 plugin、十支 skill 与三十七篇参考文档,由 dev-flow 六阶段调度成一条闭环:接需求 → 头脑风暴 → 方案 → 实现 → 两档验证 → 发布 → 沉淀。</p>
+    <p class="lede">一个 marketplace、三个分类 plugin、十支 skill 与三十八篇参考文档,由 dev-flow 六阶段调度成一条闭环:接需求 → 头脑风暴 → 方案 → 实现 → 两档验证 → 发布 → 沉淀。</p>
     <div class="stats">
       <span class="stat">plugins <b>3</b></span>
       <span class="stat">skills <b>10</b></span>
-      <span class="stat">references <b>37</b></span>
+      <span class="stat">references <b>38</b></span>
       <span class="stat">commands <b>10</b></span>
       <span class="stat">dev-flow 阶段 <b>6</b></span>
       <span class="stat">文档 <b>随码 5 · 离码 5</b></span>
@@ -343,6 +343,7 @@
           <li>adr.md <span class="arrow">→</span> <span class="d">关键设计决策</span></li>
           <li>test.md <span class="arrow">→</span> <span class="d">测试计划 + 结论</span></li>
           <li>review.md <span class="arrow">→</span> <span class="d">评估审查</span></li>
+          <li>terminology.md <span class="arrow">→</span> <span class="d">术语提炼,降沟通成本</span></li>
           <li>progress.md <span class="arrow">→</span> <span class="d">状态真源,接 dev-flow</span></li>
         </ul>
       </div>
@@ -360,7 +361,7 @@
         <div class="grid">
           <div class="skill hub"><div class="sname">code-guidelines</div><div class="sdesc">编码总入口:语言路由 + 行为/命令/格式化/异味基线</div><div class="srefs">7 references</div></div>
           <div class="skill hub"><div class="sname">web-guidelines</div><div class="sdesc">Web / 前端:应用型 UI(后台/仿真/本地工具)+ 设计方法论 + React 性能 + UI 审查 + 品牌语言 + 参考仿造</div><div class="srefs">6 references</div></div>
-          <div class="skill"><div class="sname">project-doc</div><div class="sdesc">项目文档统一管理(离码)</div><div class="srefs">prd · adr · test · review</div></div>
+          <div class="skill"><div class="sname">project-doc</div><div class="sdesc">项目文档统一管理(离码)+ 术语提炼</div><div class="srefs">prd · adr · test · review · 术语</div></div>
           <div class="skill"><div class="sname">git-guidelines</div><div class="sdesc">git 操作 + 随码文档 + 合并上线/版本升级</div><div class="srefs">commit · changelog · branch · readme</div></div>
           <div class="skill"><div class="sname">dev-flow</div><div class="sdesc">研发流程调度器:识别 → 激活 → 流转</div><div class="srefs">六阶段 · 两档验证</div></div>
           <div class="skill"><div class="sname">python-guidelines</div><div class="sdesc">Python 专项:命名/注释/类型注解</div><div class="srefs">format · review</div></div>
@@ -412,7 +413,7 @@
     <h2>五条设计原则</h2>
     <div class="principles">
       <div class="principle"><div class="pn">01 · 调度链</div><p>dev-flow 识别阶段 → 激活 skill → 更新 progress → 流转,每个环节都有 skill 和文档归位。</p></div>
-      <div class="principle"><div class="pn">02 · 渐进披露</div><p>SKILL.md 只留要点,细则全在 references(37 篇),用到才读。</p></div>
+      <div class="principle"><div class="pn">02 · 渐进披露</div><p>SKILL.md 只留要点,细则全在 references(38 篇),用到才读。</p></div>
       <div class="principle"><div class="pn">03 · 状态真源唯一</div><p>需求状态只在 progress.md;周报记事情、progress 记状态,不互相复制。</p></div>
       <div class="principle"><div class="pn">04 · 通用知识回流</div><p>跨项目可复用知识去项目化后沉淀进 skill 仓库,随插件跨机器生效。</p></div>
       <div class="principle"><div class="pn">05 · 两档验证</div><p>轻档(影响面/冒烟)看方向,重档(全量测试/全量评估)看细节,前后各一道轻档兜底。</p></div>

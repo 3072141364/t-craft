@@ -11,7 +11,7 @@
 | plugin(分类) | skill / 命令 | 作用 |
 |---------------|--------------|------|
 | `code-skills`(代码相关) | `code-guidelines` | 跨语言编码准则与编码总入口:查语言 -> 激活 <lang>-guidelines;附属文档:代码理解路由、需求深挖/头脑风暴、karpathy 行为准则、make-shortcut、跨语言格式化、代码异味基线、注释标记 |
-| | `project-doc` | 项目文档统一管理(离码文档,落 vault):prd(需求/方案)、adr(决策)、test(测试)、review(评估审查)各一篇附属文档 |
+| | `project-doc` | 项目文档统一管理(离码文档,落 vault):prd(需求/方案)、adr(决策)、test(测试)、review(评估审查)各一篇附属文档 + 术语提炼(terminology,内置术语库 terms.json,降沟通成本) |
 | | `python-guidelines` | Python 专项约定(命名/注释/类型注解);附属:format(ruff+mypy)、review |
 | | `cpp-guidelines` | C++ 专项约定(Doxygen/Google 命名/RAII);附属:format(clang-format)、review |
 | | `bash-guidelines` | bash 专项约定(三件套/引号/trap);附属:format(shfmt)、review |
@@ -47,7 +47,7 @@ t-craft/
     │   ├── commands/{tcraft-code-review,tcraft-project-doc,tcraft-dev-flow,tcraft-brainstorm,tcraft-release}.md
     │   ├── code-guidelines/(references/{brainstorm,code-intelligence,karpathy-guidelines,make-shortcut,format,code-markers,code-smells}.md + scripts/)
     │   ├── web-guidelines/(references/{app-ui-design,design-methodology,react-performance,reference-hunting,ui-review,design-language}.md + design-styles.json(74 款风格索引))
-    │   ├── project-doc/(references/{prd,adr,test,review}.md)
+    │   ├── project-doc/(references/{prd,adr,test,review,terminology}.md + terms.json(术语库))
     │   ├── python-guidelines/  cpp-guidelines/  bash-guidelines/  (references/{format,review}.md)
     │   ├── git-guidelines/(references/{commit,changelog,branch,readme}.md)
     │   └── dev-flow/

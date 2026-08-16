@@ -1,6 +1,6 @@
 ---
 name: project-doc
-description: 项目文档统一管理(离码文档,落 Obsidian vault)。研发流程阶段②④的文档环节。当用户要写方案/需求/PRD/spec、记录设计决策、写测试文档、产出评估审查报告时使用,按类型读对应附属文档:prd(需求/方案规格)、adr(关键设计决策)、test(测试计划+结论)、review(评估审查);需求状态接 obsidian-kb 的 progress.md。落盘走 obsidian-kb,模板在其 assets/templates/。与 git-guidelines(随码文档)对仗:git-guidelines 管仓库内文档,本 skill 管 vault 离码文档。
+description: 项目文档统一管理(离码文档,落 Obsidian vault)。研发流程阶段②④的文档环节。当用户要写方案/需求/PRD/spec、记录设计决策、写测试文档、产出评估审查报告时使用,按类型读对应附属文档:prd(需求/方案规格)、adr(关键设计决策)、test(测试计划+结论)、review(评估审查);需求状态接 obsidian-kb 的 progress.md。写文档描述特定场景/需求/流程时,术语使用按三级优先级(terminology.md):①术语库优先(terms.json 有现成术语直接用)→ ②其次提炼(库里没有且场景复杂反复出现才提炼简短术语,例:双域通信、片内多环境模拟)→ ③自然语言兜底(简单一次性场景用自然语言,不为提炼而提炼)。落盘走 obsidian-kb,模板在其 assets/templates/。与 git-guidelines(随码文档)对仗:git-guidelines 管仓库内文档,本 skill 管 vault 离码文档。
 ---
 
 # Project Doc(项目文档统一管理)
@@ -13,6 +13,7 @@ description: 项目文档统一管理(离码文档,落 Obsidian vault)。研发�
 - [references/adr.md](references/adr.md) -- 设计决策记录:一决策一张、备选与后果。记决策时读。
 - [references/test.md](references/test.md) -- 测试计划 + 结论。写测试时读。
 - [references/review.md](references/review.md) -- 评估审查:需求达成确认 + 回归。阶段④产出评估时读。
+- [references/terminology.md](references/terminology.md) -- 术语提炼:把复杂/啰嗦的业务场景压缩成简短术语,降低沟通成本;内置术语库 [`references/terms.json`](references/terms.json)。场景反复解释 / 需要起名 / 跨角色歧义时自动触发。
 
 ## 五类项目文档一览
 
@@ -45,6 +46,19 @@ description: 项目文档统一管理(离码文档,落 Obsidian vault)。研发�
 - 写测试计划 / 测试结论 → **test.md**
 - 需求达成确认 / 回归影响评估 → **review.md**
 - 需求状态流转 → **progress.md**(obsidian-kb)
+- 业务场景复杂 / 反复解释 / 需要起名 → **术语提炼(terminology.md)**
+
+## 术语提炼
+
+写文档描述**特定场景 / 需求 / 流程**时,术语使用按**三级优先级**:
+
+1. **术语库优先**——`terms.json` / 项目术语表有现成术语 → 直接用,不新造。
+2. **其次提炼**——库里没有,且场景复杂、反复出现、值得命名 → 提炼简短术语(例:仿真域+实车域 → **双域通信**;台架并行跑多个测试 → **片内多环境模拟**)。
+3. **自然语言兜底**——场景简单、一次性、不常复用 → 用自然语言描述,不为提炼而提炼。
+
+- 术语库:[`references/terms.json`](references/terms.json)(31 条内置)+ 项目术语表。
+- 新术语在 prd 里首次定义,记入项目术语表;跨项目通用的可回提进 `terms.json`。
+- 完整流程与规则见 [`references/terminology.md`](references/terminology.md)。
 
 ## 通用约定(所有项目文档)
 
