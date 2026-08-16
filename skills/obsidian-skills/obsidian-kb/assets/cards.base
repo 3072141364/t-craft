@@ -1,0 +1,82 @@
+filters:
+  and:
+    - 'file.ext == "md"'
+    - or:
+        - 'file.inFolder("projects")'
+        - 'file.inFolder("papers")'
+        - 'file.inFolder("tech")'
+        - 'file.inFolder("weekly")'
+        - 'file.inFolder("misc")'
+    - not:
+        - 'file.name == "prd.md"'
+        - 'file.name == "adr.md"'
+        - 'file.name == "test.md"'
+        - 'file.name == "review.md"'
+        - 'file.name == "progress.md"'
+        - 'file.name == "reference.md"'
+        - 'file.name == "README.md"'
+        - 'file.name == "INDEX.md"'
+        - 'file.name == "tags-cheatsheet.md"'
+        - 'file.name == "emoji-cheatsheet.md"'
+        - 'file.name == "tasks-status-cheatsheet.md"'
+        - 'file.name == "people.md"'
+        - 'file.name == "reading-list.md"'
+
+properties:
+  card_type:
+    displayName: "类型"
+  project:
+    displayName: "项目"
+  status:
+    displayName: "状态"
+  date:
+    displayName: "日期"
+
+views:
+  - type: table
+    name: "按类型"
+    groupBy:
+      property: card_type
+      direction: ASC
+    order:
+      - file.name
+      - project
+      - status
+      - date
+
+  - type: table
+    name: "进行中需求"
+    filters:
+      and:
+        - 'file.name == "progress.md"'
+        - or:
+            - 'status == "①头脑风暴"'
+            - 'status == "②方案"'
+            - 'status == "③实现"'
+            - 'status == "④验证"'
+            - 'status == "⑤发布"'
+    order:
+      - status
+      - file.folder
+      - date
+
+  - type: table
+    name: "论文"
+    filters:
+      or:
+        - 'card_type == "论文"'
+    order:
+      - status
+      - file.name
+      - year
+
+  - type: table
+    name: "按项目"
+    groupBy:
+      property: project
+      direction: ASC
+    order:
+      - file.name
+      - card_type
+      - status
+      - date

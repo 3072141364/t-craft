@@ -9,40 +9,33 @@
   },
   "plugins": [
     {
-      "name": "basic-skills",
-      "description": "基础工程约定:changelog、git-flow、emoji。几乎所有项目都用。",
-      "source": "./skills/basic-skills",
-      "skills": [
-        "./changelog",
-        "./git-flow",
-        "./emoji-helper",
-        "./brainstorm"
-      ]
-    },
-    {
       "name": "code-skills",
-      "description": "代码相关:代码阅读/理解路由、编码行为准则、代码格式化、代码审查命令、make 快捷命令。",
+      "description": "代码相关:代码阅读/理解路由、编码准则与行为准则、格式化、需求深挖、头脑风暴(code-guidelines 及各语言 skill 的附属文档)、项目文档统一管理(project-doc)、代码审查命令、git 体系(含 CHANGELOG)。",
       "source": "./skills/code-skills",
       "skills": [
-        "./code-intelligence",
-        "./karpathy-guidelines",
-        "./code-format",
-        "./make-shortcut",
-        "./spec-doc",
+        "./bash-guidelines",
         "./dev-flow",
         "./code-guidelines",
         "./python-guidelines",
-        "./cpp-guidelines"
+        "./cpp-guidelines",
+        "./project-doc",
+        "./git-guidelines"
       ]
     },
     {
       "name": "obsidian-skills",
-      "description": "知识管理:联通 Obsidian,把项目方案/升级文档沉淀到 vault,自动生成知识卡片并维护标签。",
+      "description": "知识管理:obsidian-kb 统一管理 vault(落盘/查询/知识沉淀/快速问答/周报/emoji);技术学习在 tech/ 逐渐沉淀。",
       "source": "./skills/obsidian-skills",
       "skills": [
-        "./obsidian-kb",
-        "./obsidian-query",
-        "./obsidian-answers"
+        "./obsidian-kb"
+      ]
+    },
+    {
+      "name": "research-skills",
+      "description": "科研管理:论文阅读(待读/粗读/精读/已读)、论文笔记、待读队列,管理 vault papers/ 与周报论文节。",
+      "source": "./skills/research-skills",
+      "skills": [
+        "./paper-study"
       ]
     },
     {

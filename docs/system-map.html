@@ -1,0 +1,425 @@
+<!-- 维护:skill 结构 / dev-flow 阶段 / 文档归属变化时,同步更新本图(见 CLAUDE.md)。 -->
+<title>t-craft System Map</title>
+<style>
+  :root {
+    --bg: #eef1f6;
+    --surface: #f7f9fc;
+    --surface-deep: #e7ecf4;
+    --ink: #16202e;
+    --muted: #5d7189;
+    --faint: #8396ad;
+    --line: #c9d4e3;
+    --grid: #d9e1ee;
+    --accent: #d97706;
+    --accent-soft: rgba(217, 119, 6, 0.10);
+    --good: #15803d;
+    --good-soft: rgba(21, 128, 61, 0.10);
+    --warn: #b91c1c;
+    --warn-soft: rgba(185, 28, 28, 0.09);
+    --link: #2563eb;
+    --mono: ui-monospace, "SF Mono", "Cascadia Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+    --sans: system-ui, -apple-system, "Segoe UI", Roboto, "PingFang SC", "Noto Sans CJK SC", "Microsoft YaHei", sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0c1220;
+      --surface: #111a2a;
+      --surface-deep: #0d1420;
+      --ink: #e7eef6;
+      --muted: #8fa4bb;
+      --faint: #64798f;
+      --line: #223350;
+      --grid: #182742;
+      --accent: #f0a028;
+      --accent-soft: rgba(240, 160, 40, 0.12);
+      --good: #3ecf8e;
+      --good-soft: rgba(62, 207, 142, 0.12);
+      --warn: #f17e7e;
+      --warn-soft: rgba(241, 126, 126, 0.12);
+      --link: #6aa3f7;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0c1220;
+    --surface: #111a2a;
+    --surface-deep: #0d1420;
+    --ink: #e7eef6;
+    --muted: #8fa4bb;
+    --faint: #64798f;
+    --line: #223350;
+    --grid: #182742;
+    --accent: #f0a028;
+    --accent-soft: rgba(240, 160, 40, 0.12);
+    --good: #3ecf8e;
+    --good-soft: rgba(62, 207, 142, 0.12);
+    --warn: #f17e7e;
+    --warn-soft: rgba(241, 126, 126, 0.12);
+    --link: #6aa3f7;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px),
+      var(--bg);
+    background-size: 28px 28px;
+    color: var(--ink);
+    font-family: var(--sans);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 56px 28px 88px; }
+  @media (max-width: 720px) { .wrap { padding: 36px 18px 64px; } }
+
+  /* header */
+  header { margin-bottom: 52px; }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 18px;
+  }
+  h1 {
+    font-family: var(--mono);
+    font-size: clamp(30px, 5vw, 46px);
+    line-height: 1.05; letter-spacing: -0.01em;
+    text-wrap: balance; font-weight: 700;
+    margin-bottom: 18px;
+  }
+  .lede {
+    max-width: 62ch; color: var(--muted); font-size: 16px; margin-bottom: 28px;
+  }
+  .stats { display: flex; flex-wrap: wrap; gap: 10px; }
+  .stat {
+    font-family: var(--mono); font-size: 13px;
+    border: 1px solid var(--line); background: var(--surface);
+    padding: 7px 12px; border-radius: 4px; color: var(--muted);
+  }
+  .stat b { color: var(--ink); font-weight: 700; font-variant-numeric: tabular-nums; }
+
+  /* section scaffolding */
+  section { margin-top: 64px; }
+  .sec-label {
+    font-family: var(--mono); font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--faint); margin-bottom: 6px;
+  }
+  h2 {
+    font-family: var(--mono); font-size: 22px; font-weight: 700; letter-spacing: -0.01em;
+    margin-bottom: 8px; text-wrap: balance;
+  }
+  .sec-sub { color: var(--muted); font-size: 14px; max-width: 68ch; margin-bottom: 26px; }
+
+  /* ---- dev-flow pipeline ---- */
+  .pipeline { display: flex; gap: 0; overflow-x: auto; padding-bottom: 8px; }
+  .stage {
+    flex: 1 1 0; min-width: 158px; position: relative;
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: 6px; padding: 16px 14px 14px;
+  }
+  .pipeline .stage + .stage { margin-left: 14px; }
+  .pipeline .stage::after {
+    content: "→"; position: absolute; right: -13px; top: 18px;
+    color: var(--accent); font-family: var(--mono); font-weight: 700;
+    z-index: 1;
+  }
+  .pipeline .stage:last-child::after { content: ""; }
+  .stage-num {
+    font-family: var(--mono); font-size: 12px; color: var(--accent);
+    font-weight: 700; letter-spacing: 0.08em; margin-bottom: 8px;
+  }
+  .stage h3 { font-family: var(--mono); font-size: 16px; font-weight: 700; margin-bottom: 10px; }
+  .stage .skills { margin-bottom: 10px; }
+  .chip {
+    display: inline-block; font-family: var(--mono); font-size: 11px;
+    background: var(--surface-deep); border: 1px solid var(--line);
+    padding: 2px 7px; border-radius: 3px; margin: 0 4px 4px 0; color: var(--muted);
+  }
+  .chip.hot { color: var(--accent); border-color: var(--accent); background: var(--accent-soft); }
+  .stage .out { font-size: 12.5px; color: var(--muted); margin-bottom: 10px; }
+  .stage .out b { color: var(--ink); font-weight: 600; }
+  .stage .prog {
+    font-family: var(--mono); font-size: 11px; color: var(--good);
+    border-top: 1px dashed var(--line); padding-top: 8px;
+  }
+  .stage.verify { border-color: var(--link); }
+  .stage.publish { border-color: var(--good); }
+
+  /* two-tier verify callout */
+  .tiers {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 18px;
+  }
+  @media (max-width: 640px) { .tiers { grid-template-columns: 1fr; } }
+  .tier {
+    border: 1px solid var(--line); border-radius: 6px; padding: 14px 16px; background: var(--surface);
+  }
+  .tier h4 {
+    font-family: var(--mono); font-size: 13px; letter-spacing: 0.06em;
+    margin-bottom: 10px; color: var(--ink);
+  }
+  .tier.light h4 { color: var(--muted); }
+  .tier.heavy h4 { color: var(--link); }
+  .tier ul { list-style: none; }
+  .tier li {
+    font-size: 13px; color: var(--muted); padding: 4px 0 4px 0; position: relative; padding-left: 16px;
+  }
+  .tier li::before { content: "—"; position: absolute; left: 0; color: var(--accent); font-family: var(--mono); }
+  .tier li b { color: var(--ink); font-weight: 600; }
+
+  /* ---- documents split ---- */
+  .docs { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 720px) { .docs { grid-template-columns: 1fr; } }
+  .doccol { border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+  .doccol .cap {
+    font-family: var(--mono); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 11px 16px; border-bottom: 1px solid var(--line);
+  }
+  .doccol.co .cap { color: var(--accent); background: var(--accent-soft); }
+  .doccol.off .cap { color: var(--link); background: rgba(37, 99, 235, 0.08); }
+  .doccol ul { list-style: none; padding: 12px 16px; }
+  .doccol li {
+    font-family: var(--mono); font-size: 13px; padding: 5px 0; color: var(--ink);
+    display: flex; gap: 8px; align-items: baseline;
+  }
+  .doccol li .d { color: var(--muted); font-family: var(--sans); font-size: 12.5px; }
+  .doccol li .arrow { color: var(--faint); }
+
+  /* ---- skills board ---- */
+  .plugins { display: flex; flex-direction: column; gap: 14px; }
+  .plugin { border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+  .plugin .phead {
+    display: flex; align-items: baseline; gap: 14px; padding: 13px 16px;
+    background: var(--surface); border-bottom: 1px solid var(--line);
+  }
+  .plugin .pname { font-family: var(--mono); font-weight: 700; font-size: 15px; }
+  .plugin .pdesc { font-size: 12.5px; color: var(--muted); }
+  .ptag { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.1em; color: var(--faint); }
+  .ptag.core { color: var(--accent); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 0; }
+  .skill { padding: 12px 16px; border-right: 1px solid var(--line); }
+  .skill:nth-child(odd) { border-left: none; }
+  .skill .sname { font-family: var(--mono); font-size: 13.5px; font-weight: 700; margin-bottom: 4px; }
+  .skill .sdesc { font-size: 12.5px; color: var(--muted); margin-bottom: 6px; }
+  .skill .srefs { font-family: var(--mono); font-size: 10.5px; color: var(--faint); }
+  .skill.hub { background: var(--accent-soft); }
+  .skill.hub .sname { color: var(--accent); }
+
+  /* ---- vault tree ---- */
+  .vault {
+    font-family: var(--mono); font-size: 13px; line-height: 1.7;
+    background: var(--surface); border: 1px solid var(--line); border-radius: 6px;
+    padding: 20px 22px; overflow-x: auto; color: var(--ink);
+  }
+  .vault .root { color: var(--accent); font-weight: 700; }
+  .vault .dim { color: var(--faint); }
+  .vault .cmt { color: var(--muted); }
+  .vault .hl { color: var(--good); }
+
+  /* ---- principles ---- */
+  .principles { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; }
+  .principle { border: 1px solid var(--line); border-radius: 6px; padding: 16px; background: var(--surface); }
+  .principle .pn {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .principle p { font-size: 13px; color: var(--muted); }
+  .principle p b { color: var(--ink); font-weight: 600; }
+
+  footer {
+    margin-top: 72px; padding-top: 24px; border-top: 1px solid var(--line);
+    font-family: var(--mono); font-size: 12px; color: var(--faint);
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px;
+  }
+  a { color: var(--link); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  ::selection { background: var(--accent); color: var(--bg); }
+  @media (prefers-reduced-motion: no-preference) {
+    html { scroll-behavior: smooth; }
+  }
+</style>
+
+<main class="wrap">
+
+  <header>
+    <div class="eyebrow">t-craft · personal engineering skills for Claude Code</div>
+    <h1>研发体系全景</h1>
+    <p class="lede">一个 marketplace、三个分类 plugin、九支 skill 与三十一篇参考文档,由 dev-flow 六阶段调度成一条闭环:接需求 → 头脑风暴 → 方案 → 实现 → 两档验证 → 发布 → 沉淀。</p>
+    <div class="stats">
+      <span class="stat">plugins <b>3</b></span>
+      <span class="stat">skills <b>9</b></span>
+      <span class="stat">references <b>31</b></span>
+      <span class="stat">commands <b>9</b></span>
+      <span class="stat">dev-flow 阶段 <b>6</b></span>
+      <span class="stat">文档 <b>随码 5 · 离码 5</b></span>
+    </div>
+  </header>
+
+  <section>
+    <div class="sec-label">the pipeline</div>
+    <h2>dev-flow:六阶段调度</h2>
+    <p class="sec-sub">dev-flow 识别阶段 → 激活对应 skill → 更新 progress.md 状态 → 提示进下一阶段。每个阶段都有文档归位,状态真源唯一。</p>
+
+    <div class="pipeline">
+      <div class="stage">
+        <div class="stage-num">STAGE ①</div>
+        <h3>头脑风暴</h3>
+        <div class="skills"><span class="chip hot">brainstorm</span><span class="chip">obsidian-kb · 查询</span></div>
+        <div class="out">需求要点 + 需求文件夹,<b>progress</b> ①</div>
+        <div class="prog">state · ①头脑风暴</div>
+      </div>
+      <div class="stage">
+        <div class="stage-num">STAGE ②</div>
+        <h3>方案设计</h3>
+        <div class="skills"><span class="chip hot">project-doc</span></div>
+        <div class="out">落 <b>prd</b> + <b>adr</b>,progress ②</div>
+        <div class="prog">state · ②方案</div>
+      </div>
+      <div class="stage">
+        <div class="stage-num">STAGE ③</div>
+        <h3>实现</h3>
+        <div class="skills"><span class="chip hot">code-guidelines</span><span class="chip">python/cpp/bash</span><span class="chip">code-intelligence</span></div>
+        <div class="out">代码;动态调整 prd、补记 <b>adr</b>,progress ③</div>
+        <div class="prog">state · ③实现</div>
+      </div>
+      <div class="stage verify">
+        <div class="stage-num">STAGE ④</div>
+        <h3>验证</h3>
+        <div class="skills"><span class="chip hot">/tcraft-code-review</span><span class="chip">make-shortcut</span><span class="chip">make test</span></div>
+        <div class="out">两档验证 → <b>test</b> + <b>review</b>,progress ④</div>
+        <div class="prog">state · ④验证</div>
+      </div>
+      <div class="stage publish">
+        <div class="stage-num">STAGE ⑤</div>
+        <h3>发布</h3>
+        <div class="skills"><span class="chip hot">git-guidelines</span></div>
+        <div class="out">提交 → 合并主分支 → <b>版本升级</b> → 上线,progress ⑤</div>
+        <div class="prog">state · ⑤发布</div>
+      </div>
+      <div class="stage">
+        <div class="stage-num">STAGE ⑥</div>
+        <h3>沉淀</h3>
+        <div class="skills"><span class="chip hot">obsidian-kb</span></div>
+        <div class="out">可复用知识提炼进 skill 仓库,progress ⑥</div>
+        <div class="prog">state · ⑥沉淀</div>
+      </div>
+    </div>
+
+    <div class="tiers">
+      <div class="tier light">
+        <h4>轻量档 · 看方向</h4>
+        <ul>
+          <li><b>影响面评估</b> — <b>/tcraft-code-review impact</b>:改动影响哪些调用链/模块,不破坏其他功能。开发完第一步。</li>
+          <li><b>冒烟测试</b> — 发布前最后一道,只跑关键路径,验证修复没引入新问题。</li>
+        </ul>
+      </div>
+      <div class="tier heavy">
+        <h4>全面档 · 看细节</h4>
+        <ul>
+          <li><b>全量测试</b> — make test / make lint,结论落 test.md。</li>
+          <li><b>全量评估</b> — <b>/tcraft-code-review full</b> 双轴(Standards / Spec),结论落 review.md。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-label">the documents</div>
+    <h2>随码 · 离码</h2>
+    <p class="sec-sub">文档按生命周期分两半:随代码走版本的留在仓库,过程性的进 vault。progress.md 是唯一的状态真源,周报只记「事情」、只链不复制。</p>
+    <div class="docs">
+      <div class="doccol co">
+        <div class="cap">随码 · git-guidelines</div>
+        <ul>
+          <li>README <span class="arrow">→</span> <span class="d">readme.md 细则</span></li>
+          <li>CHANGELOG <span class="arrow">→</span> <span class="d">changelog.md 细则</span></li>
+          <li>commit message <span class="arrow">→</span> <span class="d">commit.md 细则</span></li>
+          <li>分支命名 <span class="arrow">→</span> <span class="d">branch.md 细则</span></li>
+          <li>合并上线 · 版本升级(SemVer)</li>
+        </ul>
+      </div>
+      <div class="doccol off">
+        <div class="cap">离码 · project-doc → vault</div>
+        <ul>
+          <li>prd.md <span class="arrow">→</span> <span class="d">需求/方案规格</span></li>
+          <li>adr.md <span class="arrow">→</span> <span class="d">关键设计决策</span></li>
+          <li>test.md <span class="arrow">→</span> <span class="d">测试计划 + 结论</span></li>
+          <li>review.md <span class="arrow">→</span> <span class="d">评估审查</span></li>
+          <li>progress.md <span class="arrow">→</span> <span class="d">状态真源,接 dev-flow</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-label">the skills</div>
+    <h2>三个 plugin,一支 skill 编队</h2>
+    <p class="sec-sub">code-guidelines 是编码总入口(查语言 → 激活对应语言 guideline);project-doc 与 git-guidelines 对仗管文档;obsidian-skills 管 vault。</p>
+
+    <div class="plugins">
+      <div class="plugin">
+        <div class="phead"><span class="ptag core">core</span><span class="pname">code-skills</span><span class="pdesc">代码 + 研发流程 · 7 skill + 5 命令</span></div>
+        <div class="grid">
+          <div class="skill hub"><div class="sname">code-guidelines</div><div class="sdesc">编码总入口:语言路由 + 行为/命令/格式化/异味基线</div><div class="srefs">7 references</div></div>
+          <div class="skill"><div class="sname">project-doc</div><div class="sdesc">项目文档统一管理(离码)</div><div class="srefs">prd · adr · test · review</div></div>
+          <div class="skill"><div class="sname">git-guidelines</div><div class="sdesc">git 操作 + 随码文档 + 合并上线/版本升级</div><div class="srefs">commit · changelog · branch · readme</div></div>
+          <div class="skill"><div class="sname">dev-flow</div><div class="sdesc">研发流程调度器:识别 → 激活 → 流转</div><div class="srefs">六阶段 · 两档验证</div></div>
+          <div class="skill"><div class="sname">python-guidelines</div><div class="sdesc">Python 专项:命名/注释/类型注解</div><div class="srefs">format · review</div></div>
+          <div class="skill"><div class="sname">cpp-guidelines</div><div class="sdesc">C++ 专项:Google 命名/RAII/header-impl</div><div class="srefs">format · review</div></div>
+          <div class="skill"><div class="sname">bash-guidelines</div><div class="sdesc">bash 专项:三件套/引号/trap</div><div class="srefs">format · review</div></div>
+          <div class="skill"><div class="sname">commands</div><div class="sdesc">/tcraft-code-review · /tcraft-project-doc · /tcraft-brainstorm · /tcraft-dev-flow · /tcraft-release</div><div class="srefs">5 命令</div></div>
+        </div>
+      </div>
+
+      <div class="plugin">
+        <div class="phead"><span class="ptag">knowledge</span><span class="pname">obsidian-skills</span><span class="pdesc">Obsidian 知识库 · 1 skill + 3 命令</span></div>
+        <div class="grid">
+          <div class="skill"><div class="sname">obsidian-kb</div><div class="sdesc">vault 统一管理:落盘 / 查询(3-tier)/ 知识沉淀 / 快速问答 / 周报 / emoji;技术学习 tech/ 沉淀</div><div class="srefs">6 references + 8 templates</div></div>
+          <div class="skill"><div class="sname">commands</div><div class="sdesc">/tcraft-obsidian-kb(vault 管理)· /tcraft-obsidian-query(查询)· /tcraft-weekly(周报)</div><div class="srefs">3 命令</div></div>
+        </div>
+      </div>
+
+      <div class="plugin">
+        <div class="phead"><span class="ptag">research</span><span class="pname">research-skills</span><span class="pdesc">科研管理 · 1 skill + 1 命令</span></div>
+        <div class="grid">
+          <div class="skill"><div class="sname">paper-study</div><div class="sdesc">论文研究管理:papers/ 一论文一卡、待读队列、阅读工作流(待读→粗读→精读→已读)、论文笔记</div><div class="srefs">2 references + 2 templates + /tcraft-paper</div></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-label">the vault</div>
+    <h2>Obsidian vault 模型</h2>
+    <p class="sec-sub">vault 只放项目 / 论文 / 技术 / 周报;跨项目可复用知识提炼进 skill 仓库,模板也在 skill 仓库,不从 vault 取。</p>
+    <div class="vault">
+      <span class="root">vault/</span><br>
+      &nbsp;&nbsp;projects/<span class="cmt"># 项目开发</span><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&lt;项目名&gt;/<span class="cmt"># wiki · workflow · assets · reference.md</span><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;requirements/&lt;需求名&gt;/<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl">prd · adr · test · review · progress</span><span class="dim">.md</span><br>
+      &nbsp;&nbsp;papers/<span class="cmt"># 一论文一卡 + reading-list</span><br>
+      &nbsp;&nbsp;tech/&lt;主题&gt;/<span class="cmt"># 技术学习笔记</span><br>
+      &nbsp;&nbsp;weekly/周记 &lt;YYYY&gt;-W&lt;ww&gt;<span class="dim">.md</span><span class="cmt"> # 三流汇总,只链 progress</span><br>
+      &nbsp;&nbsp;misc/<span class="cmt"># 零散卡,平铺靠标签</span><br>
+      &nbsp;&nbsp;archive/<span class="cmt"># 已完成项目</span><br>
+      &nbsp;&nbsp;cards.base<span class="cmt"> # 动态视图:按类型 / 进行中需求 / 论文 / 按项目</span>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-label">the principles</div>
+    <h2>五条设计原则</h2>
+    <div class="principles">
+      <div class="principle"><div class="pn">01 · 调度链</div><p>dev-flow 识别阶段 → 激活 skill → 更新 progress → 流转,每个环节都有 skill 和文档归位。</p></div>
+      <div class="principle"><div class="pn">02 · 渐进披露</div><p>SKILL.md 只留要点,细则全在 references(31 篇),用到才读。</p></div>
+      <div class="principle"><div class="pn">03 · 状态真源唯一</div><p>需求状态只在 progress.md;周报记事情、progress 记状态,不互相复制。</p></div>
+      <div class="principle"><div class="pn">04 · 通用知识回流</div><p>跨项目可复用知识去项目化后沉淀进 skill 仓库,随插件跨机器生效。</p></div>
+      <div class="principle"><div class="pn">05 · 两档验证</div><p>轻档(影响面/冒烟)看方向,重档(全量测试/全量评估)看细节,前后各一道轻档兜底。</p></div>
+    </div>
+  </section>
+
+  <footer>
+    <span>t-craft · 随码文档归 git-guidelines,离码文档归 project-doc</span>
+    <span>dev-flow 六阶段 · ④验证两档 · ⑤发布版本升级</span>
+  </footer>
+</main>

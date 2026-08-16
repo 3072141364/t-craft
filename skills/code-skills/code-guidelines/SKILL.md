@@ -1,6 +1,6 @@
 ---
 name: code-guidelines
-description: 跨语言编码行为准则。在编写、重构、补全任意语言代码时使用,约束命名、注释、函数拆分与可读性。核心是「见名知义,非必要不注释」——优先靠函数名、变量名自解释,只在确实难懂处写短注释;不写超级长函数。语言无关的原理在此,语言专项约定(命名风格、注释语法、惯用拆分)在子 skill:Python 见 python-guidelines,C++ 见 cpp-guidelines。当用户写代码、改代码、要求「加注释」「重构函数」「提升可读性」时遵循。
+description: 跨语言编码准则与行为准则。在编写、重构、补全任意语言代码时使用,约束命名、注释、函数拆分与可读性。核心是「见名知义,非必要不注释」--优先靠函数名、变量名自解释,只在确实难懂处写短注释;不写超级长函数。行为准则(附属文档 karpathy-guidelines.md):先思考再写码、简洁优先、外科手术式修改、目标驱动执行,做技术决策、改代码时遵循。命令快捷入口(附属文档 make-shortcut.md):用户说"格式化""跑测试""lint""构建""初始化环境""清理""装依赖""看有哪些 make 命令"或任何"跑一下项目的 X"时,把意图路由到 make 目标。语言无关的原理在此;编码任务先查改动语言、激活对应语言子 skill:Python 见 python-guidelines、C++ 见 cpp-guidelines、bash 见 bash-guidelines。跨语言格式化(附属文档 format.md):.editorconfig、行长 120、一键装格式化工具,用户要"装格式化工具""搭建格式化环境""写 .editorconfig"时用;语言专项格式化在各语言子 skill。需求深挖(附属文档 brainstorm.md):接 feat/bugfix 后动手前深挖真实意图/约束/验收,用户说"深挖需求""头脑风暴""帮我理一下要做啥"时读。代码理解路由(附属文档 code-intelligence.md):找符号/追调用/理解功能/评估改动影响,codegraph -> gitnexus -> grep/LSP。项目文档走独立子 skill `project-doc`(本 plugin 内):统一管理 prd/adr/test/review,用户说"写方案文档""写设计文档""要个 spec""落个方案""记个决策""写评估报告"时用。当用户写代码、改代码、要求「加注释」「重构函数」「提升可读性」、做编码决策、要跑项目常用命令、要搭格式化环境、要深挖需求、要理解现有代码、或要写方案文档时遵循。
 ---
 
 # 跨语言编码准则
@@ -9,14 +9,25 @@ description: 跨语言编码行为准则。在编写、重构、补全任意语�
 
 **权衡**:对一次性脚本、数据探索,自行判断放宽;对长期维护的业务代码、被多人读的库,严守。
 
-## 原则与语言专项的分工
+## 原则、行为准则与命令入口的分工
 
-本 skill 讲语言无关的原理(注释哲学、函数拆分、命名自解释、注释与文档分工)。落到具体语言,注释符号、命名风格、拆函数惯用法各不同——走子 skill:
+本 skill 讲语言无关的**代码写法**原理(注释哲学、函数拆分、命名自解释、注释与文档分工)。**附属文档**(渐进披露,用到才读):
 
-- **Python**:`python-guidelines`(`#` / docstring、snake_case、类型注解替代注释、AbstractTask 拆分)
-- **C++**:`cpp-guidelines`(`//` / Doxygen、Google 命名、RAII / const / header-impl 拆分)
+- **[references/karpathy-guidelines.md](references/karpathy-guidelines.md)** -- 编码行为准则:先思考再写码、简洁优先、外科手术式修改、目标驱动执行、提交即规范。做技术决策、动手改代码前读。
+- **[references/make-shortcut.md](references/make-shortcut.md)** -- make 快捷入口:把开发意图路由到项目 make 目标(格式化/测试/lint/构建/初始化/清理)。用户要跑项目常用命令时读。
+- **[references/format.md](references/format.md)** -- 跨语言格式化:.editorconfig 模板、行长 120 统一约定、一键装工具脚本(scripts/setup_format_tools.sh)。装工具 / 搭格式化环境时读;语言专项见各语言子 skill 的 format.md。
+- **[references/code-smells.md](references/code-smells.md)** -- 代码异味基线(Fowler 12 味):审代码时逐味对照(主要喂 `/tcraft-code-review` Standards 轴)。
+- **[references/brainstorm.md](references/brainstorm.md)** -- 需求深挖 / 头脑风暴(研发流程阶段①):弹性一次一问 + 内嵌 5-Whys / first-principles,产需求要点。接需求动手前读。
+- **[references/code-intelligence.md](references/code-intelligence.md)** -- 代码理解路由:找符号 / 追调用 / 理解功能 / 评估影响,codegraph -> gitnexus -> grep/LSP。写码前查调用链、评估改动影响时读。
 
-没对应子 skill 的语言(bash、JS 等),套本 skill 的原理 + 跟项目既有风格走。
+**语言路由(每次编码任务先做)**:检查当前项目/改动的语言--看 `git diff --stat` / 待改文件后缀 / 项目 CLAUDE.md --然后激活对应语言子 skill(Python -> python-guidelines、C++ -> cpp-guidelines、bash -> bash-guidelines),用其准则与附属文档干活。多语言混合改动,按文件分别套;没有子 skill 的语言套本 skill 原理。
+
+语言专项(命名风格、注释语法、惯用拆分)走子 skill:
+
+- **Python**:`python-guidelines`(`#` / docstring、snake_case、类型注解替代注释、AbstractTask 拆分;附属:format / review)
+- **C++**:`cpp-guidelines`(`//` / Doxygen、Google 命名、RAII / const / header-impl 拆分;附属:format / review)
+- **bash**:`bash-guidelines`(set -euo pipefail、引号纪律、trap 清理;附属:format / review)
+
 
 ## 项目约定发现
 
@@ -85,7 +96,7 @@ description: 跨语言编码行为准则。在编写、重构、补全任意语�
 - **函数内部**:写普通注释(说「为什么」),不写文档注释。
 - **私有辅助函数**:文档注释可选,名字能说清就不写。
 
-具体语法(注释符、docstring 格式、Doxygen 标签)见对应语言子 skill。
+具体语法(注释符、docstring 格式、Doxygen 标签)与格式化见对应语言子 skill 及其附属文档。
 
 ## 5. 结构化注释标记(跨语言)
 
@@ -96,6 +107,6 @@ description: 跨语言编码行为准则。在编写、重构、补全任意语�
 ## 附:与各语言 review 的分工
 
 - **本 skill(写代码时)**:约束自己写出来的代码——命名、注释、函数拆分、可读性。预防性的。
-- **`references/python-review.md` / `cpp-review.md`(审代码时)**:看别人 / 自己的代码查具体 bug(可变默认参数 / 生命周期 / 并发等)。检测性的。
+- **语言子 skill 的 `references/review.md`(审代码时)**:看别人 / 自己的代码查具体 bug(可变默认参数 / 生命周期 / 并发等)。检测性的。
 
-写的时候守本 skill + 语言子 skill 防患于未然;审的时候用对应 `<lang>-review.md` 抓漏网的 bug。
+写的时候守本 skill + 语言子 skill 防患于未然;审的时候用对应语言 skill 的 `references/review.md` 抓漏网的 bug。

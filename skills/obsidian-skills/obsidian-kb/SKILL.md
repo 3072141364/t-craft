@@ -1,68 +1,78 @@
 ---
 name: obsidian-kb
-description: 连通代码项目与 Obsidian 知识库:初始化 vault(给定路径,空仓库一键建目录与卡片模板)、把项目方案从代码仓库分离沉淀为 Obsidian 卡片、按情境沉淀术语/技术/wiki 等卡片、维护标签、写周报。当用户要初始化 obsidian 仓库/setup vault(给了 vault 路径要求建结构)、写技术方案/架构方案/设计方案(记到 Obsidian 而非代码仓库)、把通用概念/术语/技术沉淀成卡片、整理或维护标签、建本周周报/周记时使用。卡片是概念/模板(card_type),不是文件夹--一篇内聚有信息量的笔记就是一张卡,住在它该住的位置。工作中识别到可沉淀的通用概念/术语时,主动提示建卡。以直接读写 vault markdown 为主(零依赖),检测到 obsidian CLI 时增强检索与反链。项目特定约定(vault 路径、文件夹结构、标签规范)运行时从配置/CLAUDE.md 发现,不硬编码。查询 vault 走 obsidian-query,本 skill 模块二只转调它。
+description: Obsidian vault 的统一管理 skill,四个职能:①编辑/管理 vault——初始化、需求文档落盘、知识卡片沉淀、标签维护;②快速问答——高频固定问题(命令/发版/镜像等)走 answer-index 索引直接答,未命中转查询并自动学习;③随时落盘/查询/建知识体系——文档查询(3-tier 省 token)、卡片沉淀(项目知识→vault,通用知识→skill 仓库);④周报——维护周报任务列表,工作清单在周报内维护。当用户要初始化 vault、写方案/需求/流程/知识卡、查 vault/旧方案、问高频操作约定、维护标签、写周报、配 emoji 或管理手头工作时使用。知识=卡片(card_type 决定类型,文件夹决定位置),需求=文件夹(一需求一文件夹:prd/adr/test/review/progress)。查询走模块二(query.md),快速问答走模块五(answers.md),周报/进度规则见附属文档 weekly.md / progress.md。跨项目可复用知识沉淀到 skill 仓库,模板在 skill 仓库,不进 vault。以直接读写 vault markdown 为主(零依赖),检测到 obsidian CLI 时增强检索与反链。项目特定约定(vault 路径、文件夹结构、标签规范)运行时从配置/CLAUDE.md 发现,不硬编码。
 ---
 
-# Obsidian KB
+# Obsidian KB(vault 统一管理)
 
-把代码项目和 Obsidian 知识库连起来:**方案活在 Obsidian,代码仓库只留指针**;把工作中产生的可沉淀内容做成卡片,并维护标签让知识可检索。还能在空 vault 上一键初始化目录与模板。
+把代码项目和 Obsidian 知识库连起来:**方案活在 Obsidian,代码仓库只留指针**。四个职能:编辑/管理 vault、快速问答、随时落盘/查询/建知识体系、周报。还能在空 vault 上一键初始化目录与模板。
 
-设计意图:代码仓库适合放代码与面向消费者的 CHANGELOG,不适合放长方案、经验沉淀--它们会让 README/docs 越积越重,且跨项目复用难。Obsidian vault 是磁盘上的 markdown 文件夹,天然承载这些,还能用 wikilink/tag 互链。本 skill 是这条"代码 ↔ 知识库"的桥梁,并能在新机器上初始化 vault。
+设计意图:代码仓库适合放代码与面向消费者的 CHANGELOG,不适合放长方案、经验沉淀、项目特定流程--它们会让 README/docs 越积越重,且跨项目复用难。Obsidian vault 是磁盘上的 markdown 文件夹,天然承载这些,还能用 wikilink/tag 互链。本 skill 是这条"代码 ↔ 知识库"的桥梁:开发中随时落盘、随时查询、沉淀知识、维护周报与工作清单。
+
+**附属文档**(渐进披露,用到才读):
+
+- [references/query.md](references/query.md) -- 文档查询(模块二):summary + 3-tier 省 token 读。查 vault 时读。
+- [references/answers.md](references/answers.md) -- 快速问答(模块五):answer-index 已知答案索引 + 学习闭环。高频固定问题先查它。
+- [references/weekly.md](references/weekly.md) -- 周报规则(模块四)。
+- [references/progress.md](references/progress.md) -- 需求进度规则(状态真源,接 dev-flow)。
+- [references/emoji-helper.md](references/emoji-helper.md) -- emoji 选择与应用(含速查表 emoji-cheatsheet.md)。配 emoji 时读。
+- [references/vault-conventions.md](references/vault-conventions.md) -- vault 结构总纲。
 
 ## 卡片的概念
 
-**卡片 = 概念/模板,不是文件夹。** 一篇内聚、有一定信息量的笔记就是一张卡:
+两类组织,互不冲突:
 
-- `card_type`(frontmatter)决定这是什么卡、用哪个模板、正文骨架。
-- 文件夹决定卡片住在哪(项目/通用/日程)--**没有"卡片"文件夹**。
-- 一卡一事:一张卡围绕一个东西(一个问题、一次会议、一周、一个术语、一个决策),内聚、独立可懂,带 frontmatter + 双链。
+- **知识 = 卡片**:概念/模板。`card_type`(frontmatter)决定类型与骨架,文件夹决定位置。一卡一事,内聚有信息量,带 frontmatter + 双链。
+- **需求 = 文件夹**:过程单元。一需求一文件夹,固定五个产出物(prd/adr/test/review/progress),`progress.md` 的 `status` 是状态真源(接 dev-flow 六阶段)。
+
+卡片住在 `projects/`(项目知识卡)、`papers/`(论文卡,归 research-skills 的 paper-study 管理)、`tech/`(技术学习)、`weekly/`(周记)、`misc/`(零散卡,平铺靠标签);跨项目可复用知识沉淀到 skill 仓库,不进 vault。
 
 card_type 与默认位置(按需扩充,不强求每类都有模板):
 
-| card_type | 装什么 | 默认位置 | 文件名前缀 |
-|-----------|--------|---------|-----------|
-| 方案 | 设计方案(开发新功能/修复 bug) | `项目/<名>/需求/` | `feat-` |
-| 技术 | 技术知识/实践沉淀(运行时原理、工具机制、排障经验) | 项目特定:`项目/<名>/需求/`;跨项目通用:`通用/技术/` | 项目内 `tech-`;通用不带 |
-| 流程 | 规范操作记录(一步步怎么做,可照着执行) | `通用/规范/` | — |
-| 术语 | 通用概念定义(类似速查表) | `通用/术语/` | — |
-| wiki | 知识词条(概念/背景解释,比术语更宽泛的科普性内容) | `项目/<名>/wiki/` | — |
-| 周记 | 周报 | `日程/周报/` | — |
+| card_type | 装什么 | 默认位置 | 文件名 |
+|-----------|--------|---------|--------|
+| 论文 | 论文阅读卡(走 research-skills 的 paper-study 管理) | `papers/` | `<论文名>.md` |
+| 技术 | 技术学习笔记(概念+实践+踩坑) | `tech/<主题>/` | `<笔记>.md` |
+| wiki | 知识词条(概念/背景解释,项目级) | `projects/<名>/wiki/` | — |
+| 流程 | 项目特定规范操作(发版/测试/镜像,可照着执行) | `projects/<名>/workflow/` | `<流程名>.md` |
+| 周记 | 周报(三流汇总) | `weekly/` | `周记 <YYYY>-W<ww>.md` |
 
-**项目需求卡命名**:项目内工作卡(方案/技术)统一放 `项目/<名>/需求/` 下,**文件名带类型前缀**,按工作性质对应:
-- `feat-` 新功能/需求
-- `bugfix-` 修复(改 bug)
-- `debug-` 排查(重在定位,未必改)
-- `hotfix-` 线上紧急修复
-- `tech-` 技术沉淀(项目特定技术知识)
-- `style-` 代码风格/格式
-- `refactor-` 重构(不改行为)
-- `perf-` 性能优化
-- `docs-` 文档
-- `chore-` 杂项/构建/依赖
-- `test-` 测试相关
+> 术语等通用概念定义不放 vault,进 skill 仓库。需求(方案)文档走需求文件夹:`projects/<名>/requirements/<需求名>/{prd,adr,test,review,progress}.md`。论文卡走 research-skills 的 paper-study(模板在其 `assets/templates/paper.md`)。不属于任何体系的零散卡放 `misc/`,平铺不建子目录,靠标签找。
 
-例:`项目/general_process/需求/feat-适配e2雷达标定文件.md`。**跨项目通用技术卡**(如 crun 沙箱、overlayfs 原理)不进需求,放 `通用/技术/`,不带前缀。wiki 卡归 `项目/<名>/wiki/`(非需求,知识性内容单独放)。
+**需求文件夹**:每个需求一个文件夹 `projects/<名>/requirements/<需求名>/`,内含固定五个产出物:
+- `prd.md` — 需求规格(阶段②,project-doc 产出)
+- `adr.md` — 本需求关键设计决策
+- `test.md` — 测试计划 + 结论(阶段④)
+- `review.md` — 评估审查报告(阶段④)
+- `progress.md` — 状态真源(status 接 dev-flow 六阶段)
 
-**项目 reference.md**:每个项目下建 `项目/<名>/reference.md`(模板在 `assets/reference.md`),记录该项目**核心通用**的外部资料链接,分内部资料(飞书 wiki/Artifactory/Harbor/内部系统)与外部资料(官方文档/开源项目)。需求相关的资料归对应需求卡,不进 reference。随用随补,不强求一次建全。
+需求名用英文短名(如 `export-pdf`)。需求类型(feat/bugfix/debug/hotfix/refactor/docs/chore...)记在 prd.md 的 `type` 字段,不进文件夹名。
 
-**项目目录结构**:每个项目下固定两个子目录 + 一个 reference 文件:
-- `项目/<名>/需求/` — 工作卡(feat-/debug-/bugfix-... 平铺)
-- `项目/<名>/wiki/` — 项目既有资料、知识性内容(wiki 卡)
-- `项目/<名>/reference.md` — 外部资料链接
+**跨项目可复用知识**(如 overlayfs 原理、通用排障经验)不进 vault,沉淀到 skill 仓库。wiki 卡归 `projects/<名>/wiki/`(项目知识,非需求)。
 
-新建项目时(用户开始往某项目沉淀内容)主动建这三个;init 脚本只建 `项目/` 空壳,项目内结构按需建。
+**项目 reference.md**:每个项目下建 `projects/<名>/reference.md`(模板在 `assets/reference.md`),记录该项目**核心通用**的外部资料链接,分内部资料(飞书 wiki/Artifactory/Harbor/内部系统)与外部资料(官方文档/开源项目)。需求相关的资料归对应需求卡,不进 reference。随用随补,不强求一次建全。
 
-模板见 vault 的 `模板/`(由初始化生成,当前仅方案/术语/周记三类有模板,其余按需再加)。vault 根的 `卡片库.base`(Obsidian Bases)按 card_type/project/status 动态汇总所有卡,`INDEX.md` 嵌入它当首页。完整 vault 结构见 `references/vault-conventions.md`。
+**项目目录结构**:每个项目下固定:
+- `projects/<名>/wiki/` — 项目知识性内容(开发环境搭建/API/roadmap,跨需求复用)
+- `projects/<名>/workflow/` — 项目特定流程(发版/测试/镜像,可照着执行)
+- `projects/<名>/requirements/` — 一需求一文件夹(见上)
+- `projects/<名>/assets/` — 附件(方案图/截图)
+- `projects/<名>/reference.md` — 外部资料链接
+- `projects/<名>/README.md` — 项目 MOC
+
+新建项目时(用户开始往某项目沉淀内容)主动建;init 脚本只建 `projects/` 空壳,项目内结构按需建。
+
+模板在 skill 仓库 `assets/templates/`(需求级 prd/progress/adr/test/review + 知识卡 weekly),不从 vault 取;建需求/卡片时按需从技能仓库复制。vault 根的 `cards.base`(Obsidian Bases)按 card_type / 进行中需求 / project 动态汇总,`INDEX.md` 嵌入它当首页。完整 vault 结构见 `references/vault-conventions.md`。
 
 ## 何时触发
 
-- **初始化 vault**:用户给 obsidian 路径,要求初始化/建结构(空仓库或新机器)。
-- **写方案**:写技术/架构/设计方案,或设计讨论中说"把方案记下来"。
-- **记流程**:把一段规范操作(如"发布前怎么验""升级 skill 怎么走")记成可照着执行的步骤卡。
-- **写 wiki**:把一个概念/背景写成知识词条(比术语更宽,带前因后果、不只下定义),或说"记成 wiki/科普一下"。
-- **沉淀卡片**:用户要求,或本 skill 主动识别到可沉淀内容时提示。
-- **维护标签**:整理标签/看有哪些标签/统一标签。
-- **写周报**:用户说"建本周周报/周记/复盘本周"时,按模块四建周记卡。
+**四职能都触发**:
+
+- **编辑/管理 vault**:初始化 vault / 写方案 / 记流程 / 写 wiki / 沉淀卡片 / 维护标签。
+- **快速问答**:问高频固定操作约定("X 命令是什么""怎么发版""怎么做镜像")。
+- **查询**:查 vault / 查旧方案 / 之前怎么做的 / 找笔记里有没有 X。
+- **周报**:建本周周报/周记/复盘本周、维护任务列表与工作清单(周报内维护)。
+- **emoji**:问"该用哪个 emoji"、给 commit / 卡片 / 周报配 emoji -- 按附属文档 emoji-helper.md。
 
 ## 前置:发现 vault 与项目约定(不硬编码)
 
@@ -95,30 +105,31 @@ vault 是磁盘上的 markdown 文件夹,默认直接读写,零依赖,Obsidian �
    ```bash
    bash <skill>/scripts/init_vault.sh "<vault 路径>"
    ```
-   脚本建目录(`项目/`、`通用/{术语,AI,工具,规范,环境,技术}`、`日程/周报`、`模板/`、`归档/`)、复制卡片模板到 `模板/`、建 `INDEX.md`。已存在的跳过。
+   脚本建目录(`projects/`、`papers/`、`tech/`、`weekly/`、`misc/`、`archive/`)、铺种子速查表与 `cards.base`(vault 根)、建 `INDEX.md`。已存在的跳过。**不复制模板进 vault**(模板在 skill 仓库)。
 3. **记录路径**(跨机器关键):提示用户二选一--
    - 跨机器推荐:shell 配置加 `export OBSIDIAN_VAULT="<路径>"`(每台机器设自己的)。
    - 单项目:`.claude/skills-config.json` 写 `{"obsidian-kb":{"vault":"<路径>"}}`。
    可代用户写入当前项目的 skills-config.json(确认后)。
-4. **报告**:列出建了什么、跳过了什么;若 vault 已有零散内容(如顶层 `AI/xxx.md`),提示是否迁入 `通用/` 对应主题,不擅自搬。
+4. **报告**:列出建了什么、跳过了什么;若 vault 已有零散内容(如顶层 `AI/xxx.md`),提示归入项目 `wiki/` 或提炼进 skill 仓库,不擅自搬。
 
-## 模块一:方案沉淀(方案卡片)
+## 模块一:需求方案落盘
 
-把设计方案写成方案卡片,代码仓库只留指针。
+把需求/方案从代码仓库分离,落盘到 Obsidian 需求文件夹,代码仓库只留指针。
 
-1. 确认主题与项目(从 git 仓库目录名/CLAUDE.md 推断,不确定就问)。
-2. 起草方案卡片:`card_type: 方案` + frontmatter `summary`(一行全文概述,供 obsidian-query 3-tier 查询用)+ 正文按读者分章:用户读(需求背景/方案设计/项目收益/行动清单/验收标准)+ AI 须知(范围外/代码变更清单/测试决策)。候选方案/权衡是头脑风暴过程,不进文档;只记最终方案 + 优缺点。结构是建议——价值在把"为什么这么定"写清,而非填模板。
-3. 目标路径 `项目/<名>/需求/feat-<方案名>.md`(修复类用 `bugfix-`/`debug-`/`hotfix-` 前缀,见 card_type 表命名约定)。
+1. 确认需求与项目(从 git 仓库目录名/CLAUDE.md 推断,不确定就问;需求名用英文短名)。
+2. 建需求文件夹 `projects/<名>/requirements/<需求名>/`,起草 `prd.md`(从 skill 仓库复制模板 `obsidian-kb/assets/templates/prd.md`):frontmatter `type`(feat/bugfix/...)+ `status`(①→⑥)+ 正文按读者分章:用户读(需求背景/方案设计/项目收益/行动清单/验收标准)+ AI 须知(范围外/代码变更清单/测试决策)。候选方案/权衡是头脑风暴过程,不进文档;只记最终方案 + 优缺点。
+3. 同步建 `progress.md`(从 skill 仓库复制模板 `obsidian-kb/assets/templates/progress.md`),`status` 为当前阶段;规则见附属文档 [references/progress.md](references/progress.md)。
 4. 展示草稿确认后写入。
-5. 代码仓库留指针(README 或 docs 一行 `> 方案见 Obsidian: [[<方案名>]]`),方案正文不进代码仓库。
+5. 代码仓库留指针(README 或 docs 一行 `> 方案见 Obsidian: [[<需求名>]]`),方案正文不进代码仓库。
 6. wikilink 互链已有相关笔记/卡片。
-7. 需要配图(架构 / 流程 / 泳道 / C4)时,按「与 fireworks-tech-graph 联动」生成 PNG、存 `项目/<名>/附件/`、嵌入 `![[图.png]]`。
+7. 需要配图(架构 / 流程 / 泳道 / C4)时,按「与 fireworks-tech-graph 联动」生成 PNG、存 `projects/<名>/assets/`、嵌入 `![[图.png]]`。
+8. 记项目特定流程(发版/测试/镜像等)时,存 `projects/<名>/workflow/<流程名>.md`(流程卡)。
 
 ## 模块二:文档查询
 
-只读检索,不修改 vault。**调用 `obsidian-query` skill(同 plugin)做 3-tier 省 token 查询**:按标签/关键词粗筛 → 读 frontmatter `summary` 判相关性(无关跳过/弱相关只读 summary/强相关精读全文)→ 沿链接扩展 → 分级返回。
+只读检索,不修改 vault。**按附属文档 [references/query.md](references/query.md) 做 3-tier 省 token 查询**:按标签/关键词粗筛 → 读 frontmatter `summary` 判相关性(无关跳过/弱相关只读 summary/强相关精读全文)→ 沿链接扩展 → 分级返回,不倾倒全文。
 
-本 skill 不重复实现查询流程,交 obsidian-query。仅在无 obsidian-query 可用时退化为:`rg`/`obsidian search` 检索 → 沿链接扩展 → 返回标题+路径+摘要+wikilink,不倾倒全文。
+query.md 是查询的完整规则(summary 维护约定、3-tier 流程、CLI 增强),本模块只做入口。查 vault / 旧方案 / 历史笔记时先走这里;高频固定问题先走模块五(快速问答)查索引,命中直接答,未命中再转本模块搜。
 
 ## 模块三:卡片沉淀
 
@@ -127,111 +138,53 @@ vault 是磁盘上的 markdown 文件夹,默认直接读写,零依赖,Obsidian �
 - **主动提示**(本 skill 唯一主动场景):识别到可沉淀内容时,一句话提示"这点值得建张<类型>卡,要我现在写到 Obsidian 吗?"。同意才动,不同意跳过,不纠缠。
 
 ### 识别信号 -> card_type
-- 通用概念/术语(类似速查表条目,一句话能下定义)-> **术语** 卡。
-- 一段可照着执行的规范操作流程(有先后顺序、可复现)-> **流程** 卡。
+- 跨项目通用概念/术语(一句话能下定义)-> 提炼进 **skill 仓库**(不进 vault)。
+- 一段项目**特定**的可照着执行的规范操作(发版/测试/镜像,有先后顺序、可复现)-> **流程** 卡,存 `workflow/`;跨项目通用流程 -> 提炼进 skill 仓库。
 - 一个概念/背景的科普性解释(带前因后果、不只下定义)-> **wiki** 卡。
 - 技术原理/工具机制/排障经验(事实+实践)-> **技术** 卡。
-- 设计决策/方案(开发新功能、修 bug)-> **方案** 卡。
+- 需求类设计(开发新功能、修 bug)-> 需求文件夹的 prd.md;跨需求可复用的决策/经验 -> 提炼为 **技术/wiki** 卡。
 
-> card_type 按需扩充,不强求每类有模板。当前仅方案/术语/周记有模板,流程/wiki/技术等按需起草即可。
+> card_type 按需扩充,不强求每类有模板。当前模板:prd/progress/adr/test/review(需求级)+ weekly(知识卡),流程/wiki/技术等按需起草即可;论文卡模板在 research-skills 的 paper-study。
 
 ### 流程(同意后)
 1. 选 card_type,用对应模板骨架起草;一卡一事,内聚有信息量。
-2. 定位置:按 card_type 默认位置(见上表);项目相关归项目,通用归 `通用/<主题>`。
-3. frontmatter 填 `card_type`/`project`/`tags`/`source`(提炼自哪)+ `summary`(一行全文概述,供 obsidian-query 3-tier 查询用),正文 + 双链到相关卡片/笔记。
+2. 定位置:按 card_type 默认位置(见上表);项目相关归项目 `wiki/` / `workflow/`;跨项目可复用知识提炼进 skill 仓库(去项目化后),不进 vault。
+3. frontmatter 填 `card_type`/`project`/`tags`/`source`(提炼自哪)+ `summary`(一行全文概述,供查询 3-tier 用),正文 + 双链到相关卡片/笔记。
 4. 展示草稿确认后写入。
 5. 回链:在来源处加 wikilink 指向新卡。
 
-### 通用卡的内容纯净(铁律)
+### 跨项目可复用知识 → skill 仓库(铁律)
 
-放 `通用/`(术语/技术/wiki/工具等)的卡**只记纯通用知识,正文不掺项目细节**:
-- 不写项目特定路径、环境变量、UUID 等项目命名(如 `/mnt/ssd/...`、`$UUID`、`/sim_env/...`)
-- 不写项目自研的封装工具或项目内脚本引用(如某项目的 `xxx-cli` 包装、`scripts/xxx.sh`)
-- 不写项目特有的参数、配置、目录约定
-- 判断标准:**"换个项目/换个系统,这张卡的内容还成立吗?"** 成立才是通用卡;任何项目耦合内容归项目卡(方案/技术/需求卡),不进 `通用/`
+vault 只放项目 / 时间维内容。**跨项目可复用**的知识(术语、通用机制、规范、通用踩坑经验)不进 vault,沉淀到 skill 仓库——本仓库 `code-guidelines` 的附属文档或对应 skill,让它随插件跨机器、跨项目生效。
 
-**链接是例外,内容不是**:通用卡可在关联段用 `[[wikilink]]` 链向项目卡,项目卡也可反向链通用卡。链接只做导航,不污染通用卡正文——项目里怎么用这个知识,写项目卡;通用卡正文不复述项目用法,只靠链接互通。
-
-> 反例:一张通用 overlayfs 卡,正文写了"某项目的 overlayfs-cli 封装方案、`/sim_env/$UUID/home` 挂载路径、isolation 项目的被隔离目录清单"——这些对理解 overlayfs 本身毫无作用,反而把通用知识绑死了特定项目。正确做法:正文只写 lowerdir/upperdir/挂载点/COW 机制等纯通用原理,项目怎么用它放项目卡,两边用 `[[overlayfs]]` 链接互通即可。
-
-这条规则同样适用于从项目工作中"提炼"通用卡的场景:即使知识来源于某项目,沉淀成通用卡时也要**去项目化**——剥离项目路径/工具/命名,只留跨项目通用的机制与原理。
+- 判断标准:**"换个项目/换个系统,这条知识还用得上吗?"** 用得上 → 提炼进 skill 仓库;只对本项目成立 → 项目 `wiki/` / `workflow/` 或需求文件夹。
+- **不写项目耦合内容当通用知识**:路径、环境变量、UUID、自研工具、项目参数——既不能跨项目复用,又污染项目。
+- **去项目化**:从项目工作中提炼通用知识时,剥离项目路径/工具/命名,只留通用机制与原理,写进 skill 仓库(如 code-guidelines 附属文档)。项目里怎么用,写项目 wiki 卡。
 
 ### 克制
 主动提示克制:一次会话最多 1-2 次真正高价值的。判断标准"换个项目/过半年还有用吗"--有用才提示。
 
-## 模块四:周报管理(周记卡片)
+## 模块四:周报(任务列表 + 工作清单)
 
-周记卡(`card_type: 周记`)记工作流痕 + 沉淀指针,不是流水账,是可检索的工作档案。一周一卡,跨项目通用。
+周报记「事情」(开发/论文/技术三流),需求进度归 progress.md。完整规则见附属文档 [references/weekly.md](references/weekly.md)。要点:
 
-### 文件位置
+- 位置 `weekly/周记 <YYYY>-W<ww>.md`,章节三流 + 问题/沉淀/下周。
+- **任务列表与工作清单都在周报内维护**:「本周事项」就是最近工作清单(正在做/待办/本周完成),不另建独立文件。
+- todo 格式与状态符号(Tasks 扩展)见 weekly.md,不在此重复。
+- **分工铁律**:周报只链需求的 progress.md(`[[projects/<名>/requirements/<需求名>/progress]]`),不重复维护需求状态;状态更新走 progress.md。
 
-- `日程/周报/周记 <YYYY-Www>.md`(周次用 ISO week,如 `周记 2026-W32.md`)
-- 周次换算:周一日期所在年的第几周;Python `date.isocalendar()` 可得。
+## 模块五:快速问答
 
-### todo 项格式
+高频固定操作/约定问题("X 命令是什么""怎么发版""怎么做镜像")的**索引缓存**。完整规则见附属文档 [references/answers.md](references/answers.md)。要点:
 
-每项一行,字段用 `|` 分隔,顺序固定:
+- 索引 `projects/<名>/answer-index.jsonl`:**先查索引**,命中 Read 对应文档段直接答,跳过搜索。
+- 未命中 → 转**模块二**(query.md)3-tier 搜,搜到**反问要不要记进索引**(学习闭环)。
+- 索引只存"问题→文档路径→章节",答案每次读 doc 实际内容(防过时)。
+- 写索引前展示草稿确认;只记固定问题,开放性排查不记。
 
-```
-- [checkbox] 优先级 类型 | 内容 | 👤对接人 ⏰时间 | 🔗 [[卡片]]
-```
+## 模块六:标签维护
 
-| 字段 | emoji | 取值 | 说明 |
-|------|-------|------|------|
-| checkbox | — | 见下表 | Tasks 插件扩展符号,见「状态符号」 |
-| 优先级 | 🔥/🟡/🟢 | `🔥 P0 高` `🟡 P1 中` `🟢 P2 低` | emoji + 级别 + 文字都保留 |
-| 类型 | ✨/🐛/🔍/📌 | ✨ feat · 🐛 bugfix · 🔍 debug · 📌 临时任务 | 工作性质分类 |
-| 内容 | — | 一句话 | 简洁,带 commit 号 / 关键标识 |
-| 对接人 | 👤 | 姓名 | 协作关键人 |
-| 预期时间 | ⏰ | `MM-DD` 或 `待定`/`待数据` | deadline |
-| 关联卡片 | 🔗 | `[[卡片名]]` | vault 跳转,无关联省略 |
-
-### 状态符号(Tasks 插件扩展)
-
-周报依赖 Obsidian Tasks + Minimal 主题渲染 checkbox 扩展符号。**仅允许以下两类,不得越界使用其余符号**(如 `[w]`/`[!]`/`[*]` 等标记/信息/评价类):
-
-| 符号 | 语义 | 用途 |
-|------|------|------|
-| `[ ]` | 待办 TODO | 未开始 |
-| `[x]` | 完成 DONE | 已完成 |
-| `[/]` | 进行中 IN_PROGRESS | 正在推进 |
-| `[-]` | 取消 CANCELLED | 搁置/取消(含缺依赖停摆) |
-| `[>]` | 转发 forwarded | 转到下周/下阶段 |
-| `[<]` | 排期 scheduling | 定稿排期、待到时 |
-
-- **checkbox 即状态**:符号本身表达进度,正文不重复写"已完成/未开始"
-- **搁置用 `[-]` 不用 emoji**:不用 ⏸️ 行内标注;缺依赖停摆一律 `[-]`
-- **进行中用 `[/]` 不用 emoji**:不用 🔄 行内标注
-- **父子项关系**:父项描述一件事,子项是这件事拆出来的具体步骤。**所有子项都完成,父项才能标 `[x]`;否则父项保持 `[/]`(进行中)**。例:父项"排查 X bug"下挂"临时修复""长期修复""上线测试"三个步骤,全 `[x]` 父项才 `[x]`
-- **子项继承父项**:对接人 / 卡片默认继承父项,仅不同时才写;子项用 tab 缩进表从属
-- **事项排序**:未完成在前、高优在前;已完成排后、搁置排未完成之后。即顺序:未完成 P0 > 未完成 P1 > 搁置 > 已完成
-
-### 章节结构(固定四节)
-
-```
-## 📌 本周事项      <- 已完成 + 进行中,带子项
-## 📅 下周计划      <- 下周要做的
-## 🚧 问题/阻塞     <- 卡住的 + 风险
-## 📥 沉淀          <- 本周新增/关联卡片列表(每行一个 [[卡片]])
-```
-
-### 工作流
-
-1. **本周第一个工作日**:用「模块三」流程建当周周记卡(模板已在 `模板/周记卡片.md`)。
-2. **每做完一个工作**:先沉淀工作卡片(feat → `项目/<名>/需求/feat-*.md`,debug → `项目/<名>/需求/debug-*.md`,技术沉淀 → `项目/<名>/需求/tech-*.md`)→ 周报加 todo 项 + 沉淀区加指针。
-3. **下周初**:未完成项移入下周计划,本周归档(移 `归档/` 或保留,按项目约定)。
-
-### emoji 联动
-
-周报用的类型/优先级 emoji 不在本 skill 硬编码映射,但默认集(✨🐛🔍📌 / 🔥🟡🟢)已写入周记卡片模板图例,跨机器一致。状态不用 emoji,用 Tasks 扩展符号(见「状态符号」)。新增字段 emoji 仍向 `emoji-helper` 查询。
-
-### 人名 emoji
-
-文档/卡片/周报里出现**人名**时,加身份 emoji 前缀(emoji 紧贴名字),让人一眼分辨是人名且知身份。身份对照与花名册见 [[通用/人员]](👤 其他同事默认 / 🧑‍💻 组内同事 / 🦊 我 / 🧑‍💼 负责人 / 🤝 外部 / 🧑‍🏫 mentor / 👥 团队)。周报对接人字段、卡片正文提到人时都用;提到的人先登记到花名册(同一人中英文名用 aliases 关联)再在正文用对应 emoji。
-
-## 模块五:标签维护
-
-**标签真源**:vault 的 `通用/规范/标签速查表.md`(init 生成)。维护前先读;新标签先加到表再用,避免同义分裂。
+**标签真源**:vault 根的 `tags-cheatsheet.md`(init 生成)。维护前先读;新标签先加到表再用,避免同义分裂。
 
 1. 列标签:有 CLI `obsidian tags`;无 CLI `rg -o "#[A-Za-z0-9/_-]+" <vault> | sort | uniq -c` + 扫 frontmatter `tags:`。
 2. 识别问题:同义(`#bug` vs `#缺陷`)、大小写不一、前缀冗余(如 `项目/xxx`、`类型/xxx` 应拍平为 `xxx`)。
@@ -242,17 +195,17 @@ vault 是磁盘上的 markdown 文件夹,默认直接读写,零依赖,Obsidian �
 
 ## 与 emoji-helper 联动
 
-写卡片/文档时,emoji 不在本 skill 硬编码,统一向 `emoji-helper`(basic-skills plugin)查询——遵循其「其他 skill 不维护映射表」的约定。vault 的 `通用/规范/emoji速查表.md`(init 生成)是常用集对照,emoji-helper 可覆盖。
+写卡片/文档/周报时,emoji 不在本 skill 硬编码,统一按附属文档 [references/emoji-helper.md](references/emoji-helper.md) 查询(完整速查表 emoji-cheatsheet.md 同目录)。vault 根的 `emoji-cheatsheet.md`(init 生成)是常用集对照,可覆盖。
 
-emoji 原则遵循 emoji-helper:语义对应、一处一个、不堆砌、**不进标签本身**(Obsidian 标签不含 emoji,emoji 只作标题/章节/速查表的视觉对照)。card_type 图标每张卡标题行首带一个;章节标题可配语义 emoji,向 emoji-helper 查。
+emoji 原则:语义对应、一处一个、不堆砌、**不进标签本身**(Obsidian 标签不含 emoji,emoji 只作标题/章节/速查表的视觉对照)。card_type 图标每张卡标题行首带一个;章节标题可配语义 emoji。
 
 ## 与 fireworks-tech-graph 联动(方案配图)
 
 写方案需要配图(架构图、流程图、泳道图、C4、时序等)时,调用 `fireworks-tech-graph`(外部 skill,经 t-craft marketplace 装)生成,嵌入笔记:
 
 1. **调用 fireworks-tech-graph**:描述要画的图(如"画 X 系统架构图,含 A/B/C 组件与数据流"),让它生成 **PNG**(Obsidian 渲染最稳)。
-2. **存 vault 附件**:图片存 `项目/<名>/附件/<图名>.png`(per-project 附件夹;没有就建)。
-3. **嵌入笔记**:在方案卡片相应位置加 `![[<图名>.png]]`(wikilink embed)。
+2. **存 vault 附件**:图片存 `projects/<名>/assets/<图名>.png`(per-project 附件夹;没有就建)。
+3. **嵌入笔记**:在需求 prd 相应位置加 `![[<图名>.png]]`(wikilink embed)。
 4. **图名带语义**:如 `认证方案-架构图.png`,便于检索。
 
 注意:fireworks-tech-graph 需 Python + cairosvg / librsvg(详见其 README);没装就提示用户装,或退化为 mermaid 文本图(Obsidian 支持 ` ```mermaid ` 代码块)。
@@ -262,8 +215,8 @@ emoji 原则遵循 emoji-helper:语义对应、一处一个、不堆砌、**不�
 ```yaml
 ---
 title: 
-card_type: 方案          # 方案|术语|周记(有模板);技术|流程|wiki(按需起草)
-project:                 # 归属项目(通用/日程类可空)
+card_type: wiki          # wiki|技术|周记;论文卡走 research-skills;术语等通用知识进 skill 仓库;需求类用 requirements/ 文件夹
+project:                 # 归属项目(papers/tech/weekly 类可空)
 status: 草稿             # 草稿|定稿|进行中|归档
 date: 2026-08-02
 tags: []
@@ -276,7 +229,7 @@ aliases: []
 - **写入前展示草稿确认**:改 vault 前展示将做的操作,不擅自执行。
 - **以 vault 文件实际内容为准**:读 vault 与项目 CLAUDE.md,不凭记忆。
 - **vault 路径不硬编码**:运行时从配置发现;跨机器用 env。
-- **检索只读**:查询不改 vault。
+- **检索只读**:查询不改 vault(写 answer-index 除外,写前确认)。
 - **初始化幂等**:不覆盖、不删除已有内容。
 - **失败要明确**:vault 没找到/CLI 不可用/文件不存在,停止并告知。
-- **与 changelog 分工**:CHANGELOG 短条目归 `changelog`(本 plugin 内);长方案/设计文档归本 skill 落 vault。
+- **与 git-guidelines 分工**:CHANGELOG 短条目归 `git-guidelines`(code-skills plugin 内,CHANGELOG 为其附属文档);长方案/设计文档归本 skill 落 vault。

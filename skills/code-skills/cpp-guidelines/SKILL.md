@@ -1,18 +1,23 @@
 ---
 name: cpp-guidelines
-description: C++ 语言专项编码约定。在编写、重构 C++ 代码时使用,补充父 skill code-guidelines(跨语言通用原理)在 C++ 上的具体落地:注释语法(// / Doxygen)、Google 命名风格、const/RAII/智能指针替代注释、header-impl 拆分与编译期约束。当用户写 C++、改 C++、要求「加注释 / Doxygen」「重构 C++ 函数」「提升可读性」时遵循。语言无关的原理(注释哲学、函数拆分原则、命名自解释)见 code-guidelines,不在此重复。
+description: C++ 语言专项编码约定 + 格式化。在编写、重构、格式化 C++ 代码时使用,补充父 skill code-guidelines(跨语言通用原理)在 C++ 上的具体落地:注释语法(// / Doxygen)、Google 命名风格、const/RAII/智能指针替代注释、header-impl 拆分与编译期约束;格式化(附属文档 references/format.md):Google 风格 clang-format、ColumnLimit 120、.clang-format 模板与命令。当用户写 C++、改 C++、要求「加注释 / Doxygen」「重构 C++ 函数」「提升可读性」「格式化 C++」「写 .clang-format 配置」时遵循。语言无关的原理见 code-guidelines,不在此重复。
 ---
 
 # C++ 编码约定(C++ 专项)
 
 父 skill `code-guidelines` 讲了跨语言通用的原理(见名知义、非必要不注释、不写长函数、命名自解释、注释与文档分工)。本 skill 只补 **C++ 独有**的落地:注释语法、Google 命名、const/RAII/类型替代注释、拆分惯用法。原理不重复,先读 `code-guidelines`。
 
+**附属文档**(渐进披露,用到才读):
+
+- **[references/format.md](references/format.md)** -- 格式化:Google 风格 clang-format、ColumnLimit 120、.clang-format 模板与命令。格式化 / 写配置时读。
+- **[references/review.md](references/review.md)** -- 审查要点:生命周期 / 悬垂、所有权 / RAII、use-after-move、UB、并发等工具管不到的逻辑问题。审代码时读。
+
 ## 项目约定发现
 
 语言专项之外,项目级约束(C++ 标准、格式化命令、目录布局)从项目 `CLAUDE.md` 读:
 
 - **C++ 标准**:如 C++17 / C++20,决定能用 `std::optional` / `if constexpr` / concepts 等。具体看 `CMakeLists.txt` / `.clang-format`。
-- **格式化**:clang-format(Google 风格,ColumnLimit 120),配置与命令走 code-format。
+- **格式化**:clang-format(Google 风格,ColumnLimit 120),配置与命令见附属文档 [references/format.md](references/format.md)。
 - **以文件实际内容为准**,匹配既有风格。
 
 ## 1. 注释语法
@@ -52,9 +57,9 @@ description: C++ 语言专项编码约定。在编写、重构 C++ 代码时使�
 - **值类别 / 移动语义**:`std::move` / `std::forward` 处用注释说明意图(为什么这里移动),因为值类别是 C++ 独有且易错。
 - **模板**:简单模板名字自解释不注释;复杂模板(类型约束多、SFINAE / concepts)写 Doxygen 说明对模板参数的要求。
 
-## 附:与 cpp-review 的分工
+## 附:与 review 的分工
 
 - **本 skill(写代码时)**:约束自己写出来的 C++ 代码——命名、注释、Doxygen、const/RAII、拆分。预防性的。
-- **`references/cpp-review.md`(审代码时)**:看 C++ 代码查具体 bug——生命周期 / 悬垂、所有权 / RAII、use-after-move、UB、并发、异常安全等。检测性的。
+- **`references/review.md`(审代码时)**:看 C++ 代码查具体 bug——生命周期 / 悬垂、所有权 / RAII、use-after-move、UB、并发、异常安全等。检测性的。
 
-写的时候守本 skill + 父 `code-guidelines` 防患于未然;审的时候用 `cpp-review.md` 抓漏网的 bug。
+写的时候守本 skill + 父 `code-guidelines` 防患于未然;审的时候用 `references/review.md` 抓漏网的 bug。

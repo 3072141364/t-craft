@@ -18,18 +18,18 @@
 
 当前分类:
 
-- `basic-skills`:基础工程约定(changelog / git-flow / emoji-helper / brainstorm)
-- `code-skills`:代码相关(code-intelligence / karpathy-guidelines / code-format / make-shortcut / eval-report)+ 代码审查命令 `/code-review`(commands/)
-- `obsidian-skills`:Obsidian 知识库(obsidian-kb / vault-query)
+- `code-skills`:代码相关(code-guidelines(编码总入口:跨语言准则 + karpathy 行为准则 / make-shortcut / format / brainstorm / code-intelligence / code-markers / code-smells 附属文档)/ project-doc(独立子 skill,含 prd/adr/test/review)/ python-guidelines / cpp-guidelines / bash-guidelines(各含 format、review 附属文档)/ dev-flow / git-guidelines(含 commit、changelog、branch、readme 附属文档))+ 命令 `/tcraft-code-review` `/tcraft-project-doc` `/tcraft-brainstorm` `/tcraft-dev-flow` `/tcraft-release`(commands/)
+- `obsidian-skills`:Obsidian 知识库(obsidian-kb,vault 统一管理:落盘/查询/沉淀/快速问答/周报/emoji 参考;技术学习在 tech/ 逐渐沉淀;命令 `/tcraft-obsidian-kb` `/tcraft-obsidian-query` `/tcraft-weekly`)
+- `research-skills`:科研管理(paper-study,论文阅读/笔记/待读队列,管 vault papers/;命令 `/tcraft-paper`)
 
-> `brainstorm` / `spec-doc` / `obsidian-query` / `dev-flow` 已实现;`spec-doc` 评估测试文档段(形态二)为 TODO 后补。研发流程预设提示词见 `docs/workflow-prompts.md`。
+> `dev-flow` 已实现;`brainstorm` 已并入 code-guidelines 附属文档;`obsidian-query`/`obsidian-answers` 已并入 obsidian-kb(模块二查询 / 模块五快速问答);`spec-doc` 已更名并抽为独立子 skill `project-doc`(含 prd/adr/test/review 附属文档)。研发流程预设提示词见 `docs/workflow-prompts.md`。
 
 ## 目录与命名
 
 - `skills/<plugin>/<name>/SKILL.md`:按 plugin 分目录。
 - 命令:`skills/<plugin>/commands/<cmd>.md`(plugin 的 `commands/` 自动发现)。
 - 目录名、skill `name`:kebab-case,小写连字符。
-- 资源放该 skill 自己的 `references/`;命令的参考放 plugin 的 `references/`。
+- 资源放该 skill 自己的 `references/`(含命令用到的参考,挂在语义最相关的 skill 下,如 code-guidelines);跨 skill 共享时用相对路径引用。
 
 ## frontmatter
 
@@ -44,7 +44,7 @@ description: 做什么 + 何时触发。适度 pushy,即使用户没说 skill �
 
 ## 新增 skill 流程
 
-1. `cp -r template skills/<plugin>/<name>`,改 `SKILL.md`。
+1. 在 `skills/<plugin>/` 下新建 `<name>/SKILL.md`,参考现有 skill(如 code-guidelines)的 frontmatter 与正文结构。
 2. 在 `.claude-plugin/marketplace.json` 里找到该 skill 所属分类的 plugin,在其 `skills` 数组追加 `"./<name>"`(相对 plugin source)。若新分类,新增一个 plugin 条目(`source: "./skills/<plugin>"`)。
 3. 若是命令(非 skill),放 `skills/<plugin>/commands/<cmd>.md`(自动发现,不列进 `skills[]`)。
 4. 正文遵循「通用方法 + 项目约定发现」。
@@ -55,3 +55,4 @@ description: 做什么 + 何时触发。适度 pushy,即使用户没说 skill �
 - 解释「为什么」而不是堆 MUST/NEVER;让模型理解意图而非死记规则。
 - 以项目文件实际内容为准,不凭记忆读项目约定。
 - 写入类操作(改 CHANGELOG、动版本)前展示草稿给用户确认。
+- 改 skill 结构 / 阶段 / 文档归属时,同步更新 `docs/system-map.html`(体系全景图)。

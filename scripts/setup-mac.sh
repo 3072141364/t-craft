@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # setup-mac.sh - macOS 本地常用 CLI 工具一键装(Homebrew)。
 # 让 Claude Code 工作更顺:ripgrep fd jq yq tree tmux ctags ffmpeg glab tea uv cmake ninja
-# 不含:node/nvm(code-intelligence 的 setup_env.sh 管)、ruff/clang-format/LSP
-#       (code-format/code-intelligence 管)、docker(手动)
+# 不含:node/nvm(code-guidelines 的 scripts/setup_env.sh 管)、ruff/clang-format/LSP
+#       (code-guidelines 管)、docker(手动)
 set -uo pipefail
 
 command -v brew >/dev/null 2>&1 || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -41,5 +41,6 @@ for t in rg fd jq yq tree tmux ctags ffmpeg glab tea uv cmake ninja make; do
   command -v "$t" >/dev/null 2>&1 && printf "  ✓ %s\n" "$t" || printf "  - %s\n" "$t"
 done
 echo ""
-echo "✓ 完成。另:node/nvm 见 skills/code-skills/code-intelligence/scripts/setup_env.sh;"
-echo "  ruff/clang-format/LSP 见 skills/code-skills/code-format/scripts/setup_format_tools.sh;docker 需手动装。"
+echo "✓ 完成。另:node/nvm 见 skills/code-skills/code-guidelines/scripts/setup_env.sh;"
+echo "  ruff/clang-format/LSP 见 skills/code-skills/code-guidelines/scripts/setup_format_tools.sh;docker 需手动装;"
+echo "  fireworks-tech-graph(方案配图,外部 plugin)需 Python + cairosvg/librsvg,未在此安装:uv pip install cairosvg + brew install librsvg,详见其 README。"
