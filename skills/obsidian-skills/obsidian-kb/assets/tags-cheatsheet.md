@@ -8,13 +8,13 @@ tags: [通用, 规范, 定稿]
 
 # 🏷️ 标签速查表
 
-> vault 标签约定。**扁平无前缀**:小写+连字符,直接写 `general_process`、`t-craft`,不加 `项目/`、`类型/`、`状态/` 等层级前缀。**emoji 不进标签本身**(Obsidian 标签不含 emoji),只作标题/章节/本表的视觉对照。写笔记时 card_type 图标 emoji 向 **obsidian-kb 附属文档 emoji-helper** 查询,本表为常用对照。
+> vault 标签约定。**扁平无前缀**:小写+连字符,直接写 `t-craft`、`my-project` 这类,不加 `项目/`、`类型/`、`状态/` 等层级前缀。**emoji 不进标签本身**(Obsidian 标签不含 emoji),只作标题/章节/本表的视觉对照。写笔记时 card_type 图标 emoji 向 **obsidian-kb 附属文档 emoji-helper** 查询,本表为常用对照。
 
 ## 项目标签(扁平)
 
 | 标签 | emoji | 含义 | 何时用 |
 |------|------|------|--------|
-| `<项目名>`(如 `general_process`) | 📁 | 归属项目 | 卡片/方案属某项目时打 |
+| `<项目名>`(如 `t-craft`、`my-project`) | 📁 | 归属项目 | 卡片/方案属某项目时打 |
 
 ## 类型标签(扁平,对应 card_type)
 

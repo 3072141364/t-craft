@@ -115,7 +115,7 @@ vault 根的 `cards.base` 是动态数据库视图,自动汇总(视图:按 card_
 
 | 类型 | 格式 | 示例 |
 |------|------|------|
-| 目录 | 英文小写(项目名可中文) | `projects/general_process/` |
+| 目录 | 英文小写(项目名可中文) | `projects/<项目名>/` |
 | 需求文件夹 | 英文短名 | `export-pdf` |
 | 需求文档 | 固定名 | `prd.md` / `progress.md` |
 | 周记 | `weekly/周记 <YYYY>-W<两位周>.md` | `周记 2026-W32.md` |
@@ -125,7 +125,7 @@ vault 根的 `cards.base` 是动态数据库视图,自动汇总(视图:按 card_
 
 ## 标签与 emoji
 
-- **扁平无前缀**:小写 + 连字符,直接写 `general_process`、`t-craft`,不加 `projects/`、`类型/`、`状态/` 等层级前缀。
+- **扁平无前缀**:小写 + 连字符,直接写 `t-craft`、`my-project` 这类,不加 `projects/`、`类型/`、`状态/` 等层级前缀。
 - **完整标签与 emoji 对照见 vault 根的 `tags-cheatsheet.md` / `emoji-cheatsheet.md`**(init 生成);emoji 向附属文档 emoji-helper.md 查询,不进标签本身。
 
 ## 初始化与迁移

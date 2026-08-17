@@ -33,7 +33,7 @@ description: C++ 语言专项编码约定 + 格式化。在编写、重构、格
 - **类 / 结构 / 枚举 / 类型别名**:`PascalCase`。`SensorReader` / `ReadingStatus`。
 - **类成员变量**:后缀下划线。`last_reading_`。区分局部变量与成员,一眼可辨。
 - **常量 / 枚举值**:`kPascalCase`。`kMaxRetryCount`。
-- **命名空间**:全小写顶层。`nio::adsim::general_process`。
+- **命名空间**:全小写顶层。`org::domain::project_name`。
 - **文件名**:全小写下划线。`sensor_reader.h` / `sensor_reader.cc`。
 
 ## 3. const / 类型系统替代注释

@@ -120,6 +120,11 @@ git log --oneline -5
 - 合并前确保:当前分支通过验证(测试 + review)、无未提交改动、基于主分支最新(`git fetch && git merge origin/master`)。
 - 合并用 squash(默认)或 merge,以项目 CLAUDE.md 为准。
 
+#### Peer review(可选环节,项目 CLAUDE.md 声明则强制)
+- 默认流程不强制 peer review(单人 / 小项目可自行合并);但部分项目在 CLAUDE.md 声明有 peer review 环节,此时**未经人工审批不得合并主分支**,即使分支验证全绿也必须等 reviewer 通过。
+- 声明方式:项目 CLAUDE.md 的「合并 / 发布约定」段写明「合并主分支需 peer review 审批」。
+- 执行时:读项目 CLAUDE.md 判断是否声明该环节;声明了就提示用户找 reviewer 审批,不自动合并;未声明则按默认流程走。
+
 ### 2. 版本升级(特定合并触发)
 **合入主分支的发布合并,按本次变更类型递增 SemVer**(版本真源从项目探测:`version.json` / `pyproject.toml` / `package.json`):
 
