@@ -46,7 +46,7 @@ card_type 与默认位置(按需扩充,不强求每类都有模板):
 - `review.md` — 评估审查报告(阶段④)
 - `progress.md` — 状态真源(status 接 dev-flow 六阶段)
 
-需求名用英文短名(如 `export-pdf`)。需求类型(feat/bugfix/debug/hotfix/refactor/docs/chore...)记在 prd.md 的 `type` 字段,不进文件夹名。
+需求名按命名约定(见 [references/vault-conventions.md](references/vault-conventions.md#%E5%91%BD%E5%90%8D%E7%BA%A6%E5%AE%9A))。需求类型(feat/bugfix/debug/hotfix/refactor/docs/chore...)记在 prd.md 的 `type` 字段,不进文件夹名。
 
 **跨项目可复用知识**(如 overlayfs 原理、通用排障经验)不进 vault,沉淀到 skill 仓库。wiki 卡归 `projects/<名>/wiki/`(项目知识,非需求)。
 
@@ -116,7 +116,7 @@ vault 是磁盘上的 markdown 文件夹,默认直接读写,零依赖,Obsidian �
 
 把需求/方案从代码仓库分离,落盘到 Obsidian 需求文件夹,代码仓库只留指针。
 
-1. 确认需求与项目(从 git 仓库目录名/CLAUDE.md 推断,不确定就问;需求名用英文短名)。
+1. 确认需求与项目(从 git 仓库目录名/CLAUDE.md 推断,不确定就问;需求名按 [命名约定](references/vault-conventions.md#%E5%91%BD%E5%90%8D%E7%BA%A6%E5%AE%9A))。
 2. 建需求文件夹 `projects/<名>/requirements/<需求名>/`,起草 `prd.md`(从 skill 仓库复制模板 `obsidian-kb/assets/templates/prd.md`):frontmatter `type`(feat/bugfix/...)+ `status`(①→⑥)+ 正文按读者分章:用户读(需求背景/方案设计/项目收益/行动清单/验收标准)+ AI 须知(范围外/代码变更清单/测试决策)。候选方案/权衡是头脑风暴过程,不进文档;只记最终方案 + 优缺点。
 3. 同步建 `progress.md`(从 skill 仓库复制模板 `obsidian-kb/assets/templates/progress.md`),`status` 为当前阶段;规则见附属文档 [references/progress.md](references/progress.md)。
 4. 展示草稿确认后写入。

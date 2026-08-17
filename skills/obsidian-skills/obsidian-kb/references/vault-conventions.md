@@ -22,7 +22,7 @@ skills-config.json 示例(仅当约定偏离默认时才需写):
 }
 ```
 
-## vault 结构(由 `scripts/init_vault.sh` 生成;目录统一英文)
+## vault 结构(由 `scripts/init_vault.sh` 生成;目录命名:单个词/术语用英文,短句用中文)
 
 ```
 <vault>/
@@ -88,7 +88,7 @@ skills-config.json 示例(仅当约定偏离默认时才需写):
 
 ## 需求文件夹约定
 
-- 需求名用英文短名(如 `export-pdf`、`e2-radar-adapter`),文件夹即需求名。
+- 需求名:单个词/技术术语用英文(如 `e2-radar-calibration`、`overlay`),短句描述用中文(如 `安装环境残留重试必败`),不中英混写。文件夹即需求名。
 - 五个固定文件名(小写):`prd.md` / `adr.md` / `test.md` / `review.md` / `progress.md`。固定名让 dev-flow / project-doc 知道往哪写、从哪读。
 - `progress.md` frontmatter `status`:`①头脑风暴 → ②方案 → ③实现 → ④验证 → ⑤发布 → ⑥沉淀`,dev-flow 每流转一阶段改一次。**它是需求状态真源**,规则见附属文档 `references/progress.md`。
 - 需求内可复用的设计/踩坑,阶段⑥提炼为 skill 仓库知识;需求文件夹保留完整历史。
@@ -115,11 +115,11 @@ vault 根的 `cards.base` 是动态数据库视图,自动汇总(视图:按 card_
 
 | 类型 | 格式 | 示例 |
 |------|------|------|
-| 目录 | 英文小写(项目名可中文) | `projects/<项目名>/` |
-| 需求文件夹 | 英文短名 | `export-pdf` |
+| 目录 | 单个词/术语用英文,短句用中文 | `projects/<项目名>/` |
+| 需求文件夹 | 同上 | `e2-radar-calibration` / `安装环境残留重试必败` |
 | 需求文档 | 固定名 | `prd.md` / `progress.md` |
 | 周记 | `weekly/周记 <YYYY>-W<两位周>.md` | `周记 2026-W32.md` |
-| 论文 | `papers/<论文名>.md`(笔记骨架见 research-skills 的 paper-study) | `attention-is-all-you-need.md` |
+| 论文 | `papers/<论文名>.md` | `attention-is-all-you-need.md` |
 | 零散卡 | `misc/<名>.md`(平铺,靠标签) | `some-random-note.md` |
 | 项目首页 | `README.md` | - |
 
