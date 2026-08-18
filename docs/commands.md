@@ -11,7 +11,7 @@ t-craft 的 10 个快捷命令(`/xxx`),覆盖研发流程、前端、知识体�
 | `/tcraft-code-review` | code-skills | ④ 验证 | 代码审查:影响面评估 / 全量评估 |
 | `/tcraft-release` | code-skills | ⑤ 发布 | 提交→合并→版本升级→上线 |
 | `/tcraft-dev-flow` | code-skills | 调度器 | 识别当前阶段,激活对应 skill |
-| `/tcraft-web` | code-skills | 前端 | 设计 / React / UI 审查 / 设计语言 |
+| `/tcraft-web` | code-skills | 前端 | 工具 UI / 报告 / React / UI 审查 |
 | `/tcraft-obsidian-kb` | obsidian-skills | vault 管理 | 初始化/落盘/沉淀/标签/问答/周报 |
 | `/tcraft-obsidian-query` | obsidian-skills | 查询 | 3-tier 省 token 查 vault |
 | `/tcraft-weekly` | obsidian-skills | 周报 | 建本周周报 |
@@ -73,17 +73,19 @@ t-craft 的 10 个快捷命令(`/xxx`),覆盖研发流程、前端、知识体�
 **六阶段**:①头脑风暴 → ②方案设计 → ③实现 → ④验证(影响面/全量测试/全量评估/修复/冒烟)→ ⑤发布 → ⑥沉淀。每阶段完成更新 progress.md。
 
 ### `/tcraft-web` — 前端总入口
-**用途**:Web/前端四条线的显式入口——设计方法论 / React 性能 / UI 审查 / 设计语言。skill 自动触发之外,想明确走某条线时用。
+**用途**:Web/前端五条线的显式入口——应用型 UI / 设计与文案 / 报告渲染 / React 性能 / UI 审查。面向 SaaS 平台/应用界面与报告渲染,不做营销页。skill 自动触发之外,想明确走某条线时用。
 
 | 用法 | 说明 |
 |------|------|
-| `/tcraft-web` | 按当前对话意图自动路由(设计新界面 / React 编码 / UI 审查 / 设计语言) |
-| `/tcraft-web 设计` | 新 UI 或改样式 → 设计方法论(钉主题、两遍法、避 AI 默认三样式) |
+| `/tcraft-web` | 按当前对话意图自动路由(工具 UI / 报告 / React 编码 / UI 审查) |
+| `/tcraft-web 工具` | 后台管理/SaaS 平台/本地工具界面,或「让界面更好看」→ 组件基底 + token + 交互骨架(**界面主线**) |
+| `/tcraft-web 报告` | 测试/评估/数据报告、汇总页 → 结论金字塔 + 图表选型 + 打印友好(**报告主线**) |
 | `/tcraft-web react` | 写 / 改 React、Next.js 组件、性能优化 → 70 条规则 8 类,先 CRITICAL |
 | `/tcraft-web 审查` | review UI / 可访问性 / UX → 拉 vercel 最新规则,按 file:line 出报告 |
-| `/tcraft-web 语言` | 仿某站点风格 → 从 awesome-design-md 拉对应 DESIGN.md |
 
-**来源**:skill 提炼自 anthropics/skills(frontend-design)、vercel-labs/agent-skills、voltagent/awesome-design-md,不整库拷贝,来源已标注。
+无论哪条线,动手前都过 design-craft(钉主题、两遍法、避默认样式簇、文案即材料)。
+
+**来源**:skill 提炼自 anthropics/skills(frontend-design)、vercel-labs/agent-skills,应用 UI 与报告渲染自研(参考 shadcn/ui、Ant Design),不整库拷贝,来源已标注。
 
 ---
 

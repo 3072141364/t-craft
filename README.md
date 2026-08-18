@@ -17,9 +17,9 @@
 | | `bash-guidelines` | bash 专项约定(三件套/引号/trap);附属:format(shfmt)、review |
 | | `dev-flow` | 研发流程调度器:识别阶段 → 激活 skill → 流转提示;六阶段 ①→⑥ |
 | | `git-guidelines` | Git 体系准则:四区模型、分支/提交工作流、远程协作、撤销决策表、冲突解决、stash/rebase/cherry-pick、.gitignore、tag、工作流模型;附属文档:commit 细则、changelog 维护、分支命名规范、README 写作细则 |
-| | `web-guidelines` | Web/前端总入口:**应用型 UI(app-ui-design,后台/仿真/本地工具主参考)**、设计方法论(design-methodology)、React/Next.js 性能准则(react-performance)、UI 审查(ui-review)、品牌设计语言(design-language);应用型部分自研,其余提炼自 anthropics/skills、vercel-labs/agent-skills、voltagent/awesome-design-md |
+| | `web-guidelines` | Web/前端总入口(SaaS 平台/应用界面 + 报告渲染,不做营销页):**应用型 UI(app-ui-design,后台管理/SaaS 平台主参考)**、设计与文案(design-craft,钉主题/两遍法/避默认样式簇)、报告渲染(report-rendering,结论金字塔/图表选型/打印友好)、React/Next.js 性能准则(react-performance)、UI 审查(ui-review);设计与文案提炼自 anthropics/skills,React/审查提炼自 vercel-labs/agent-skills,应用 UI 与报告自研 |
 | | `/tcraft-code-review`(命令) | 代码审查:影响面评估(轻)/ 全量评估(重)两档,双轴,VCS 无关,出报告(bash/python/cpp) |
-| | `/tcraft-project-doc` `/tcraft-brainstorm` `/tcraft-dev-flow` `/tcraft-release` `/tcraft-web`(命令) | 流程入口:方案文档 / 头脑风暴 / 调度器 / 发布(提交→合并→版本升级→上线)/ 前端(设计 / React / UI 审查 / 设计语言) |
+| | `/tcraft-project-doc` `/tcraft-brainstorm` `/tcraft-dev-flow` `/tcraft-release` `/tcraft-web`(命令) | 流程入口:方案文档 / 头脑风暴 / 调度器 / 发布(提交→合并→版本升级→上线)/ 前端(工具 UI / React / UI 审查) |
 | `obsidian-skills`(Obsidian 知识库) | `obsidian-kb` | vault 统一管理:落盘/查询(3-tier)/知识沉淀/快速问答/周报/emoji;技术学习在 tech/ 沉淀 |
 | | `/tcraft-obsidian-kb` `/tcraft-obsidian-query` `/tcraft-weekly`(命令) | vault 管理入口(模块路由)/ 文档查询 / 建周报 |
 | `research-skills`(科研管理) | `paper-study` | 论文研究管理:papers/ 一论文一卡、待读队列、阅读工作流(待读→粗读→精读→已读)、论文笔记 |
@@ -46,7 +46,7 @@ t-craft/
     ├── code-skills/              # source: ./skills/code-skills
     │   ├── commands/{tcraft-code-review,tcraft-project-doc,tcraft-dev-flow,tcraft-brainstorm,tcraft-release}.md
     │   ├── code-guidelines/(references/{brainstorm,code-intelligence,karpathy-guidelines,make-shortcut,format,code-markers,code-smells}.md + scripts/)
-    │   ├── web-guidelines/(references/{app-ui-design,design-methodology,react-performance,reference-hunting,ui-review,design-language}.md + design-styles.json(74 款风格索引))
+    │   ├── web-guidelines/(references/{app-ui-design,design-craft,report-rendering,react-performance,ui-review}.md)
     │   ├── project-doc/(references/{prd,adr,test,review,terminology}.md + terms.json(术语库))
     │   ├── python-guidelines/  cpp-guidelines/  bash-guidelines/  (references/{format,review}.md)
     │   ├── git-guidelines/(references/{commit,changelog,branch,readme}.md)

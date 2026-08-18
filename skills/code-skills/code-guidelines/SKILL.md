@@ -17,7 +17,7 @@ description: 跨语言编码准则与行为准则。在编写、重构、补全�
 - **[references/make-shortcut.md](references/make-shortcut.md)** -- make 快捷入口:把开发意图路由到项目 make 目标(格式化/测试/lint/构建/初始化/清理)。用户要跑项目常用命令时读。
 - **[references/format.md](references/format.md)** -- 跨语言格式化:.editorconfig 模板、行长 120 统一约定、一键装工具脚本(scripts/setup_format_tools.sh)。装工具 / 搭格式化环境时读;语言专项见各语言子 skill 的 format.md。
 - **[references/code-smells.md](references/code-smells.md)** -- 代码异味基线(Fowler 12 味):审代码时逐味对照(主要喂 `/tcraft-code-review` Standards 轴)。
-- **[references/brainstorm.md](references/brainstorm.md)** -- 需求深挖 / 头脑风暴(研发流程阶段①):弹性一次一问 + 内嵌 5-Whys / first-principles,产需求要点。接需求动手前读。
+- **[references/brainstorm.md](references/brainstorm.md)** -- 需求深挖 / 头脑风暴(研发流程阶段①):设计树 + 前沿轮次追问 + 内嵌 5-Whys / first-principles,产需求要点。接需求动手前读。
 - **[references/code-intelligence.md](references/code-intelligence.md)** -- 代码理解路由:找符号 / 追调用 / 理解功能 / 评估影响,codegraph -> gitnexus -> grep/LSP。写码前查调用链、评估改动影响时读。
 
 **语言路由(每次编码任务先做)**:检查当前项目/改动的语言--看 `git diff --stat` / 待改文件后缀 / 项目 CLAUDE.md --然后激活对应语言子 skill(Python -> python-guidelines、C++ -> cpp-guidelines、bash -> bash-guidelines),用其准则与附属文档干活。多语言混合改动,按文件分别套;没有子 skill 的语言套本 skill 原理。
