@@ -1,6 +1,6 @@
 ---
 name: dev-flow
-description: 研发流程调度器。接需求后编排整条研发流程,识别当前处于哪个阶段,激活对应 skill。六阶段:①头脑风暴→②方案设计→③实现→④验证→⑤发布→⑥沉淀。③实现内动态调整 prd / 补记 adr;④验证内走两档:影响面评估(轻)→全量测试→全量评估(重)→修复完善→冒烟(轻);⑤发布内走「提交→合并主分支→版本升级→上线」,特定合并触发 SemVer 版本升级。当用户说"开始做个功能""走研发流程""我现在在哪个阶段""接下来该干嘛""接了个需求要从哪开始"等,或接到 feat/bugfix 要编排流程时使用。快速识别阶段(从 git 状态/对话推断),识别不了就问用户。调度器,不重复各 skill 内容。
+description: 研发流程调度器——从 git 状态 / 对话推断你在六阶段的哪一环,激活对应 skill 并提示下一步。何时用:说"开始做个功能 / 走研发流程 / 接了个需求从哪开始 / 我现在在哪个阶段 / 接下来该干嘛",或接到 feat/bugfix 要编排整条流程时。六阶段:①头脑风暴(brainstorm)→②方案(project-doc 出 prd/adr)→③实现(code-guidelines)→④验证(影响面评估→全量测试→全量评估→修复→冒烟)→⑤发布(提交→合并主分支→SemVer 版本升级→上线)→⑥沉淀。它只做默认行为不会主动做的编排——识别阶段、串起各 skill、同步 progress.md 状态,不重复各 skill 内容。识别不了就问用户,不硬猜。
 ---
 
 # Dev Flow(研发流程调度器)
@@ -8,6 +8,8 @@ description: 研发流程调度器。接需求后编排整条研发流程,识别
 研发流程的**调度器**:识别当前阶段 → 激活对应 skill → 完成后提示进下一阶段。不重复各 skill 的内容,只做编排。
 
 设计意图:接到需求后,用户可能不清楚"现在该干嘛、用哪个 skill"。dev-flow 是入口:识别阶段(或问用户),激活对应 skill,让流程顺畅流转。各阶段的具体工作交给对应 skill,dev-flow 只管"你在哪、该激活谁、下一步去哪"。
+
+> **双线定位**:dev-flow 是 t-craft **开发线**的调度中枢(需求→代码→发布);与之并行的是 **调研线**(`paper-study`:调研论文 + 调研技术)。两线独立推进,在**周报三流**(开发/论文/技术)汇合。dev-flow 不调度调研线;知识大脑 `obsidian-kb` 横贯两线(沉淀 + 快答)。
 
 ## 何时触发
 
@@ -105,7 +107,7 @@ dev-flow 管**需求维度**;周报是**时间维度**的独立动作,不由六�
 | 查旧方案 / 历史 | `obsidian-kb`(模块二 query) |
 | 方案 / prd / adr / test / review 文档 | `project-doc`(独立 skill,含 4 篇附属文档) |
 | 编码 | `code-guidelines`(总入口)→ 查语言激活 `python/cpp/bash-guidelines` |
-| 前端 / Web(设计 / React / UI 审查) | `web-guidelines`(独立 skill,4 篇附属文档) |
+| 前端 / Web(demo / 小 SaaS / 汇报单页报告) | `web-guidelines`(轻量入口,3 篇附属:app-ui-design / design-craft / report-rendering) |
 | 代码理解 / 调用链 / 影响面 | `code-intelligence`(code-guidelines 附属文档) |
 | 跑构建 / 测试 / 格式化 | `make-shortcut`(code-guidelines 附属文档)+ 语言 format.md |
 | 代码审查 | `/tcraft-code-review` |

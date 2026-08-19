@@ -46,9 +46,8 @@ token 不是「品牌色板」,是「干活用的调色板 + 密度尺度」:
 ## 4. 结合本 skill 其他线
 
 - 动手前过 [`design-craft.md`](design-craft.md)——骨架解决「好用」,它解决「不像模板、表现力」。
-- 写 React 组件时对照 [`react-performance.md`](react-performance.md) —— 表格/列表尤其注意瀑布流与重渲染。
-- 事后 [`ui-review.md`](ui-review.md) 审查可访问性与 UX。
 - 若产物是报告而非界面 → 走 [`report-rendering.md`](report-rendering.md)。
+- 组件性能是常识范畴(表格/列表注意重渲染),按需自行把握,本 skill 不带重型性能规范。
 - 设计决策(为什么选这套密度/暗色)值得记 adr,走 `project-doc`。
 
 ## 5. 落地:项目自己的「工具版 DESIGN.md」

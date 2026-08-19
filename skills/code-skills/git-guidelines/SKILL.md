@@ -1,6 +1,6 @@
 ---
 name: git-guidelines
-description: Git 使用准则与工作流助手,覆盖整个 Git 体系:核心概念(四区模型)、日常操作(切分支/提交/推送)、分支模型与命名、CHANGELOG 维护(Keep a Changelog,委托细则见附属文档)、提交规范(gitmoji)、远程协作、撤销与找回、进阶操作(stash/rebase/cherry-pick/bisect)、冲突解决、.gitignore、tag 与发版、工作流模型。当用户要做任何 Git 操作时使用 -- 说"切分支""新建分支"(给分支名建议并创建)、"提交代码""commit"(扫描变更、格式化、更新 CHANGELOG、写 commit message、推送)、"更新 changelog""写变更记录""整理本次改动""把 unreleased 收尾""发版了整理变更"(按附属文档维护 CHANGELOG)、"撤销修改""回退版本"(选对 restore/reset/revert)、"解决冲突""合并分支""打 tag""stash""rebase""配 git 别名""写 .gitignore""写 readme""更新 readme"等。emoji 向 obsidian-kb 附属文档 emoji-helper.md 查询。遵循项目 CLAUDE.md 的分支与提交规范。
+description: 按项目规范执行 Git 工作流(带 CHANGELOG / gitmoji / 分支命名约定)。何时用:做任何 git 操作时进这里——它比裸 git 多的是流程编排与规范:"提交 / commit"→扫描变更 + 格式化 + 更新 CHANGELOG + gitmoji 提交信息 + 推送一条龙;"切 / 新建分支"→按项目分支模型给命名建议再建;"更新 changelog / 收尾 unreleased / 发版整理变更"→按 Keep a Changelog + 附属 references/changelog.md;"撤销 / 回退"→在 restore/reset/revert 里选对;还覆盖合并 / 冲突 / tag 发版 / stash / rebase / cherry-pick / bisect / .gitignore / readme。分支与提交规范先读项目 CLAUDE.md,gitmoji 向 obsidian-kb emoji-helper.md 查。
 ---
 
 # Git Guidelines

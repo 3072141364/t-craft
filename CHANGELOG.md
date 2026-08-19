@@ -18,11 +18,21 @@ t-craft 的变更记录。遵循 [Keep a Changelog](https://keepachangelog.com/)
 - **obsidian-kb 四职能**:初始化 / 需求落盘 / 文档查询(3-tier 省 token)/ 知识沉淀(项目→vault,通用→skill 仓库)/ 快速问答(answer-index)/ 周报与工作清单 / emoji。
 - **Obsidian vault 模型**:英文目录(`projects`/`papers`/`tech`/`weekly`/`misc`/`archive`)+ 一需求一文件夹 + `cards.base` 动态视图;跨项目可复用知识提炼进 skill 仓库,模板归 skill 仓库。
 
+- **`t-craft` 总入口 skill**:新建 `skills/t-craft/`,说"t-craft"或首次接触生态时展示技能清单并路由到子 skill;marketplace 注册 `t-craft-entry` plugin。解决"t-craft 不是一个可激活技能、只是分类名"导致的命中缺口。
+
 ### 🔧 Changed
 
 - **本会话大规模重构**:skill 合并——emoji-helper / obsidian-query / obsidian-answers 并入 obsidian-kb,code-format / karpathy-guidelines / make-shortcut / spec-doc 并入 code-guidelines 附属文档;`research-skills` 独立承接论文研究;命令统一 `tcraft-` 前缀;dev-flow 阶段细化(④验证两档 / ⑤发布带版本升级);vault 英文化 + 需求文件夹;文档按随码/离码分工。
+- **体系重定位为「流程编排 + 双线并行 + 知识大脑」,提升命中率**:确立判断内容去留的唯一标准——"模型默认够用就删,只留独特价值"(写入 CLAUDE.md 顶层),并按此重构——
+  - **description 三原则**:前置独特价值(非默认行为)、写触发器而非说明书、短而准;全部 skill description 据此重写(code-guidelines 872→492 字、web 800→253 字、obsidian-kb 595→355 字等)。
+  - **编码类瘦身**:`code-guidelines` 正文 ~200 行 → ~50 行纯路由器(删见名知义/拆函数/命名/注释哲学等默认能力,只留语言路由 + 附属文档索引);`python/cpp/bash-guidelines` 只留项目配置真源 + 语言独有易错点。
+  - **web-guidelines 轻量化**:从 SaaS 大平台五线重规范 → 轻量入口两类产物(demo/小 SaaS + 汇报单页报告),按场景路由 app-ui-design / design-craft / report-rendering 三篇;`/tcraft-web` 命令同步。
+  - **paper-study → 调研线**:定位为与开发线并行的调研线(调研论文 + 调研技术),两线在周报三流汇合。
+  - **obsidian-kb → 项目知识大脑**:横贯两线的知识双向入口——主动沉淀(干完活三类时机提醒)+ 自动快答(问项目约定/配置自动先查 vault,不必显式命令);沿用现有目录隔离体系长成项目 wiki。
+  - **dev-flow** 补双线定位;`docs/system-map.html` 全景图同步。
 
 ### 🗑️ Removed
 
 - `basic-skills` plugin、`template/`、`MEMORY.md`。
 - 独立 skill:code-format / karpathy-guidelines / make-shortcut / spec-doc / changelog / brainstorm / code-intelligence / obsidian-query / obsidian-answers / emoji-helper(全部并入总入口 skill 的附属文档或模块,保留历史于 git)。
+- web-guidelines 附属文档 `react-performance.md`(70 条性能规则,轻量前端用不上)、`ui-review.md`(本次定位不含 UI 审查)——保留历史于 git。

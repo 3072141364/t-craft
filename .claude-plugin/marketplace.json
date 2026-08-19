@@ -10,7 +10,7 @@
   "plugins": [
     {
       "name": "code-skills",
-      "description": "代码相关:代码阅读/理解路由、编码准则与行为准则、格式化、需求深挖、头脑风暴(code-guidelines 及各语言 skill 的附属文档)、项目文档统一管理(project-doc)、Web/前端设计 + React 准则 + UI 审查(web-guidelines)、代码审查命令、git 体系(含 CHANGELOG)、技术图绘制命令 tcraft-graph(调 fireworks-tech-graph 出 SVG,逻辑清晰+设计感兼得)。",
+      "description": "代码相关技能集:编码总入口 code-guidelines(路由到语言子 skill python/cpp/bash + 行为准则 + 代码理解 + make 命令)、项目文档 project-doc、Web/前端 web-guidelines、git 工作流 git-guidelines、研发流程调度 dev-flow;命令含代码审查、技术图 tcraft-graph。",
       "source": "./skills/code-skills",
       "skills": [
         "./bash-guidelines",
@@ -25,7 +25,7 @@
     },
     {
       "name": "obsidian-skills",
-      "description": "知识管理:obsidian-kb 统一管理 vault(落盘/查询/知识沉淀/快速问答/周报/emoji);技术学习在 tech/ 逐渐沉淀。",
+      "description": "项目知识大脑:obsidian-kb 横贯开发线与调研线,知识双向入口——主动沉淀(方案/wiki/踩坑落 vault)+ 自动快答(问项目约定/配置先查知识库),含查询/周报/emoji。",
       "source": "./skills/obsidian-skills",
       "skills": [
         "./obsidian-kb"
@@ -33,10 +33,18 @@
     },
     {
       "name": "research-skills",
-      "description": "科研管理:论文阅读(待读/粗读/精读/已读)、论文笔记、待读队列,管理 vault papers/ 与周报论文节。",
+      "description": "调研线(与开发线并行):paper-study 调研论文(待读/粗读/精读/已读 + 笔记 + 待读队列,管 vault papers/)+ 调研技术(落 tech/),两线在周报三流汇合。",
       "source": "./skills/research-skills",
       "skills": [
         "./paper-study"
+      ]
+    },
+    {
+      "name": "t-craft-entry",
+      "description": "t-craft 工程技能体系总入口。向用户展示 t-craft 是什么、有哪些子技能、怎么用。当用户说't-craft'时激活,路由到对应子 skill。",
+      "source": "./skills/t-craft",
+      "skills": [
+        "./t-craft"
       ]
     },
     {
