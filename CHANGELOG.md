@@ -30,6 +30,7 @@ t-craft 的变更记录。遵循 [Keep a Changelog](https://keepachangelog.com/)
   - **paper-study → 调研线**:定位为与开发线并行的调研线(调研论文 + 调研技术),两线在周报三流汇合。
   - **obsidian-kb → 项目知识大脑**:横贯两线的知识双向入口——主动沉淀(干完活三类时机提醒)+ 自动快答(问项目约定/配置自动先查 vault,不必显式命令);沿用现有目录隔离体系长成项目 wiki。
   - **dev-flow** 补双线定位;`docs/system-map.html` 全景图同步。
+  - **dev-flow 提权 TodoWrite**:走研发流程时 ≥3 步的活动手前先列 `TodoWrite`,阶段流转作为天然 todo 边界,让流程可见可追踪。
 
 ### 🗑️ Removed
 
