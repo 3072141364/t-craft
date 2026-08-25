@@ -1,6 +1,6 @@
 # Commit 写作细则
 
-> git-guidelines 的附属文档:commit message 的格式、类型选择与写作原则。SKILL.md 提交流程(流程二第 4 步)起草 message 时读本文执行;emoji 的完整速查以 obsidian-kb 附属文档 emoji-helper.md / emoji-cheatsheet.md 为准。
+> traft-git-flow 的附属文档:commit message 的格式、类型选择与写作原则。
 
 ## 核心原则
 

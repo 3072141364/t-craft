@@ -8,9 +8,9 @@ tags: []
 ---
 # 📅 周记 <YYYY>-W<ww>
 
-> 三流并记:开发 / 论文 / 技术。字段格式见 [[tasks-status-cheatsheet]](checkbox 即状态)。
+> 多流并记:开发 / 论文 / 技术。字段格式见 [[tasks-status-cheatsheet]](checkbox 即状态)。
 
-## 📌 本周开发(projects)
+## 📌 项目进展(projects)
 - [ ] ...
 
 ## 📖 本周论文(papers)
