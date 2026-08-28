@@ -10,9 +10,9 @@
   "plugins": [
     {
       "name": "traft",
-      "description": "工程技能集：研发流程(头脑风暴/实现/审查/发布)、代码注释/查证、obsidian 知识库、周报；含 5 个 /traft- 命令",
+      "description": "工程技能集：研发流程(头脑风暴/实现/审查/发布)、代码注释/查证、obsidian 知识库、周报；含 5 个 /traft- 命令 + obsidian 工具",
       "category": "development",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "source": "./skills/traft"
     },
     {
