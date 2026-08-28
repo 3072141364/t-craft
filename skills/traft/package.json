@@ -1,5 +1,8 @@
 {
   "name": "traft",
-  "version": "0.2.0",
-  "description": "t-craft 工程技能集：研发流程 + 代码工具 + obsidian 知识库 + 周报"
+  "version": "0.2.1",
+  "description": "t-craft 工程技能集：研发流程 + 代码工具 + obsidian 知识库 + 周报",
+  "omp": {
+    "extensions": ["./index.ts"]
+  }
 }
