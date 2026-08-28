@@ -20,7 +20,7 @@ description: obsidian知识库管理技能, 用户开发项目的离码文档、
 # RULES
 
 ## ALWAYS DO
-- 环境变量 OBSIDIAN_VAULT_PATH 记录了vault路径，如果没有，询问用户并记录到zshrc和bashrc。
+- 环境变量 `OBSIDIAN_VAULT_PATH` / `OBSIDIAN_VAULT` 记录了vault路径，如果没有，询问用户并记录到zshrc和bashrc。
 - 涉及到开发项目的，激活 `traft-project-docs` skill。
 - 涉及到调研、论文阅读的，激活 `traft-research` skill。
 - 涉及到周报的，激活 `traft-weekly` skill。
@@ -30,7 +30,72 @@ description: obsidian知识库管理技能, 用户开发项目的离码文档、
 
 
 
-# WORKFLOWS
+# SYNTAX
+
+Obsidian Flavored Markdown 速查，写 vault 卡片时按需用。
+
+## frontmatter（每张卡必备）
+
+文件顶部 YAML 块，Obsidian 在属性面板可视化管理：
+
+```yaml
+---
+title: 卡片标题
+card_type: 技术        # 方案 / 技术 / 流程 / 术语 / wiki / 周记
+date: 2026-08-28
+summary: 一两句话摘要，供快速判断卡片内容
+tags:
+  - 通用
+  - 规范
+---
+```
+
+常用属性：`tags`（可搜索标签）、`aliases`（链接建议时的别名）、`cssclasses`（样式类）；`card_type` 取值与图标对照见 `reference/emoji-cheatsheet.md`。自定义属性随意加。
+
+## 标签
+
+- inline：`#tag`、嵌套 `#nested/tag`。
+- frontmatter：`tags:` 列表。
+- 规则：字母、数字（非首字符）、下划线、连字符、斜杠；**标签不含 emoji**（emoji 只作标题/章节的视觉对照，见 emoji 速查表）。
+
+## Wikilinks（双链）
+
+主链接机制，Obsidian 自动跟踪重命名：
+
+- `[[笔记名]]` - 基本链接
+- `[[笔记名|显示文字]]` - 自定义显示
+- `[[笔记名#标题]]` - 链向标题
+- `[[笔记名#^block-id]]` - 块引用
+- `[[#同笔记标题]]` - 同笔记内标题
+
+块 id：段落后加 `^block-id`，或列表/引用后单独一行加。
+
+## Embeds（嵌入）
+
+wikilink 前加 `!`：
+
+- `![[笔记名]]` - 嵌入整篇
+- `![[笔记名#标题]]` - 嵌入章节
+- `![[图片.png|300]]` - 图片，可设宽
+- `![[文档.pdf#page=3]]` - PDF 指定页
+
+## Callouts（标注块）
+
+`> [!类型]` 语法：
+
+- `> [!note]` - 基本
+- `> [!warning] 自定义标题` - 带标题
+- `> [!faq]- 默认折叠` - `-` 折叠 / `+` 展开
+
+常用类型：note、tip、warning、info、example、quote、bug、danger、success、failure、question、abstract、todo。
+
+## 其他
+
+- 高亮：`==文字==`
+- 注释：`%%隐藏%%`（不渲染）
+- 数学：`$行内$`、`$$块$$`
+- Mermaid 图：mermaid 代码块
+- 脚注：`[^1]` + `[^1]: 说明`
 
 
 

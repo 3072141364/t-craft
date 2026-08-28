@@ -8,10 +8,9 @@ tags: []
 ---
 # 🔎 评估审查 {{title}}
 
-> 研发阶段④产出:`/tcraft-code-review` 双轴审查 + 需求达成确认。对照 prd.md 验收标准逐条核对。
+> 研发阶段④产出:`traft-code-review` skill 双轴审查 + 需求达成确认。对照 prd.md 验收标准逐条核对。
 
-## 审查结论(/tcraft-code-review)
-Standards 轴 / Spec 轴结论,列出问题与修复状态。
+## 审查结论(traft-code-review)
 
 ## 需求达成确认
 | prd 验收标准 | 达成 | 说明 |

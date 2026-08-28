@@ -28,12 +28,18 @@ traft-git-flow是管理git项目的技能，具体的规则在参考文档中，
 
 ### 切换分支
 
-目的:切到目标分支;新建分支时先出候选名,审批后再动手。
+目的:切到目标分支;新建分支时先定**基分支**与**是否拉最新**,再出候选名审批后动手。
 
 1. `git status` 看当前分支与未提交变更;有变更再 `git diff` 看内容。
-2. `git branch -a` 列本地/远程分支,结合 `references/branch-rules.md` 命名规则产出 3-5 个候选名。
-3. 用户审批候选名;若在受保护分支且有未提交变更,确认是否带到新分支(`switch -c` 会带过去,不带则先 `git stash`)。
-4. 执行 `git switch <name>`(已存在)或 `git switch -c <name>`(新建)。
+2. **切前先问两个点**(不默认):
+   - **基分支**:从当前分支切,还是从 `master`/`main` 切?新功能通常基于主分支最新;当前分支有未合并的无关改动时,基于主分支更干净。
+   - **是否拉最新**:要最新基线就先 `git fetch origin`(基于 `origin/<主>`)或 `git pull`(基于当前分支);不要就用本地现状。
+3. `git branch -a` 列本地/远程分支,结合 `references/branch-rules.md` 命名规则产出 3-5 个候选名。
+4. 用户审批候选名 + 基分支 + 拉取选择;受保护分支或有未提交变更,确认是否带到新分支(`switch -c` 会带过去,不带则先 `git stash`)。
+5. 执行:
+   - 基于当前分支:`git switch <name>`(已存在)/ `git switch -c <name>`(新建)。
+   - 基于主分支:`git switch -c <name> <基>`(如 `git fetch origin` 后的 `origin/main`)。
+6. `git branch` + `git status` 核对结果。
 
 ### 扫描代码变更
 

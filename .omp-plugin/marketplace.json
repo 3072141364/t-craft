@@ -1,0 +1,28 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "t-craft",
+  "owner": {
+    "name": "titan"
+  },
+  "metadata": {
+    "description": "t-craft 自用工程技能体系：vibe coding 研发流程 + 代码工具 + obsidian 知识库 + 周报 + 技术图"
+  },
+  "plugins": [
+    {
+      "name": "traft",
+      "description": "工程技能集：研发流程(头脑风暴/实现/审查/发布)、代码注释/查证、obsidian 知识库、周报；含 5 个 /traft- 命令",
+      "category": "development",
+      "version": "0.1.0",
+      "source": "./skills/traft"
+    },
+    {
+      "name": "fireworks-tech-graph",
+      "description": "自然语言生成技术图(NL->SVG/PNG,多种图型与风格)；traft-graph 的依赖",
+      "category": "development",
+      "source": {
+        "source": "github",
+        "repo": "yizhiyanhua-ai/fireworks-tech-graph"
+      }
+    }
+  ]
+}
