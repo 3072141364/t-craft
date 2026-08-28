@@ -23,6 +23,13 @@
         "source": "github",
         "repo": "yizhiyanhua-ai/fireworks-tech-graph"
       }
+    },
+    {
+      "name": "gitnexus",
+      "description": "GitNexus 代码智能技能：调用链追踪 / 影响面分析 / PR 审查 / 重构 / bug 排查(7 技能),带 MCP 服务器配置",
+      "category": "development",
+      "version": "0.1.0",
+      "source": "./skills/gitnexus"
     }
   ]
 }
