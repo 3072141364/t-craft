@@ -1,19 +1,19 @@
 ---
 title: emoji 速查表
-card_type: 规范
+type: 规范
 date: 2026-08-05
-summary: vault 常用 emoji 对照(card_type 图标、周报优先级/类型/状态、章节语义、人名身份) + 通用场景速查(状态标记 / Gitmoji / CHANGELOG 分类 / 模块对象动作 / 平台环境等,按用途场景组织)。emoji 不进标签本身,只作标题/章节/本表视觉对照;新增 emoji 向 emoji-helper 查询,本表为常用集。
+summary: vault 常用 emoji 对照(type 图标、周报优先级/类型/状态、章节语义、人名身份) + 通用场景速查(状态标记 / Gitmoji / CHANGELOG 分类 / 模块对象动作 / 平台环境等,按用途场景组织)。emoji 不进标签本身,只作标题/章节/本表视觉对照;新增 emoji 向 emoji-helper 查询,本表为常用集。
 tags: [通用, 规范, 定稿]
 ---
 
 # 😀 emoji 速查表
 
-> vault 专属约定(card_type / 周报 / 章节 / 人名)+ 通用场景速查。**emoji 不进 Obsidian 标签本身**(标签不含 emoji),只作标题/章节/本表的视觉对照。写笔记时 card_type 图标、章节 emoji 向 **emoji-helper** 查询;本表为常用集,emoji-helper 可覆盖。
+> vault 专属约定(type / 周报 / 章节 / 人名)+ 通用场景速查。**emoji 不进 Obsidian 标签本身**(标签不含 emoji),只作标题/章节/本表的视觉对照。写笔记时 type 图标、章节 emoji 向 **emoji-helper** 查询;本表为常用集,emoji-helper 可覆盖。
 
 ## 目录
 
 **vault 专属**
-- [card_type 图标](#card_type-图标每张卡标题行首)
+- [type 图标](#type-图标每篇文档标题行首)
 - [周报字段 emoji](#周报字段-emoji)
 - [章节语义 emoji](#章节语义-emoji正文章节标题可选)
 - [人名 emoji](#人名-emoji)
@@ -37,9 +37,9 @@ tags: [通用, 规范, 定稿]
 
 ---
 
-## card_type 图标(每张卡标题行首)
+## type 图标(每篇文档标题行首)
 
-| card_type | emoji | 用途 |
+| type | emoji | 用途 |
 |-----------|-------|------|
 | 方案 | 📋 | 设计方案(开发新功能/修复 bug) |
 | 技术 | 🔧 | 技术知识/实践沉淀 |

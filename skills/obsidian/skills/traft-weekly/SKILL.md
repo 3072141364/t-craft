@@ -5,20 +5,20 @@ description: 周报/周记管理技能。每周把开发、论文、技术三流
 
 # traft-weekly
 
-周报(card_type `周记`)是每周的**多流并记**:把一周的**开发(projects)**、**论文(papers)**、**技术(tech)** 三条线记在同一篇,并沉淀可复用内容、列出下周计划。
+周报(type `周记`)是每周的**多流并记**:把一周的**开发(projects)**、**论文(papers)**、**技术(tech)** 三条线记在同一篇,并沉淀可复用内容、列出下周计划。
 
-- 一张周报 = 一篇 md 卡片,必须有 frontmatter。
+- 一张周报 = 一篇 md 文档,必须有 frontmatter。
 - 周报状态用 Obsidian Tasks 扩展符号,**不用 emoji 作主状态**;状态/进度速查见 `templates/tasks-status-cheatsheet.md`(仅允许 6 个符号:`[ ]` / `[x]` / `[/]` / `[-]` / `[>]` / `[<]`)。
 - 模板(单源):`templates/weekly.md`(本技能内),建周报时复制。
 
 # RULES
 
 ## ALWAYS DO
-- 写周报前,向用户确认本周跨度(如 `2026-W35`),并从 `projects/`、`papers/`、`tech/` 及关联卡片核对实际进展,**不凭记忆**。
-- 标题用 `周记 <YYYY>-W<ww>`(ISO 周);frontmatter 含 `card_type: 周记`、`date`。
+- 写周报前,向用户确认本周跨度(如 `2026-W35`),并从 `projects/`、`papers/`、`tech/` 及关联文档核对实际进展,**不凭记忆**。
+- 标题用 `周记 <YYYY>-W<ww>`(ISO 周);frontmatter 含 `type: 周记`、`date`。
 - 三流分开记,不混写:开发 / 论文 / 技术各一段。
-- 「沉淀」落可复用卡片/技能:凡能提炼进 skill 仓库的,标注并落盘。
-- 涉及周报文档的增删改查,遵循 traft-obsidian 卡片规范(frontmatter + 双链)。
+- 「沉淀」落可复用文档/技能:凡能提炼进 skill 仓库的,标注并落盘。
+- 涉及周报文档的增删改查,遵循 traft-obsidian 文档规范(frontmatter + 双链)。
 - emoji 只作标题/章节/行内视觉标注,**不进标签**;参考 `skill://traft-obsidian/reference/emoji-cheatsheet.md`。
 - 状态用允许的 6 个符号:待办 `[ ]`、完成 `[x]`、进行中 `[/]`、搁置/取消 `[-]`、转发下周 `[>]`、排期 `[<]`;进行中/搁置不用 🔄/⏸️ emoji 行内标注。
 

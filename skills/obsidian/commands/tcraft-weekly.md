@@ -19,4 +19,4 @@ argument-hint: [一句话,如"更新xxx需求进度"|<ISO周次>]
 1. 建周报:复制 `skill://traft-weekly/templates/weekly.md`,确认本周跨度,三流分开记(开发/论文/技术)。
 2. 进度更新:改对应需求的 `progress.md`(走 `traft-code-docs` 的 progress 约定);周报只链 progress,不重复记状态。
 3. 状态用 6 个允许符号(`[ ]`/`[x]`/`[/]`/`[-]`/`[>]`/`[<]`);emoji 只作视觉标注,**不进标签**。
-4. 落盘遵循 traft-obsidian 卡片规范(frontmatter + 双链)。
+4. 落盘遵循 traft-obsidian 文档规范(frontmatter + 双链)。

@@ -7,20 +7,16 @@ description: obsidian知识库管理技能, 用户开发项目的离码文档、
 # START 
 用户使用obsidian管理自己的知识库，目前主要分为几类`开发项目文档`、`研究调研笔记`、`周报进程`。
 
-- obsidian 使用卡片的形式进行管理，一张卡片等于一篇md文档。
-- obsidian 的文档有三种路径格式，假设`OBSIDIAN_VAULT_PATH=/home/wz/文档/default/`,下面三个路径指向同一篇文档。
-  - obsidian url：obsidian://open?vault=default&file=INDEX
-  - 基于库的相对路径：INDEX
-  - 绝对路径：/home/wz/文档/default/INDEX.md
-- 每张卡片都必须有frontmatter。
+- obsidian 用文档管理知识库，一篇文档 = 一篇 `.md`。
+- 每篇文档都必须有 frontmatter。
 - 充分利用obsidian的双链功能。
-- 卡片的增删改查直接使用read和write工具即可，和普通文件无差别。
+- 文档的增删改查直接使用read和write工具即可，和普通文件无差别。
 - 适当使用emoji，增加文档可读性，可参考 `reference/emoji-cheatsheet.md`(或 `skill://traft-obsidian/reference/emoji-cheatsheet.md`)。
 
 # RULES
 
 ## ALWAYS DO
-- 环境变量 `OBSIDIAN_VAULT_PATH` / `OBSIDIAN_VAULT` 记录了vault路径，如果没有，询问用户并记录到zshrc和bashrc。
+- vault 路径由 `ob-cli` 工具自动发现（`obsidian vault info=path`，单 vault 自动解析活动库）；无需手动记录环境变量。
 - 涉及到开发项目的，激活 `traft-code-docs` skill。
 - 涉及到调研、论文阅读的，激活 `traft-research` skill。
 - 涉及到周报的，激活 `traft-weekly` skill。
@@ -32,25 +28,29 @@ description: obsidian知识库管理技能, 用户开发项目的离码文档、
 
 # SYNTAX
 
-Obsidian Flavored Markdown 速查，写 vault 卡片时按需用。
+Obsidian Flavored Markdown 速查，写 vault 文档时按需用。
 
-## frontmatter（每张卡必备）
+## frontmatter
 
-文件顶部 YAML 块，Obsidian 在属性面板可视化管理：
+文档必须带 YAML frontmatter（`---` 包围，位于文件顶部）。写 vault 文档会被 `frontmatter` hook 校验，缺失或字段不全会被拦截。
 
-```yaml
----
-title: 卡片标题
-card_type: 技术        # 方案 / 技术 / 流程 / 术语 / wiki / 周记
-date: 2026-08-28
-summary: 一两句话摘要，供快速判断卡片内容
-tags:
-  - 通用
-  - 规范
----
-```
+**通用必填**：
+- `title`：文档标题
+- `type`：文档类型（方案 / 技术 / 流程 / 术语 / wiki / 周记 / prd / adr / test / review / progress）
+- `created` / `updated`：创建时间 / 最后修改时间（YYYY-MM-DD）
+- `confidence`：置信度 0-100 整数，100=已核实事实；推断/未验证须调低
+- `status`：状态（进行中 / 草稿 / 完成 / 已归档 等）
+- `tags`：至少一个标签
+- `summary`：一句话摘要
 
-常用属性：`tags`（可搜索标签）、`aliases`（链接建议时的别名）、`cssclasses`（样式类）；`card_type` 取值与图标对照见 `reference/emoji-cheatsheet.md`。自定义属性随意加。
+**`project/` 文档追加**：
+- `project`：项目归属名
+
+**需求文档**（type 为 `prd`）再追加：
+- `requester`：需求方对接人>=1（提出需求的人/团队）
+- `deadline`：截止日期（YYYY-MM-DD）
+
+**可选**：`aliases`（链接别名）、`cssclasses`（样式类）、自定义属性。
 
 ## 标签
 
@@ -69,6 +69,10 @@ tags:
 - `[[#同笔记标题]]` - 同笔记内标题
 
 块 id：段落后加 `^block-id`，或列表/引用后单独一行加。
+
+**重命名 / 移动必须同步更新双链**：Obsidian 只在应用运行且开启"自动更新内部链接"时才自动跟随重命名；CLI / agent 直接改文件名**不会**自动更新。所以重命名文档后，用 grep 全库检索并替换所有对该文档的引用：
+- `[[旧名]]`、`[[旧名|别名]]`、`[[旧名#标题]]`、`[[旧名#^块]]`、`![[旧名]]` → 改为新名
+- 仍指向旧名的引用视为失效双链，必须一次性替换，不是"等 Obsidian 自己修"。
 
 ## Embeds（嵌入）
 

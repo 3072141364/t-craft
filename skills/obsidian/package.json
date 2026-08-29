@@ -1,8 +1,9 @@
 {
   "name": "obsidian",
-  "version": "0.1.0",
-  "description": "obsidian 知识库插件：vault 自定义工具(obsidian CLI 透传,含审批/语义/超时/截断) + 知识库技能(traft-obsidian) + 周报(traft-weekly)",
+  "version": "0.2.0",
+  "description": "obsidian 知识库插件：vault 工具(ob-cli/ob-query) + 知识库技能(traft-obsidian/query/weekly) + frontmatter 校验 hook",
   "omp": {
-    "tools": "./tools/obsidian"
+    "tools": ["./tools/ob-cli", "./tools/ob-query"],
+    "hooks": ["./hooks/frontmatter"]
   }
 }

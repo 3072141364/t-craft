@@ -160,7 +160,7 @@ function describeCommand(args: unknown): string {
 }
 
 const factory: CustomToolFactory = (pi) => ({
-  name: "obsidian",
+  name: "ob-cli",
   label: "Obsidian",
   strict: true,
   loadMode: "essential",
