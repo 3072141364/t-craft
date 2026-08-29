@@ -50,11 +50,19 @@ Obsidian Flavored Markdown 速查，写 vault 文档时按需用。
 - `requester`：需求方对接人>=1（提出需求的人/团队）
 - `deadline`：截止日期（YYYY-MM-DD）
 
-**可选**：`aliases`（链接别名）、`cssclasses`（样式类）、自定义属性。
+**溯源字段**（研究 / 知识 / 高置信度主张用）：
+- `source`：来源（URL / 引用标识）；研究文档（`research/`）与知识文档（`术语`/`wiki`/`技术`）必填，置信度≥90 的主张必填
+- `authority`：权威性（official / primary / secondary / community / unknown）；研究 / 知识文档必填
+
+**可选**：`aliases`（链接别名）、`cssclasses`、自定义属性。
+
+## 操作日志（hook 自动维护）
+
+`meta/log.md`：`ops-log` hook 在每次 write/create/append/prepend/rename/delete 后自动追加一行（时间 + 操作 + 目标 + 摘要），位于 vault `meta/`（派生数据，不进 frontmatter 校验 / 检索索引）。
 
 ## 标签
 
-- inline：`#tag`、嵌套 `#nested/tag`。
+- inline：`#tag`；嵌套 `#nested/tag`（**非必要不用嵌套**，优先扁平标签）。
 - frontmatter：`tags:` 列表。
 - 规则：字母、数字（非首字符）、下划线、连字符、斜杠；**标签不含 emoji**（emoji 只作标题/章节的视觉对照，见 emoji 速查表）。
 

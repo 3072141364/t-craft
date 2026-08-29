@@ -43,6 +43,8 @@ interface HookApi {
 const REQUIRED_KEYS = ["title", "type", "created", "updated", "confidence", "status", "tags", "summary"] as const;
 const PROJECT_DOC_TYPES: Record<string, true> = { prd: true, adr: true, test: true, review: true, progress: true };
 const REQUIREMENT_TYPES: Record<string, true> = { prd: true };
+// 知识/研究类文档：research/ 目录 + 实际知识类型（术语/wiki/技术）——必填 source+authority
+const KNOWLEDGE_TYPES: Record<string, true> = { 术语: true, wiki: true, 技术: true };
 const WRITE_TOOLS: Record<string, true> = { write: true, edit: true, "ob-cli": true };
 const OBCLI_WRITE_CMDS: Record<string, true> = { create: true, append: true, prepend: true };
 
@@ -81,6 +83,8 @@ function hasYamlKey(block: string, key: string): boolean {
 
 /** 校验 frontmatter 必填。返回问题描述，null 通过。 */
 function validateFrontmatter(content: string, relPath: string): string | undefined {
+  // 派生数据（meta/log、ledgers、retrieval）无需 frontmatter
+  if (relPath.startsWith("meta/") || relPath.startsWith(".vault-meta/")) return undefined;
   const block = extractFrontmatter(content);
   if (!block) return "缺少 YAML frontmatter（文档须以 `---` 开头）。";
   const missing = REQUIRED_KEYS.filter(k => !hasYamlKey(block, k));
@@ -88,10 +92,19 @@ function validateFrontmatter(content: string, relPath: string): string | undefin
   const isProjectDoc =
     relPath.startsWith("project/") || !!PROJECT_DOC_TYPES[(block.match(/^type\s*:\s*(\S+)/m)?.[1] ?? "").trim()];
   if (isProjectDoc && !hasYamlKey(block, "project")) return "项目文档须含 `project`（项目归属名）。";
-  if (REQUIREMENT_TYPES[(block.match(/^type\s*:\s*(\S+)/m)?.[1] ?? "").trim()]) {
+  const type = (block.match(/^type\s*:\s*(\S+)/m)?.[1] ?? "").trim();
+  if (REQUIREMENT_TYPES[type]) {
     const reqMissing = ["requester", "deadline"].filter(k => !hasYamlKey(block, k));
     if (reqMissing.length) return `需求文档缺必填：${reqMissing.join(", ")}。`;
   }
+  // 溯源：research/ 或知识类型(术语/wiki/技术)须 authority+source；高置信度主张须 source
+  const isKnowledge = relPath.startsWith("research/") || !!KNOWLEDGE_TYPES[type];
+  if (isKnowledge) {
+    const provMissing = ["authority", "source"].filter(k => !hasYamlKey(block, k));
+    if (provMissing.length) return `${relPath.startsWith("research/") ? "研究" : "知识"}文档缺溯源字段：${provMissing.join(", ")}。`;
+  }
+  const conf = Number(block.match(/^confidence\s*:\s*(\d+)/m)?.[1] ?? 0);
+  if (conf >= 90 && !hasYamlKey(block, "source")) return "置信度≥90 的主张须含 `source`（来源）。";
   return undefined;
 }
 
@@ -105,7 +118,6 @@ function refreshUpdated(content: string): string {
 }
 
 const WRITE_FULL = "write";
-const OBCLI = "ob-cli";
 
 export default function registerFrontmatterHook(api: HookApi): void {
   api.on("tool_call", async (event) => {

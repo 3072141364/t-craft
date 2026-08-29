@@ -1,4 +1,4 @@
-import { readdirSync, readFileSync, statSync } from "node:fs";
+import { readdirSync, readFileSync, statSync, writeFileSync, mkdirSync } from "node:fs";
 import type { Dirent } from "node:fs";
 import { join, resolve, relative } from "node:path";
 import { homedir } from "node:os";
@@ -16,7 +16,6 @@ const MAX_FILES = 5000;
 const MAX_FILE_BYTES = 1_000_000;
 const DEFAULT_TOP = 5;
 const MAX_TOP = 20;
-const SNIPPET_CHARS = 120;
 
 interface Doc {
   path: string;
@@ -91,20 +90,65 @@ function listMdFiles(vaultRoot: string): string[] {
   return out;
 }
 
+// 检索索引缓存：按文件 mtime+size 判失效，只重新 tokenize 变更文件（增量）。
+interface CacheEntry {
+  path: string;
+  mtime: number;
+  size: number;
+  tokens: string[];
+}
+
+function cachePath(vaultRoot: string): string {
+  return join(vaultRoot, "meta", "retrieval", "bm25.json");
+}
+
+function loadCache(vaultRoot: string): Map<string, CacheEntry> {
+  const map = new Map<string, CacheEntry>();
+  try {
+    const raw = readFileSync(cachePath(vaultRoot), "utf8");
+    const arr = JSON.parse(raw) as CacheEntry[];
+    for (const e of arr) if (e && typeof e.path === "string" && Array.isArray(e.tokens)) map.set(e.path, e);
+  } catch {
+    // 首次/损坏 → 空缓存
+  }
+  return map;
+}
+
+function saveCache(vaultRoot: string, cache: Map<string, CacheEntry>): void {
+  try {
+    mkdirSync(join(vaultRoot, "meta", "retrieval"), { recursive: true });
+    const arr = Array.from(cache.values());
+    writeFileSync(cachePath(vaultRoot), JSON.stringify(arr));
+  } catch {
+    // 缓存写失败不影响检索
+  }
+}
+
 function loadDocs(vaultRoot: string, folder?: string): Doc[] {
+  const cache = loadCache(vaultRoot);
   const docs: Doc[] = [];
+  const usedRel = new Set<string>();
   for (const abs of listMdFiles(vaultRoot)) {
     try {
       const st = statSync(abs);
       if (st.size > MAX_FILE_BYTES) continue;
       const rel = relative(vaultRoot, abs).split(/[\\/]/).join("/");
       if (folder && !rel.startsWith(`${folder.replace(/\/$/, "")}/`)) continue;
+      if (rel.startsWith("meta/") || rel.startsWith(".vault-meta/")) continue; // 派生数据不索引
       const text = readFileSync(abs, "utf8");
-      docs.push({ path: rel, text, tokens: tokenize(text) });
+      const hit = cache.get(rel);
+      // 未变（mtime+size 一致）→ 复用缓存 token；变/新 → 重新 tokenize
+      const tokens = hit && hit.mtime === st.mtimeMs && hit.size === st.size ? hit.tokens : tokenize(text);
+      cache.set(rel, { path: rel, mtime: st.mtimeMs, size: st.size, tokens });
+      usedRel.add(rel);
+      docs.push({ path: rel, text, tokens });
     } catch {
       // 跳过不可读文件
     }
   }
+  // 删除已不存在的文件缓存条目（失效）
+  for (const key of Array.from(cache.keys())) if (!usedRel.has(key)) cache.delete(key);
+  saveCache(vaultRoot, cache);
   return docs;
 }
 
@@ -155,20 +199,6 @@ function extractMeta(text: string): DocMeta {
     project: get("project"),
     tags: tagsStr ? tagsStr.split("\n").map(s => s.replace(/^\s*-\s*/, "").trim()).filter(Boolean) : [],
   };
-}
-
-function snippetFor(text: string, qTokens: string[]): string {
-  const lower = text.toLowerCase();
-  let best = -1;
-  for (const t of qTokens) {
-    if (t.length < 2) continue;
-    const at = lower.indexOf(t);
-    if (at >= 0 && (best === -1 || at < best)) best = at;
-  }
-  const start = best >= 0 ? Math.max(0, best - Math.floor(SNIPPET_CHARS / 3)) : 0;
-  const piece = text.slice(start, start + SNIPPET_CHARS).replace(/\s+/g, " ").trim();
-  if (!piece) return "(空)";
-  return `${start > 0 ? "…" : ""}${piece}${start + SNIPPET_CHARS < text.length ? "…" : ""}`;
 }
 
 async function resolveVault(pi: Parameters<CustomToolFactory>[0], vault?: string): Promise<string> {
@@ -227,7 +257,7 @@ const factory: CustomToolFactory = (pi) => ({
     const hits: TopHit[] = docs
       .map((d, i) => {
         const meta = extractMeta(d.text);
-        return { path: d.path, score: scores[i], snippet: meta.summary || snippetFor(d.text, qTokens), meta };
+        return { path: d.path, score: scores[i], snippet: meta.summary || "(无摘要)", meta };
       })
       .filter(h => h.score > 0)
       .sort((a, b) => b.score - a.score)
