@@ -20,7 +20,7 @@ traft-git-flow是管理git项目的技能，具体的规则在参考文档中，
 | 分支模型语义与命名规则 | `references/branch-rules.md` | 
 | commit 信息编辑规范 | `references/commit-rules.md` | 
 | changelog 更新规范 | `references/changelog-rules.md` |
-| readme 更新规范 | `references/readme.md` |
+| readme 更新规范 | `references/readme-rules.md` |
 | git 操作命令参考 | `references/git-commands.md` | 
 
 
