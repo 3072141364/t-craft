@@ -2,13 +2,13 @@
 title: emoji 速查表
 type: 规范
 date: 2026-08-05
-summary: vault 常用 emoji 对照(type 图标、周报优先级/类型/状态、章节语义、人名身份) + 通用场景速查(状态标记 / Gitmoji / CHANGELOG 分类 / 模块对象动作 / 平台环境等,按用途场景组织)。emoji 不进标签本身,只作标题/章节/本表视觉对照;新增 emoji 向 emoji-helper 查询,本表为常用集。
+summary: vault 常用 emoji 对照(type 图标、周报优先级/类型/状态、章节语义、人名身份) + 通用场景速查(状态标记 / Gitmoji / 模块对象动作 / 平台环境等,按用途场景组织)。emoji 不进标签本身,只作标题/章节/本表视觉对照;本表为常用集,新增 emoji 用 `emoji` 工具查询。
 tags: [通用, 规范, 定稿]
 ---
 
 # 😀 emoji 速查表
 
-> vault 专属约定(type / 周报 / 章节 / 人名)+ 通用场景速查。**emoji 不进 Obsidian 标签本身**(标签不含 emoji),只作标题/章节/本表的视觉对照。写笔记时 type 图标、章节 emoji 向 **emoji-helper** 查询;本表为常用集,emoji-helper 可覆盖。
+> vault 专属约定(type / 周报 / 章节 / 人名)+ 通用场景速查。**emoji 不进 Obsidian 标签本身**(标签不含 emoji),只作标题/章节/本表的视觉对照。写笔记时 type 图标、章节 emoji 用 `emoji` 工具查询;本表为常用集。
 
 ## 目录
 
@@ -21,7 +21,6 @@ tags: [通用, 规范, 定稿]
 **通用速查**
 - [状态与标记](#状态与标记)
 - [提交类型(Gitmoji)](#提交类型gitmoji)
-- [CHANGELOG 分类](#changelog-分类)
 - [模块与功能](#模块与功能)
 - [对象与类型](#对象与类型)
 - [动作与操作](#动作与操作)
@@ -159,19 +158,6 @@ tags: [通用, 规范, 定稿]
 | 🌐 | i18n | 国际化/本地化 |
 | ♿️ | a11y | 无障碍改进 |
 | 🗃️ | db | 数据库相关 |
-
-## CHANGELOG 分类
-
-> 对应 [Keep a Changelog](https://keepachangelog.com/) 分类,可在 CHANGELOG 条目前加 emoji 增强可读性。
-
-| Emoji | 类别 | 含义 |
-|------|------|------|
-| ✨ / 🆕 | Added | 新增功能 |
-| 🔧 / 🔄 | Changed | 对已有功能的变更 |
-| 🗑️ / ⚠️ | Deprecated | 即将移除 |
-| ❌ / 🔥 | Removed | 本版本移除 |
-| 🐛 / 🩹 | Fixed | 缺陷修复 |
-| 🔒️ / 🛡️ | Security | 安全相关修复 |
 
 ## 模块与功能
 

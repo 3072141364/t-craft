@@ -66,6 +66,6 @@ tags: [通用, 规范, 定稿]
 
 ## 关联
 
-- [[emoji-cheatsheet]] — type 图标、周报字段 emoji
+- `ob-emoji` 工具(section=vault/weekly) — type 图标、周报字段 emoji
 - [[tags-cheatsheet]] — 标签(扁平无前缀)对照
 - [[weekly]] — 周报模板与 todo 项格式

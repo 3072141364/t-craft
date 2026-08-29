@@ -19,7 +19,7 @@ description: 周报/周记管理技能。每周把开发、论文、技术三流
 - 三流分开记,不混写:开发 / 论文 / 技术各一段。
 - 「沉淀」落可复用文档/技能:凡能提炼进 skill 仓库的,标注并落盘。
 - 涉及周报文档的增删改查,遵循 traft-obsidian 文档规范(frontmatter + 双链)。
-- emoji 只作标题/章节/行内视觉标注,**不进标签**;参考 `skill://traft-obsidian/reference/emoji-cheatsheet.md`。
+- emoji 只作标题/章节/行内视觉标注,**不进标签**;用 `ob-emoji` 工具查询。
 - 状态用允许的 6 个符号:待办 `[ ]`、完成 `[x]`、进行中 `[/]`、搁置/取消 `[-]`、转发下周 `[>]`、排期 `[<]`;进行中/搁置不用 🔄/⏸️ emoji 行内标注。
 
 ## NEVER DO
@@ -35,5 +35,5 @@ description: 周报/周记管理技能。每周把开发、论文、技术三流
 |------|------|
 | 周报正文模板(三流并记结构) | `templates/weekly.md` |
 | frontmatter 字段 | `templates/weekly.md` 头部 |
-| 字段 emoji(优先级/类型/状态/章节) | `skill://traft-obsidian/reference/emoji-cheatsheet.md` →「周报字段 emoji」节 |
+| 字段 emoji(优先级/类型/状态/章节) | `ob-emoji` 工具(section=weekly) |
 | 状态符号与约定(6 个) | `templates/tasks-status-cheatsheet.md` |

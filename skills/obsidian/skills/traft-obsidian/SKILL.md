@@ -11,7 +11,7 @@ description: obsidian知识库管理技能, 用户开发项目的离码文档、
 - 每篇文档都必须有 frontmatter。
 - 充分利用obsidian的双链功能。
 - 文档的增删改查直接使用read和write工具即可，和普通文件无差别。
-- 适当使用emoji，增加文档可读性，可参考 `reference/emoji-cheatsheet.md`(或 `skill://traft-obsidian/reference/emoji-cheatsheet.md`)。
+- 适当使用emoji，增加文档可读性，用 `ob-emoji` 工具查（如 section=weekly/vault）。
 
 # RULES
 
