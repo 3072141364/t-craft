@@ -13,3 +13,11 @@ node_modules/
 .claude/skills-config.json
 .claude/skills-config.local.json
 .claude/plans/
+
+AGENTS.md
+CLAUDE.md
+agent/
+agents/
+.claude/
+.pi/
+.omp/
