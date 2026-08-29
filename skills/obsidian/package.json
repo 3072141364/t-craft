@@ -1,0 +1,8 @@
+{
+  "name": "obsidian",
+  "version": "0.1.0",
+  "description": "obsidian 知识库插件：vault 自定义工具(obsidian CLI 透传,含审批/语义/超时/截断) + 知识库技能(traft-obsidian) + 周报(traft-weekly)",
+  "omp": {
+    "tools": "./tools/obsidian"
+  }
+}

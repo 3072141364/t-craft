@@ -6,35 +6,44 @@
 
 | plugin | 来源 | 内容 |
 |--------|------|------|
-| `traft` | `./skills/traft` | 研发流程 + 代码工具 + obsidian 知识库 + 周报（13 技能 + 5 命令） |
+| `vibe-code` | `./skills/vibe-code` | vibe coding 研发流程 + 代码工具（11 技能 + 4 命令） |
+| `obsidian` | `./skills/obsidian` | obsidian 知识库：vault 工具 + 知识库/周报技能（2 技能 + 1 命令） |
 | `gitnexus` | `./skills/gitnexus` | GitNexus 代码智能：调用链 / 影响面 / PR 审查 / 重构 / bug 排查（7 技能 + MCP 配置） |
-| `fireworks-tech-graph` | github: `yizhiyanhua-ai/fireworks-tech-graph` | 自然语言生成技术图（`traft-graph` 的依赖） |
+| `fireworks-tech-graph` | github: `yizhiyanhua-ai/fireworks-tech-graph` | 自然语言生成技术图（`traft-code-graph` 的依赖） |
 
-## traft（研发流程 + 知识库）
+## vibe-code（研发流程 + 代码工具）
 
-**技能**（intent-triggered），按研发流程六阶段 + 横切 + 知识库组织：
+**技能**（intent-triggered），按研发流程六阶段 + 横切组织：
 
 | 技能 | 定位 |
 |------|------|
 | `traft-guideline` | 导航入口 / 六阶段路由（调度） |
-| `traft-brainstorm` | ① 需求深挖，产需求要点 |
-| `traft-project-docs` | ② 离码文档（prd / adr / test / review / progress） |
+| `traft-requirements` | ① 需求深挖，产需求要点 |
+| `traft-code-docs` | ② 离码文档（prd / adr / test / review / progress） |
 | `traft-code-implement` | ③ 方案实现（读 prd、先思考、简洁、外科手术式修改） |
 | `traft-code-review` | ④ 双轴审查（Standards 规范 / Spec 需求） |
-| `traft-git-flow` | ⑤ git 管理（分支 / commit / changelog / 发布） |
+| `traft-code-git` | ⑤ git 管理（分支 / commit / changelog / 发布） |
 | `traft-code-intelligence` | 代码查证路由（gitnexus / LSP / read） |
 | `traft-code-comment` | 注释规范（非必要不注释、结构化标记） |
-| `traft-debug` | 问题分析 / bug 定位 |
-| `traft-make` | 项目命令体系路由（format / test / lint / build） |
-| `traft-obsidian` | vault 知识库管理 |
-| `traft-weekly` | 周报 / 周记 |
-| `traft-graph` | 技术图绘制（包装 fireworks-tech-graph） |
+| `traft-code-debug` | 问题分析 / bug 定位 |
+| `traft-code-make` | 项目命令体系路由（format / test / lint / build） |
+| `traft-code-graph` | 技术图绘制（包装 fireworks-tech-graph） |
 
 **命令**（`/xxx`，explicit）：
 
-`/traft-brainstorm`　`/traft-code-review`　`/traft-weekly`　`/traft-branch`　`/traft-commit`
+`/traft-requirements`　`/traft-code-review`　`/traft-branch`　`/traft-commit`
 
 > 说明：技能名用 `traft-*`，命令名用 `tcraft-*`（t-craft 的产品名），两套独立注册，不冲突。
+
+## obsidian（知识库）
+
+| 技能 | 定位 |
+|------|------|
+| `traft-obsidian` | vault 知识库管理（卡片 / 双链 / emoji 规范） |
+| `traft-weekly` | 周报 / 周记 |
+
+工具：`obsidian`（vault CLI 透传，含审批/语义/超时/截断）。
+命令：`/traft-weekly`
 
 ## gitnexus（代码智能）
 
@@ -46,12 +55,13 @@
 
 ```
 /marketplace add 3072141364/t-craft
-/marketplace install traft@t-craft
+/marketplace install vibe-code@t-craft
+/marketplace install obsidian@t-craft
 /marketplace install gitnexus@t-craft
 /marketplace install fireworks-tech-graph@t-craft
 ```
 
-**本地先测**（不推送）：`/marketplace add .`（或仓库绝对路径）→ 安装上面三个。
+**本地先测**（不推送）：`/marketplace add .`（或仓库绝对路径）→ 安装上面四个。
 
 更新：改动 plugin 后 bump 版本（`skills/<plugin>/package.json` + marketplace 条目），再 `/marketplace update t-craft` + `/marketplace install --force <plugin>@t-craft`。
 
@@ -62,12 +72,17 @@
 ```
 t-craft/
 ├── .omp-plugin/
-│   └── marketplace.json        # marketplace 目录（3 个 plugin）
+│   └── marketplace.json        # marketplace 目录（4 个 plugin）
 ├── skills/
-│   ├── traft/                  # plugin: traft
+│   ├── vibe-code/              # plugin: vibe-code
 │   │   ├── skills/<name>/SKILL.md
 │   │   ├── commands/*.md
 │   │   ├── README.md / package.json
+│   ├── obsidian/               # plugin: obsidian
+│   │   ├── tools/obsidian/index.ts
+│   │   ├── skills/<name>/SKILL.md
+│   │   ├── commands/*.md
+│   │   └── package.json
 │   └── gitnexus/               # plugin: gitnexus
 │       ├── skills/<name>/SKILL.md
 │       ├── .mcp.json / README.md

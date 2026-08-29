@@ -9,15 +9,22 @@
   },
   "plugins": [
     {
-      "name": "traft",
-      "description": "工程技能集：研发流程(头脑风暴/实现/审查/发布)、代码注释/查证、obsidian 知识库、周报；含 5 个 /traft- 命令 + obsidian 工具",
+      "name": "vibe-code",
+      "description": "vibe coding 研发流程 + 代码工具：需求/离码文档/实现/审查/git/查证/注释/调试/构建/技术图(11 技能)；含 4 个 /traft- 命令",
       "category": "development",
-      "version": "0.2.2",
-      "source": "./skills/traft"
+      "version": "0.3.0",
+      "source": "./skills/vibe-code"
+    },
+    {
+      "name": "obsidian",
+      "description": "obsidian 知识库：vault 自定义工具(obsidian CLI 透传,含审批/语义/超时/截断) + 知识库技能(traft-obsidian) + 周报(traft-weekly)",
+      "category": "development",
+      "version": "0.1.0",
+      "source": "./skills/obsidian"
     },
     {
       "name": "fireworks-tech-graph",
-      "description": "自然语言生成技术图(NL->SVG/PNG,多种图型与风格)；traft-graph 的依赖",
+      "description": "自然语言生成技术图(NL->SVG/PNG,多种图型与风格)；traft-code-graph 的依赖",
       "category": "development",
       "source": {
         "source": "github",

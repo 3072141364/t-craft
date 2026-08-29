@@ -1,0 +1,6 @@
+{
+  "name": "vibe-code",
+  "version": "0.3.0",
+  "description": "vibe coding 研发流程 + 代码工具：需求/离码文档/实现/审查/git/查证/注释/调试/构建/技术图；含 4 个 /traft- 命令",
+  "omp": {}
+}
