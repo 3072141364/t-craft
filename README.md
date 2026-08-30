@@ -10,6 +10,7 @@
 | `obsidian` | `./skills/obsidian` | obsidian 知识库：vault 工具(ob-cli/ob-query) + 3 技能 + 2 命令 |
 | `gitnexus` | `./skills/gitnexus` | GitNexus 代码智能：调用链 / 影响面 / PR 审查 / 重构 / bug 排查（7 技能 + MCP 配置） |
 | `fireworks-tech-graph` | github: `yizhiyanhua-ai/fireworks-tech-graph` | 自然语言生成技术图（`traft-code-graph` 的依赖） |
+| `frontend-design` | github(子路径): `anthropics/claude-code` → `plugins/frontend-design` | 前端/UI 设计技能（独立视觉/字体/配色，避免 AI 模板感） |
 
 ## vibe-code（研发流程 + 代码工具）
 
@@ -28,7 +29,6 @@
 | `traft-code-debug` | 问题分析 / bug 定位 |
 | `traft-code-make` | 项目命令体系路由（format / test / lint / build） |
 | `traft-code-graph` | 技术图绘制（包装 fireworks-tech-graph） |
-| `traft-code-design` | 前端/UI 设计（移植 anthropics frontend-design） |
 
 **命令**（`/xxx`，explicit）：
 
@@ -61,6 +61,7 @@
 /marketplace install obsidian@t-craft
 /marketplace install gitnexus@t-craft
 /marketplace install fireworks-tech-graph@t-craft
+/marketplace install frontend-design@t-craft
 ```
 
 **本地先测**（不推送）：`/marketplace add .`（或仓库绝对路径）→ 安装上面四个。

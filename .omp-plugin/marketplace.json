@@ -10,9 +10,9 @@
   "plugins": [
     {
       "name": "vibe-code",
-      "description": "vibe coding 研发流程 + 代码工具：需求/离码文档/实现/审查/git/查证/注释/调试/构建/技术图/前端设计(12 技能)；含 4 个 /traft- 命令",
+      "description": "vibe coding 研发流程 + 代码工具：需求/离码文档/实现/审查/git/查证/注释/调试/构建/技术图(11 技能)；含 4 个 /traft- 命令",
       "category": "development",
-      "version": "0.4.0",
+      "version": "0.3.0",
       "source": "./skills/vibe-code"
     },
     {
@@ -21,6 +21,16 @@
       "category": "development",
       "version": "0.8.1",
       "source": "./skills/obsidian"
+    },
+    {
+      "name": "frontend-design",
+      "description": "前端/UI 设计技能(独立视觉/字体/配色/动效, 避免 AI 模板感); 移植自 anthropics/claude-code",
+      "category": "development",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/anthropics/claude-code.git",
+        "path": "plugins/frontend-design"
+      }
     },
     {
       "name": "fireworks-tech-graph",
