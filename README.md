@@ -28,6 +28,7 @@
 | `traft-code-debug` | 问题分析 / bug 定位 |
 | `traft-code-make` | 项目命令体系路由（format / test / lint / build） |
 | `traft-code-graph` | 技术图绘制（包装 fireworks-tech-graph） |
+| `traft-code-design` | 前端/UI 设计（移植 anthropics frontend-design） |
 
 **命令**（`/xxx`，explicit）：
 
