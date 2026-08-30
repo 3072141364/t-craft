@@ -1,7 +1,7 @@
 {
   "name": "obsidian",
-  "version": "0.5.0",
-  "description": "obsidian 知识库插件：vault 工具(ob-cli/ob-query) + 知识库技能(traft-obsidian/query/weekly) + frontmatter 校验 hook",
+  "version": "0.6.0",
+  "description": "obsidian 知识库插件：vault 工具(ob-cli/ob-query) + 知识库技能(traft-obsidian/query/task) + frontmatter 校验 hook",
   "omp": {
     "tools": [
       "./tools/ob-cli",

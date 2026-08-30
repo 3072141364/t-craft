@@ -16,7 +16,7 @@ description: vault 检索/查询技能。从 obsidian vault 的 project/area/res
 - **先检索再回答**；检索输出是候选路径，不是答案本身。
 - **注明出处**：每条要点标来源路径；无法定位到页的表述给"来自 X 主题"级说明。
 - **禁止编造**：不伪造引用、引文、页码、日期；检索无命中就说"vault 中没有相关内容"。
-- **区分已定/未定**：项目文档里的决策/需求以 `project/` 下 prd/adr/progress 为准；周报以 `weekly/` 为准。
+- **区分已定/未定**：项目文档里的决策/需求以 `project/` 下 prd/adr/progress 为准；任务以 `project/<项目>/` 下带 `task` tag 的 note 为准。
 
 ## 边界
 - 只读查询；要新增/修改 vault 文档，走 `traft-obsidian`（写入规范）。

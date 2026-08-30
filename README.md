@@ -40,11 +40,11 @@
 | 技能 | 定位 |
 |------|------|
 | `traft-obsidian` | vault 知识库管理（卡片 / 双链 / emoji 规范） |
-| `traft-weekly` | 周报 / 周记 |
+| `traft-task` | 任务管理（视图+生命周期） |
 | `traft-query` | vault BM25 检索 / 证据接地查询 |
 
 工具：`ob-cli`（vault CLI 透传，含审批/语义/超时/截断）＋ `ob-query`（vault BM25 检索，渐进披露）; `frontmatter` hook 校验。
-命令：`/traft-weekly`　`/traft-query`
+命令：`/traft-task`　`/traft-query`
 
 ## gitnexus（代码智能）
 

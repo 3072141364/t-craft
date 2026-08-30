@@ -25,7 +25,7 @@ description: obsidian知识库管理技能, 用户开发项目的离码文档、
 - vault 路径由 `ob-cli` 工具自动发现（`obsidian vault info=path`，单 vault 自动解析活动库）；无需手动记录环境变量。
 - 涉及到开发项目的，激活 `traft-code-docs` skill。
 - 涉及到调研、论文阅读的，归到 `area/`（知识领域），查询用 `ob-query`。
-- 涉及到周报的，激活 `traft-weekly` skill。
+- 涉及到任务管理的，激活 `traft-task` skill。
 
 
 ## NEVER DO
