@@ -18,7 +18,7 @@ tags: []
 ## 方案设计
 **最终选定的方案**(不搬候选过程)。
 - **设计描述**:怎么做。模块/接口/架构/API 契约/schema 变更。不含具体文件路径或代码片段(易过时)。
-- **方案设计图**(按需):联动 fireworks-tech-graph 生成 PNG,存 `projects/<名>/assets/`,嵌入 `![[图名.png]]`。
+- **方案设计图**(按需):联动 fireworks-tech-graph 生成 PNG,存 `project/<repo>/assets/`,嵌入 `![[图名.png]]`。
 - **方案优缺点**:pros/cons,直说。
 
 ## 项目收益

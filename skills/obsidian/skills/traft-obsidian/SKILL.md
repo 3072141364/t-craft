@@ -5,9 +5,15 @@ description: obsidian知识库管理技能, 用户开发项目的离码文档、
 
 
 # START 
-用户使用obsidian管理自己的知识库，目前主要分为几类`开发项目文档`、`研究调研笔记`、`周报进程`。
+知识库用 **PARA** 组织，vault 顶层四类 + 归档：
+- `project/`：一个具体项目（≈ 一个 git repo），该项目**所有事情**（需求/离码文档/笔记）都放这一层；每需求一文件夹 `20290212-需求名/`；可嵌套子项目。
+- `area/`：**知识领域**（agent、docker、论文…），**平铺**，靠 `tags` 归类（如 `tags: [area, agent]`）。
+- `resource/`：兴趣/学习主题，**平铺**，`tags` 分类，层级不深。
+- `weekly/`：日常进度 / 周报；**每月底归档**到 `archive/weekly/YYYY-MM/`。
+- `archive/`：内部复刻 `project/resource/area/weekly/`，另含 `template/`（常用模板）；归档用 `archived: true` 标记 + 移入对应目录（**双轨**）。
 
-- obsidian 用文档管理知识库，一篇文档 = 一篇 `.md`。
+**project 与 area 无隶属关系**：项目用到某知识点，或知识点案例在项目里，用**双链** `[[…]]` 互引，不加父子字段。
+
 - 每篇文档都必须有 frontmatter。
 - 充分利用obsidian的双链功能。
 - 文档的增删改查直接使用read和write工具即可，和普通文件无差别。
@@ -18,7 +24,7 @@ description: obsidian知识库管理技能, 用户开发项目的离码文档、
 ## ALWAYS DO
 - vault 路径由 `ob-cli` 工具自动发现（`obsidian vault info=path`，单 vault 自动解析活动库）；无需手动记录环境变量。
 - 涉及到开发项目的，激活 `traft-code-docs` skill。
-- 涉及到调研、论文阅读的，激活 `traft-research` skill。
+- 涉及到调研、论文阅读的，归到 `area/`（知识领域），查询用 `ob-query`。
 - 涉及到周报的，激活 `traft-weekly` skill。
 
 
@@ -50,11 +56,11 @@ Obsidian Flavored Markdown 速查，写 vault 文档时按需用。
 - `requester`：需求方对接人>=1（提出需求的人/团队）
 - `deadline`：截止日期（YYYY-MM-DD）
 
-**溯源字段**（研究 / 知识 / 高置信度主张用）：
-- `source`：来源（URL / 引用标识）；研究文档（`research/`）与知识文档（`术语`/`wiki`/`技术`）必填，置信度≥90 的主张必填
-- `authority`：权威性（official / primary / secondary / community / unknown）；研究 / 知识文档必填
+**溯源字段**（知识领域 / 高置信度主张用）：
+- `source`：来源（URL / 引用标识）；知识文档（`area/` 或 `术语`/`wiki`/`技术`）必填，置信度≥90 的主张必填
+- `authority`：权威性（official / primary / secondary / community / unknown）；`area/` 知识文档必填
 
-**可选**：`aliases`（链接别名）、`cssclasses`、自定义属性。
+**可选**：`aliases`（链接别名）、`cssclasses`、`archived`（逻辑归档，默认 false）、`issueType`（需求/项目类型：feature/bug/enhancement）、`createTime`/`doneTime`（ISO 时间戳，项目用）、自定义属性。
 
 ## 操作日志（hook 自动维护）
 
@@ -63,7 +69,7 @@ Obsidian Flavored Markdown 速查，写 vault 文档时按需用。
 ## 标签
 
 - inline：`#tag`；嵌套 `#nested/tag`（**非必要不用嵌套**，优先扁平标签）。
-- frontmatter：`tags:` 列表。
+- frontmatter：`tags:` 列表，**自由多值**：PARA 类别（project/area/resource/journal）+ 领域（docker/agent/…）+ 任意主题，不设白名单。
 - 规则：字母、数字（非首字符）、下划线、连字符、斜杠；**标签不含 emoji**（emoji 只作标题/章节的视觉对照，见 emoji 速查表）。
 
 ## Wikilinks（双链）

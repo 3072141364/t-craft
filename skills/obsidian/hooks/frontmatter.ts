@@ -43,7 +43,7 @@ interface HookApi {
 const REQUIRED_KEYS = ["title", "type", "created", "updated", "confidence", "status", "tags", "summary"] as const;
 const PROJECT_DOC_TYPES: Record<string, true> = { prd: true, adr: true, test: true, review: true, progress: true };
 const REQUIREMENT_TYPES: Record<string, true> = { prd: true };
-// 知识/研究类文档：research/ 目录 + 实际知识类型（术语/wiki/技术）——必填 source+authority
+// 知识类文档：area/(知识领域) 目录 + 实际知识类型（术语/wiki/技术）——必填 source+authority
 const KNOWLEDGE_TYPES: Record<string, true> = { 术语: true, wiki: true, 技术: true };
 const WRITE_TOOLS: Record<string, true> = { write: true, edit: true, "ob-cli": true };
 const OBCLI_WRITE_CMDS: Record<string, true> = { create: true, append: true, prepend: true };
@@ -97,11 +97,11 @@ function validateFrontmatter(content: string, relPath: string): string | undefin
     const reqMissing = ["requester", "deadline"].filter(k => !hasYamlKey(block, k));
     if (reqMissing.length) return `需求文档缺必填：${reqMissing.join(", ")}。`;
   }
-  // 溯源：research/ 或知识类型(术语/wiki/技术)须 authority+source；高置信度主张须 source
-  const isKnowledge = relPath.startsWith("research/") || !!KNOWLEDGE_TYPES[type];
+  // 溯源：area/(知识领域) 或知识类型(术语/wiki/技术)须 authority+source；高置信度主张须 source
+  const isKnowledge = relPath.startsWith("area/") || !!KNOWLEDGE_TYPES[type];
   if (isKnowledge) {
     const provMissing = ["authority", "source"].filter(k => !hasYamlKey(block, k));
-    if (provMissing.length) return `${relPath.startsWith("research/") ? "研究" : "知识"}文档缺溯源字段：${provMissing.join(", ")}。`;
+    if (provMissing.length) return `${relPath.startsWith("area/") ? "领域知识" : "知识"}文档缺溯源字段：${provMissing.join(", ")}。`;
   }
   const conf = Number(block.match(/^confidence\s*:\s*(\d+)/m)?.[1] ?? 0);
   if (conf >= 90 && !hasYamlKey(block, "source")) return "置信度≥90 的主张须含 `source`（来源）。";

@@ -1,5 +1,5 @@
 ---
-description: 查询 vault 知识库/文档。从 project/research/weekly/archive/misc 检索并按证据回答。
+description: 查询 vault 知识库/文档。从 project/area/resource/weekly/archive 检索并按证据回答。
 argument-hint: [查询语句]
 ---
 

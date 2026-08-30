@@ -14,9 +14,10 @@ description: 周报/周记管理技能。每周把开发、论文、技术三流
 # RULES
 
 ## ALWAYS DO
-- 写周报前,向用户确认本周跨度(如 `2026-W35`),并从 `projects/`、`papers/`、`tech/` 及关联文档核对实际进展,**不凭记忆**。
+- 写周报前,向用户确认本周跨度(如 `2026-W35`),并从 `project/`(项目进展)、`area/`(论文/技术知识)及关联文档核对实际进展,**不凭记忆**。
 - 标题用 `周记 <YYYY>-W<ww>`(ISO 周);frontmatter 含 `type: 周记`、`date`。
 - 三流分开记,不混写:开发 / 论文 / 技术各一段。
+- **每月底把本月周报归档**到 `archive/weekly/<YYYY-MM>/`(如 `archive/weekly/2026-06/`),并在 frontmatter 标记 `archived: true`。
 - 「沉淀」落可复用文档/技能:凡能提炼进 skill 仓库的,标注并落盘。
 - 涉及周报文档的增删改查,遵循 traft-obsidian 文档规范(frontmatter + 双链)。
 - emoji 只作标题/章节/行内视觉标注,**不进标签**;用 `ob-emoji` 工具查询。

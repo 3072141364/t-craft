@@ -220,14 +220,14 @@ const factory: CustomToolFactory = (pi) => ({
   strict: true,
   loadMode: "essential",
   description:
-    "Local deterministic BM25 search over the Obsidian vault's markdown (project / research / weekly / archive / misc). Returns ranked file paths, scores, and context snippets. Retrieval output is evidence for the model to read and synthesize — it is not an answer by itself. Use to find where a concept / decision / requirement / note is written across the vault. Ground it: cite the path, never invent a quote or locator.",
+    "Local deterministic BM25 search over the Obsidian vault's markdown (project / area / resource / weekly / archive). Returns ranked file paths, scores, and context snippets. Retrieval output is evidence for the model to read and synthesize — it is not an answer by itself. Use to find where a concept / decision / requirement / note is written across the vault. Ground it: cite the path, never invent a quote or locator.",
   parameters: pi.zod.object({
     query: pi.zod.string().describe("Search query (Chinese or English keywords)."),
     vault: pi.zod.string().optional().describe("Absolute vault path. Default: active Obsidian vault (or ~/文档/default)."),
     folder: pi.zod
       .string()
       .optional()
-      .describe('Restrict to a vault subfolder, e.g. "project", "research", "weekly", "archive", "misc".'),
+      .describe('Restrict to a vault subfolder, e.g. "project", "area", "resource", "weekly", "archive".'),
     top: pi.zod.number().optional().describe(`Max results (default ${DEFAULT_TOP}, max ${MAX_TOP}).`),
   }),
 

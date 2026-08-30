@@ -1,11 +1,11 @@
 ---
 name: traft-query
-description: vault 检索/查询技能。从 obsidian vault 的 project/research/weekly/archive/misc 快速检索知识、项目离码文档、研究笔记、周报，并按证据接地回答问题。何时触发:"查一下"、"找一找"、"回忆"、"想看某主题"、"当时怎么定的"、"检索"。
+description: vault 检索/查询技能。从 obsidian vault 的 project/area/resource/weekly/archive 快速检索知识、项目离码文档、研究笔记、周报，并按证据接地回答问题。何时触发:"查一下"、"找一找"、"回忆"、"想看某主题"、"当时怎么定的"、"检索"。
 ---
 
 # 查询 vault 知识库
 
-从 vault 的 `.md`（`project/` 离码文档、`research/` 研究笔记、`weekly/` 周报、`archive/` 归档、`misc/` 杂项）中检索并回答。
+从 vault 的 `.md`（`project/` 项目、`area/` 知识领域、`resource/` 资源、`weekly/` 周报、`archive/` 归档）中检索并回答。
 
 ## 流程
 1. **检索**：调用 `ob-query` 工具，`query` 给自然语言关键词；可加 `folder` 限定子目录、`top` 控制结果数（默认 5）。返回带 frontmatter 元数据（type/置信度/状态/项目/标签）+ `summary`。
