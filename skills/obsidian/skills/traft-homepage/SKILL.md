@@ -15,11 +15,11 @@ description: vault 主页(Home)管理技能。主页是 vault 根的一篇 **`Ho
 - 画廊（title/status/priority/owner）
 - 甘特图(起止)（`start`→`doneTime`）
 
-当前主页组合的是任务视图（复用 `tasks.components`）。
+当前主页组合的是任务视图（复用 `task-component.components`）。
 
 ## 换电脑建主页
 1. 拷贝插件 `templates/Home.components` → vault 根 `Home.components`。
-2. 拷贝插件 `templates/tasks.components` → `archive/component/`（任务组件源）。
+2. 拷贝插件 `templates/task-component.components` → `archive/component/`（任务组件源）。
 3. 打开 `Home.components` 即主页（标签页切换各视图）。
 
 ## 规则

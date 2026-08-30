@@ -19,7 +19,7 @@
       "name": "obsidian",
       "description": "obsidian 知识库：vault 自定义工具(obsidian CLI 透传,含审批/语义/超时/截断) + 知识库技能(traft-obsidian) + 任务(traft-task)",
       "category": "development",
-      "version": "0.8.0",
+      "version": "0.8.1",
       "source": "./skills/obsidian"
     },
     {
