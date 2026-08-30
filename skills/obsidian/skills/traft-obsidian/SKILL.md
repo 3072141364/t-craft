@@ -52,6 +52,14 @@ Obsidian Flavored Markdown 速查，写 vault 文档时按需用。
 **`project/` 文档追加**：
 - `project`：项目归属名
 
+**任务文档**（type 为 `任务`）追加必填：
+- `priority`：优先级（P0 / P1 / P2）
+- `owner`：负责人
+- `project`：项目归属名
+- `start`：开始时间（ISO 时间戳）
+- `doneTime`：结束时间（ISO 时间戳）
+- `tags` 须含 `task`
+
 **需求文档**（type 为 `prd`）再追加：
 - `requester`：需求方对接人>=1（提出需求的人/团队）
 - `deadline`：截止日期（YYYY-MM-DD）

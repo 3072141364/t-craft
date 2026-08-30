@@ -45,6 +45,7 @@ const PROJECT_DOC_TYPES: Record<string, true> = { prd: true, adr: true, test: tr
 const REQUIREMENT_TYPES: Record<string, true> = { prd: true };
 // 知识类文档：area/(知识领域) 目录 + 实际知识类型（术语/wiki/技术）——必填 source+authority
 const KNOWLEDGE_TYPES: Record<string, true> = { 术语: true, wiki: true, 技术: true };
+const TASK_TYPES: Record<string, true> = { 任务: true };
 const WRITE_TOOLS: Record<string, true> = { write: true, edit: true, "ob-cli": true };
 const OBCLI_WRITE_CMDS: Record<string, true> = { create: true, append: true, prepend: true };
 
@@ -97,6 +98,13 @@ function validateFrontmatter(content: string, relPath: string): string | undefin
     const reqMissing = ["requester", "deadline"].filter(k => !hasYamlKey(block, k));
     if (reqMissing.length) return `需求文档缺必填：${reqMissing.join(", ")}。`;
   }
+  // 任务文档(type 任务)：须 priority/owner/project/start/doneTime + tags 含 task
+  if (TASK_TYPES[type]) {
+    const taskMissing = ["priority", "owner", "project", "start", "doneTime"].filter(k => !hasYamlKey(block, k));
+    if (taskMissing.length) return `任务文档缺必填：${taskMissing.join(", ")}。`;
+    const tagsRaw = block.match(/^tags:\s*\[(.*)\]/m)?.[1] ?? block.match(/^tags:\s*\n((?:\s*-\s*.+)+)/m)?.[1] ?? "";
+    if (!/task/.test(tagsRaw)) return "任务文档 tags 须包含 `task`。";
+  }
   // 溯源：area/(知识领域) 或知识类型(术语/wiki/技术)须 authority+source；高置信度主张须 source
   const isKnowledge = relPath.startsWith("area/") || !!KNOWLEDGE_TYPES[type];
   if (isKnowledge) {
@@ -104,7 +112,8 @@ function validateFrontmatter(content: string, relPath: string): string | undefin
     if (provMissing.length) return `${relPath.startsWith("area/") ? "领域知识" : "知识"}文档缺溯源字段：${provMissing.join(", ")}。`;
   }
   const conf = Number(block.match(/^confidence\s*:\s*(\d+)/m)?.[1] ?? 0);
-  if (conf >= 90 && !hasYamlKey(block, "source")) return "置信度≥90 的主张须含 `source`（来源）。";
+  // 高置信度须有 source：仅知识/研究类文档(事实性主张)；任务/项目/需求不做此要求
+  if (isKnowledge && conf >= 90 && !hasYamlKey(block, "source")) return "置信度≥90 的知识主张须含 `source`（来源）。";
   return undefined;
 }
 

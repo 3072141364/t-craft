@@ -38,6 +38,7 @@ interface DocMeta {
   confidence?: string;
   status?: string;
   type?: string;
+  priority?: string;
   project?: string;
   tags?: string[];
 }
@@ -196,6 +197,7 @@ function extractMeta(text: string): DocMeta {
     confidence: get("confidence"),
     status: get("status"),
     type: get("type"),
+    priority: get("priority"),
     project: get("project"),
     tags: tagsStr ? tagsStr.split("\n").map(s => s.replace(/^\s*-\s*/, "").trim()).filter(Boolean) : [],
   };
@@ -270,6 +272,7 @@ const factory: CustomToolFactory = (pi) => ({
     const lines = hits.map((h, i) => {
       const metaLine = [
         h.meta.type && `type:${h.meta.type}`,
+        h.meta.priority && `P:${h.meta.priority}`,
         h.meta.confidence && `置信:${h.meta.confidence}`,
         h.meta.status && `状态:${h.meta.status}`,
         h.meta.project && `项目:${h.meta.project}`,
