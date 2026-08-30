@@ -1,0 +1,578 @@
+{
+  "components": [
+    {
+      "id": "4f9a7194-0607-4d7e-9921-e6d9e8123a11",
+      "type": "multi",
+      "titleAlign": "center",
+      "tabTitle": "",
+      "maxWidthRatio": -1,
+      "showBorder": false,
+      "showTitle": true,
+      "showShadow": false,
+      "createAt": "2026-08-30T00:00:00.000Z",
+      "updateAt": "2026-08-30T00:00:00.000Z",
+      "components": [
+        {
+          "componentId": "173196fa-4713-4dd3-894a-9ce3d1fd2988"
+        },
+        {
+          "componentId": "ff866a58-5c11-4ec3-a3a7-c85a546517c0"
+        },
+        {
+          "componentId": "3c84fa8b-07fb-4ccc-99f1-2c03914dd57f"
+        },
+        {
+          "componentId": "2d177f32-a2eb-49f3-86c7-e8d2482befa0"
+        },
+        {
+          "componentId": "d7d24136-92b6-4ba9-8815-dc185c2af349"
+        }
+      ],
+      "layoutType": "tab",
+      "locked": false,
+      "layoutOptions": {}
+    },
+    {
+      "type": "dynamicDataView",
+      "titleAlign": "center",
+      "tabTitle": "",
+      "maxWidthRatio": -1,
+      "showBorder": false,
+      "showTitle": true,
+      "showShadow": false,
+      "createAt": "2026-08-30T00:00:00.000Z",
+      "updateAt": "2026-08-30T00:00:00.000Z",
+      "newPageNameFormat": "{{date:YYYYMMDDHHmmss}} ",
+      "properties": [
+        {
+          "id": "c3413956-4f8d-4667-b0a1-94f546ca8c95",
+          "name": "title",
+          "type": "text",
+          "isShow": true,
+          "wrap": false,
+          "options": {}
+        },
+        {
+          "id": "5c20762e-0d4a-444f-9c5e-59c532f3e02c",
+          "name": "status",
+          "type": "select",
+          "isShow": true,
+          "wrap": false,
+          "options": {}
+        },
+        {
+          "id": "6b1dc0d0-47f5-4b7a-aba5-5a4dc93d96cf",
+          "name": "priority",
+          "type": "select",
+          "isShow": true,
+          "wrap": false,
+          "options": {}
+        },
+        {
+          "id": "9bed458e-dd0f-47f4-a4c0-748501e9e593",
+          "name": "owner",
+          "type": "text",
+          "isShow": true,
+          "wrap": false,
+          "options": {}
+        },
+        {
+          "id": "5876009b-2313-4867-b9af-5017ce282e0b",
+          "name": "project",
+          "type": "text",
+          "isShow": true,
+          "wrap": false,
+          "options": {}
+        },
+        {
+          "id": "7dac43e6-d140-4a09-9ccb-a27067c614bf",
+          "name": "start",
+          "type": "datetime",
+          "isShow": true,
+          "wrap": false,
+          "options": {}
+        },
+        {
+          "id": "7e9a961a-ac57-4330-8843-0e5577c18cff",
+          "name": "doneTime",
+          "type": "datetime",
+          "isShow": true,
+          "wrap": false,
+          "options": {}
+        }
+      ],
+      "templates": [],
+      "groups": [],
+      "colorfulGroups": false,
+      "viewOptions": {
+        "openPageIn": "tab",
+        "openPageAfterCreate": true,
+        "items": [],
+        "pinFiltersToMenuBar": false,
+        "hideHeaderMenu": false,
+        "showGrid": false,
+        "heightType": "auto",
+        "heightValue": 600
+      },
+      "groupStates": {
+        "sort": "nameAsc",
+        "statics": [],
+        "orders": [],
+        "hiddens": [],
+        "collapseds": []
+      },
+      "filter": {
+        "id": "gf",
+        "type": "group",
+        "operator": "and",
+        "conditions": [
+          {
+            "id": "x-tags",
+            "type": "filter",
+            "operator": "contains",
+            "property": "tags",
+            "value": "task",
+            "conditions": []
+          }
+        ]
+      },
+      "id": "173196fa-4713-4dd3-894a-9ce3d1fd2988",
+      "viewType": "table",
+      "title": "表格视图"
+    },
+    {
+      "type": "dynamicDataView",
+      "titleAlign": "center",
+      "tabTitle": "",
+      "maxWidthRatio": -1,
+      "showBorder": false,
+      "showTitle": true,
+      "showShadow": false,
+      "createAt": "2026-08-30T00:00:00.000Z",
+      "updateAt": "2026-08-30T08:20:03.283Z",
+      "newPageNameFormat": "{{date:YYYYMMDDHHmmss}} ",
+      "properties": [
+        {
+          "id": "c3413956-4f8d-4667-b0a1-94f546ca8c95",
+          "name": "title",
+          "type": "text",
+          "isShow": true,
+          "wrap": false,
+          "options": {}
+        },
+        {
+          "id": "5c20762e-0d4a-444f-9c5e-59c532f3e02c",
+          "name": "status",
+          "type": "select",
+          "isShow": true,
+          "wrap": false,
+          "options": {}
+        },
+        {
+          "id": "6b1dc0d0-47f5-4b7a-aba5-5a4dc93d96cf",
+          "name": "priority",
+          "type": "select",
+          "isShow": true,
+          "wrap": false,
+          "options": {}
+        },
+        {
+          "id": "9bed458e-dd0f-47f4-a4c0-748501e9e593",
+          "name": "owner",
+          "type": "text",
+          "isShow": true,
+          "wrap": false,
+          "options": {}
+        },
+        {
+          "id": "5876009b-2313-4867-b9af-5017ce282e0b",
+          "name": "project",
+          "type": "text",
+          "isShow": true,
+          "wrap": false,
+          "options": {}
+        },
+        {
+          "id": "7dac43e6-d140-4a09-9ccb-a27067c614bf",
+          "name": "start",
+          "type": "datetime",
+          "isShow": true,
+          "wrap": false,
+          "options": {}
+        },
+        {
+          "id": "7e9a961a-ac57-4330-8843-0e5577c18cff",
+          "name": "doneTime",
+          "type": "datetime",
+          "isShow": true,
+          "wrap": false,
+          "options": {}
+        }
+      ],
+      "templates": [],
+      "groups": [],
+      "colorfulGroups": false,
+      "viewOptions": {
+        "openPageIn": "tab",
+        "openPageAfterCreate": true,
+        "items": [],
+        "pinFiltersToMenuBar": false,
+        "hideHeaderMenu": false,
+        "showGrid": false,
+        "heightType": "auto",
+        "heightValue": 600
+      },
+      "groupStates": {
+        "sort": "manual",
+        "format": "none",
+        "statics": [],
+        "orders": [
+          "P0",
+          "P1",
+          "P2",
+          "P3"
+        ],
+        "hiddens": [],
+        "collapseds": []
+      },
+      "filter": {
+        "id": "gf",
+        "type": "group",
+        "operator": "and",
+        "conditions": [
+          {
+            "id": "x-tags",
+            "type": "filter",
+            "operator": "contains",
+            "property": "tags",
+            "value": "task",
+            "conditions": []
+          }
+        ]
+      },
+      "id": "ff866a58-5c11-4ec3-a3a7-c85a546517c0",
+      "viewType": "kanban",
+      "title": "看板视图",
+      "groupBy": "priority"
+    },
+    {
+      "type": "dynamicDataView",
+      "titleAlign": "center",
+      "tabTitle": "",
+      "maxWidthRatio": -1,
+      "showBorder": false,
+      "showTitle": true,
+      "showShadow": false,
+      "createAt": "2026-08-30T00:00:00.000Z",
+      "updateAt": "2026-08-30T08:20:10.693Z",
+      "newPageNameFormat": "{{date:YYYYMMDDHHmmss}} ",
+      "properties": [
+        {
+          "id": "c3413956-4f8d-4667-b0a1-94f546ca8c95",
+          "name": "title",
+          "type": "text",
+          "isShow": true,
+          "wrap": false,
+          "options": {}
+        },
+        {
+          "id": "5c20762e-0d4a-444f-9c5e-59c532f3e02c",
+          "name": "status",
+          "type": "select",
+          "isShow": true,
+          "wrap": false,
+          "options": {}
+        },
+        {
+          "id": "6b1dc0d0-47f5-4b7a-aba5-5a4dc93d96cf",
+          "name": "priority",
+          "type": "select",
+          "isShow": true,
+          "wrap": false,
+          "options": {}
+        },
+        {
+          "id": "9bed458e-dd0f-47f4-a4c0-748501e9e593",
+          "name": "owner",
+          "type": "text",
+          "isShow": true,
+          "wrap": false,
+          "options": {}
+        },
+        {
+          "id": "5876009b-2313-4867-b9af-5017ce282e0b",
+          "name": "project",
+          "type": "text",
+          "isShow": true,
+          "wrap": false,
+          "options": {}
+        },
+        {
+          "id": "7dac43e6-d140-4a09-9ccb-a27067c614bf",
+          "name": "start",
+          "type": "datetime",
+          "isShow": true,
+          "wrap": false,
+          "options": {}
+        },
+        {
+          "id": "7e9a961a-ac57-4330-8843-0e5577c18cff",
+          "name": "doneTime",
+          "type": "datetime",
+          "isShow": true,
+          "wrap": false,
+          "options": {}
+        }
+      ],
+      "templates": [],
+      "groups": [],
+      "colorfulGroups": false,
+      "viewOptions": {
+        "openPageIn": "tab",
+        "openPageAfterCreate": true,
+        "items": [],
+        "pinFiltersToMenuBar": false,
+        "hideHeaderMenu": false,
+        "showGrid": false,
+        "heightType": "auto",
+        "heightValue": 600,
+        "dateProperty": "start",
+        "calendarViewType": "date"
+      },
+      "groupStates": {
+        "sort": "nameAsc",
+        "statics": [],
+        "orders": [],
+        "hiddens": [],
+        "collapseds": []
+      },
+      "filter": {
+        "id": "gf",
+        "type": "group",
+        "operator": "and",
+        "conditions": [
+          {
+            "id": "x-tags",
+            "type": "filter",
+            "operator": "contains",
+            "property": "tags",
+            "value": "task",
+            "conditions": []
+          }
+        ]
+      },
+      "id": "3c84fa8b-07fb-4ccc-99f1-2c03914dd57f",
+      "viewType": "calendar",
+      "title": "日历视图"
+    },
+    {
+      "type": "dynamicDataView",
+      "titleAlign": "center",
+      "tabTitle": "",
+      "maxWidthRatio": -1,
+      "showBorder": false,
+      "showTitle": true,
+      "showShadow": false,
+      "createAt": "2026-08-30T00:00:00.000Z",
+      "updateAt": "2026-08-30T08:20:16.829Z",
+      "newPageNameFormat": "{{date:YYYYMMDDHHmmss}} ",
+      "properties": [
+        {
+          "id": "c3413956-4f8d-4667-b0a1-94f546ca8c95",
+          "name": "title",
+          "type": "text",
+          "isShow": true,
+          "wrap": false,
+          "options": {}
+        },
+        {
+          "id": "5c20762e-0d4a-444f-9c5e-59c532f3e02c",
+          "name": "status",
+          "type": "select",
+          "isShow": true,
+          "wrap": false,
+          "options": {}
+        },
+        {
+          "id": "6b1dc0d0-47f5-4b7a-aba5-5a4dc93d96cf",
+          "name": "priority",
+          "type": "select",
+          "isShow": true,
+          "wrap": false,
+          "options": {}
+        },
+        {
+          "id": "9bed458e-dd0f-47f4-a4c0-748501e9e593",
+          "name": "owner",
+          "type": "text",
+          "isShow": true,
+          "wrap": false,
+          "options": {}
+        }
+      ],
+      "templates": [],
+      "groups": [],
+      "colorfulGroups": false,
+      "viewOptions": {
+        "openPageIn": "tab",
+        "openPageAfterCreate": true,
+        "items": [],
+        "pinFiltersToMenuBar": false,
+        "hideHeaderMenu": false,
+        "showGrid": false,
+        "heightType": "auto",
+        "heightValue": 600,
+        "itemSize": "components--page-card-small",
+        "showPropertyName": false,
+        "showAllProperties": false,
+        "cover": {
+          "type": "none",
+          "source": "default",
+          "fit": "contains",
+          "layout": "components--page-card-cover-landscape",
+          "position": "top"
+        }
+      },
+      "groupStates": {
+        "sort": "nameAsc",
+        "statics": [],
+        "orders": [],
+        "hiddens": [],
+        "collapseds": []
+      },
+      "filter": {
+        "id": "gf",
+        "type": "group",
+        "operator": "and",
+        "conditions": [
+          {
+            "id": "x-tags",
+            "type": "filter",
+            "operator": "contains",
+            "property": "tags",
+            "value": "task",
+            "conditions": []
+          }
+        ]
+      },
+      "id": "2d177f32-a2eb-49f3-86c7-e8d2482befa0",
+      "viewType": "gallary",
+      "title": "画廊视图"
+    },
+    {
+      "type": "dynamicDataView",
+      "titleAlign": "center",
+      "tabTitle": "",
+      "maxWidthRatio": -1,
+      "showBorder": false,
+      "showTitle": true,
+      "showShadow": false,
+      "createAt": "2026-08-30T00:00:00.000Z",
+      "updateAt": "2026-08-30T08:20:38.236Z",
+      "newPageNameFormat": "{{date:YYYYMMDDHHmmss}} ",
+      "properties": [
+        {
+          "id": "c3413956-4f8d-4667-b0a1-94f546ca8c95",
+          "name": "title",
+          "type": "text",
+          "isShow": true,
+          "wrap": false,
+          "options": {}
+        },
+        {
+          "id": "5c20762e-0d4a-444f-9c5e-59c532f3e02c",
+          "name": "status",
+          "type": "select",
+          "isShow": true,
+          "wrap": false,
+          "options": {}
+        },
+        {
+          "id": "6b1dc0d0-47f5-4b7a-aba5-5a4dc93d96cf",
+          "name": "priority",
+          "type": "select",
+          "isShow": true,
+          "wrap": false,
+          "options": {}
+        },
+        {
+          "id": "9bed458e-dd0f-47f4-a4c0-748501e9e593",
+          "name": "owner",
+          "type": "text",
+          "isShow": true,
+          "wrap": false,
+          "options": {}
+        },
+        {
+          "id": "5876009b-2313-4867-b9af-5017ce282e0b",
+          "name": "project",
+          "type": "text",
+          "isShow": true,
+          "wrap": false,
+          "options": {}
+        },
+        {
+          "id": "7dac43e6-d140-4a09-9ccb-a27067c614bf",
+          "name": "start",
+          "type": "datetime",
+          "isShow": true,
+          "wrap": false,
+          "options": {}
+        },
+        {
+          "id": "7e9a961a-ac57-4330-8843-0e5577c18cff",
+          "name": "doneTime",
+          "type": "datetime",
+          "isShow": true,
+          "wrap": false,
+          "options": {}
+        }
+      ],
+      "templates": [],
+      "groups": [],
+      "colorfulGroups": false,
+      "viewOptions": {
+        "openPageIn": "tab",
+        "openPageAfterCreate": true,
+        "items": [],
+        "pinFiltersToMenuBar": false,
+        "hideHeaderMenu": false,
+        "showGrid": false,
+        "heightType": "auto",
+        "heightValue": 600,
+        "dateProperty": "start",
+        "endDateProperty": "doneTime",
+        "hideTable": true,
+        "colorProperty": "priority"
+      },
+      "groupStates": {
+        "sort": "nameAsc",
+        "statics": [],
+        "orders": [],
+        "hiddens": [],
+        "collapseds": []
+      },
+      "filter": {
+        "id": "gf",
+        "type": "group",
+        "operator": "and",
+        "conditions": [
+          {
+            "id": "x-tags",
+            "type": "filter",
+            "operator": "contains",
+            "property": "tags",
+            "value": "task",
+            "conditions": []
+          }
+        ]
+      },
+      "id": "d7d24136-92b6-4ba9-8815-dc185c2af349",
+      "viewType": "timeline",
+      "title": "甘特视图"
+    }
+  ],
+  "rootComponentId": "4f9a7194-0607-4d7e-9921-e6d9e8123a11",
+  "version": 3.1,
+  "modified": 1761465600000
+}
