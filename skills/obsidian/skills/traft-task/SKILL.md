@@ -21,8 +21,8 @@ description: 任务管理技能。用任务 note(schema 已 hook 校验)+ `tasks
 模板：`skill://traft-task/../templates/task.md`（或插件 `templates/task.md`）。
 
 ## 任务视图（`tasks.components`）
-- 视图在 **vault 根**：`tasks.components`，含 表格 / 看板(按 priority) / 日历(start) / 画廊 / 甘特(start→doneTime)。
-- 只在 vault 有 `tasks.components` 时可见；换电脑先把插件 `templates/tasks.components` **拷到 vault 根**。
+- 视图在 **`archive/component/`**：`tasks.components`（不在 vault 根），含 表格 / 看板(按 priority) / 日历(start) / 画廊 / 甘特(start→doneTime)。
+- 只在 vault 有 `tasks.components` 时可见；换电脑把插件 `templates/tasks.components` 拷到 `archive/component/`。
 - 过滤规则：`tags 含 "task"`（进甘特/看板的任务须 tag=task + 有 start/doneTime + project）。
 
 ## 生命周期

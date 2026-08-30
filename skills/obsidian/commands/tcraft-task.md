@@ -9,4 +9,4 @@ argument-hint: [创建|<任务名> | 查|<查询> | 评估]
 - `/traft-task 查 进行中`：`ob-query` 按 status/priority/owner 检索任务并汇总。
 - `/traft-task 评估`：用 `tasks.components` 看本周，落周记、月底归档。
 
-> 前提：vault 根有 `tasks.components`（换电脑先拷贝插件 `templates/tasks.components` 到 vault 根）。
+> 前提：`archive/component/` 有 `tasks.components`（换电脑拷贝插件 `templates/tasks.components` 到 `archive/component/`）。
