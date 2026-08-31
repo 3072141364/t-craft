@@ -38,4 +38,5 @@ traft(全称t-craft)，是一套自用的工程技能体系，涉及vibe coding�
 | `traft-code-graph` | 图表绘制 | 文章思路、实验流程图绘制 |
 
 ## 日程管理
-| `traft-weekly` | 周报进程 | 建周报、维护任务清单与进展 |
+| `traft-todos` | 周级临时小任务 | Tasks checkbox 记 todo(勾掉即完成)、生成周报、结转下周 |
+| `traft-task` | 项目任务与需求进展 | 建任务、查任务、每周评估、月归档 |

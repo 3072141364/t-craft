@@ -17,9 +17,9 @@
     },
     {
       "name": "obsidian",
-      "description": "obsidian 知识库：vault 自定义工具(obsidian CLI 透传,含审批/语义/超时/截断) + 知识库技能(traft-obsidian) + 任务(traft-task)",
+      "description": "obsidian 知识库：vault 自定义工具(obsidian CLI 透传,含审批/语义/超时/截断) + 知识库技能(traft-obsidian) + 任务(traft-task) + 周级 todo(traft-todos)",
       "category": "development",
-      "version": "0.9.0",
+      "version": "0.10.0",
       "source": "./skills/obsidian"
     },
     {

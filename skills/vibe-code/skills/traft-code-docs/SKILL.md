@@ -47,7 +47,7 @@ description: 项目离码文档管理技能。管理与需求相关文档，如p
 | 测试 | `templates/test.md` | 测试计划与结论 |
 | 评估审查 | `templates/review.md` | 双轴审查、需求达成确认 |
 | 进度 | `templates/progress.md` | 状态真源,每阶段更新 |
-| 周记 | 见 `traft-weekly/templates/weekly.md` | 周级汇总(不计入单需求,由 traft-weekly 技能管理) |
+| 周记 | 见 `traft-todos/templates/weekly.md` | 周级汇总(不计入单需求,由 traft-todos 技能管理) |
 
 > 模板也可经 `skill://traft-code-docs/templates/<名>.md` 读取。
 

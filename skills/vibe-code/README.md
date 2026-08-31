@@ -2,7 +2,7 @@
 
 vibe coding 研发流程 + 代码工具技能集，面向 omp（oh-my-pi）harness。**skill 意图自动触发，命令显式调用**，按研发流程 + 代码工具组织。
 
-> 技能名统一用 `traft-*` 前缀（个人品牌）；obsidian 知识库（`traft-obsidian`）与周报（`traft-weekly`）已拆到独立的 `obsidian` 插件，不在此列。
+> 技能名统一用 `traft-*` 前缀（个人品牌）；obsidian 知识库（`traft-obsidian`）与周报/todo（`traft-todos`）已拆到独立的 `obsidian` 插件，不在此列。
 
 ## 技能（intent-triggered）
 

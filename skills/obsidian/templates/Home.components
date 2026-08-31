@@ -780,12 +780,9 @@
       "hideDateInfo": false,
       "hideSeconds": true,
       "hideProgress": false,
-      "backgroundImage": {
-        "url": "resource/图片素材/braden-collum-75XHJzEIeUc-unsplash.jpg",
-        "blurDegree": 0
-      },
-      "fontColor": "#fdfdfd",
-      "darkFontColor": "#ffffff"
+      "backgroundColor": "#cfe8ff",
+      "fontColor": "#1e3a5f",
+      "darkFontColor": "#1e3a5f"
     },
     {
       "id": "bc31bbc0-9f10-427d-b075-e539a7d17ef5",

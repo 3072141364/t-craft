@@ -7,7 +7,7 @@
 | plugin | 来源 | 内容 |
 |--------|------|------|
 | `vibe-code` | `./skills/vibe-code` | vibe coding 研发流程 + 代码工具（11 技能 + 4 命令） |
-| `obsidian` | `./skills/obsidian` | obsidian 知识库：vault 工具(ob-cli/ob-query) + 3 技能 + 2 命令 |
+| `obsidian` | `./skills/obsidian` | obsidian 知识库：vault 工具(ob-cli/ob-query) + 4 技能 + 3 命令 |
 | `gitnexus` | `./skills/gitnexus` | GitNexus 代码智能：调用链 / 影响面 / PR 审查 / 重构 / bug 排查（7 技能 + MCP 配置） |
 | `fireworks-tech-graph` | github: `yizhiyanhua-ai/fireworks-tech-graph` | 自然语言生成技术图（`traft-code-graph` 的依赖） |
 | `frontend-design` | github(子路径): `anthropics/claude-code` → `plugins/frontend-design` | 前端/UI 设计技能（独立视觉/字体/配色，避免 AI 模板感） |
@@ -42,10 +42,11 @@
 |------|------|
 | `traft-obsidian` | vault 知识库管理（卡片 / 双链 / emoji 规范） |
 | `traft-task` | 任务管理（视图+生命周期） |
+| `traft-todos` | 周级临时小任务（Tasks checkbox，勾掉即完成） |
 | `traft-query` | vault BM25 检索 / 证据接地查询 |
 
 工具：`ob-cli`（vault CLI 透传，含审批/语义/超时/截断）＋ `ob-query`（vault BM25 检索，渐进披露）; `frontmatter` hook 校验。
-命令：`/traft-task`　`/traft-query`
+命令：`/traft-task`　`/traft-query`　`/traft-todos`
 
 ## gitnexus（代码智能）
 
