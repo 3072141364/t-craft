@@ -27,12 +27,12 @@ description: 任务管理技能。用任务 note(schema 已 hook 校验)+ `task-
 
 ## 生命周期
 1. **建任务**：复制 `task.md` 模板到 `project/<项目>/<YYYYMMDD-任务名>.md`，填 schema。
-2. **更新**：改 `status`/`priority`/`start`/`doneTime`/子任务；hook 校验，`ob-query` 可按状态/优先级/负责人查。
+2. **更新**：改 `status`/`priority`/`start`/`doneTime`/子任务；hook 校验，`grep "^status: 进行中" /path/to/vault/project` 按状态/优先级/负责人查。
 3. **每周评估**：用 `task-component.components` 看本周完成/进行中/卡住，落一句到周记（`archive/weekly/`）。
 4. **每月底归档**：把本月完成任务的 `archive` 相关 + 周记移到 `archive/weekly/<YYYY-MM>/`，`archived: true`。
 
 ## 查询
-- `ob-query` 检索任务（带 priority/status/project 元数据）。
+- `grep -rl` 检索任务（按 frontmatter 字段：priority/status/project）。
 - `/traft-task 查 进行中` 快速筛。
 
 ## 边界

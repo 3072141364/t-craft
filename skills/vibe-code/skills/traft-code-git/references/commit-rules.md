@@ -19,7 +19,7 @@
 <可选 footer:破坏性变更、关联 issue>
 ```
 
-- **emoji**:行首 gitmoji,与 type 语义对应(见下表),一提交一个,不堆砌。type->emoji 完整映射用 `ob-emoji` 工具查询(section=gitmoji)。
+- **emoji**:行首 gitmoji,与 type 语义对应(见下表),一提交一个,不堆砌。type->emoji 完整映射查 `traft-obsidian-emoji` skill（section=gitmoji）。
 - **type**:Conventional Commits 类型,小写。
 - **scope**(可选):改动影响的模块,如 `config`、`api`。
 - **subject**:祈使句、不加句号、一行说清(约 50 字符内)。

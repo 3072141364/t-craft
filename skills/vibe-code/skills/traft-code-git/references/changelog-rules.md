@@ -34,8 +34,8 @@
 
 > 条目格式 <emoji>(可选) <type>: <content> 如✨ Added: 具体内容
 
-   - emoji: 用 `ob-emoji` 工具查询(section=gitmoji)。默认带上emoji，除非用户禁用。
-   - type: 用 `ob-emoji` 工具查询(section=gitmoji)。标签和 content需要具有一致性。
+   - emoji: 查 `traft-obsidian-emoji` skill 的 emoji-cheatsheet（section=gitmoji）。默认带上emoji，除非用户禁用。
+   - type: 查 `traft-obsidian-emoji` skill 的 emoji-cheatsheet（section=gitmoji）。标签和 content需要具有一致性。
    - content: 写清改了什么、影响什么，控制内容长度，非必要不超过20个字。不写空话"优化了代码""修复若干问题"。
    - 一条一意: 一个变更一个条目,不合并无关改动。
    - 面向消费者视角: 描述用户/集成方能感知的变化,而非纯实现细节。

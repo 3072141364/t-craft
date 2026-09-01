@@ -1,13 +1,8 @@
 {
   "name": "obsidian",
-  "version": "0.10.0",
-  "description": "obsidian 知识库插件：vault 工具(ob-cli/ob-query) + 知识库技能(traft-obsidian/query/task) + frontmatter 校验 hook",
+  "version": "0.11.0",
+  "description": "obsidian 知识库插件：obsidian 技能 + 知识库技能(traft-obsidian/obsidian-cli/obsidian-query/obsidian-emoji/query/task) + frontmatter 校验 hook",
   "omp": {
-    "tools": [
-      "./tools/ob-cli",
-      "./tools/ob-query",
-      "./tools/ob-emoji"
-    ],
     "hooks": [
       "./hooks/frontmatter",
       "./hooks/ops-log"

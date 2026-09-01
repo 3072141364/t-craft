@@ -8,7 +8,7 @@ description: vault 检索/查询技能。从 obsidian vault 的 project/area/res
 从 vault 的 `.md`（`project/` 项目、`area/` 知识领域、`resource/` 资源、`weekly/` 周报、`archive/` 归档）中检索并回答。
 
 ## 流程
-1. **检索**：调用 `ob-query` 工具，`query` 给自然语言关键词；可加 `folder` 限定子目录、`top` 控制结果数（默认 5）。返回带 frontmatter 元数据（type/置信度/状态/项目/标签）+ `summary`。
+1. **检索**：用 `grep -rl` 或 `grep "^字段名:"` 搜索 vault；`grep -rn "关键词" /path/to/vault/project --include='*.md'` 带行号搜索。也可按 frontmatter 字段搜。
 2. **渐进披露（先摘要，再展开）**：先读每条结果的 `summary` 与元数据判断相关性——相关才 `read` 全文；不相关直接跳过，不读整篇。
 3. **综合回答**：基于读到的内容回答；注明出处（`vault 相对路径`）与置信度。
 

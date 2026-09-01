@@ -65,4 +65,4 @@ description: todo任务管理技能，任务列表统一在周报文档记录。
 
 ## 查询
 - Tasks 插件自带查询：`filter by function task.tags.includes('#todo')` 汇总所有 todo。
-- `ob-query` 按周检索周报读「本周 todo」；`/traft-todos 查 进行中` 筛 `[/]`。
+- `grep "\[ \]" /path/to/vault/weekly/` 按周检索周报读「本周 todo」；`/traft-todos 查 进行中` 筛 `[/]`。

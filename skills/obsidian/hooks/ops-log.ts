@@ -1,12 +1,12 @@
 /**
  * ops-log hook：obsidian vault 文档操作后，追加一条记录到 vault `meta/log.md`。
- * - 命中工具：write / edit / ob-cli(create、append、prepend、rename、delete)。
+ * - 命中工具：write / edit。
  * - 仅记录落在 vault 根下、非派生(meta/) 的 .md 操作；日志本身写 meta/log.md，不再触发记录。
  * - 日志行：`- YYYY-MM-DD HH:mm  [op] 相对路径  [一句话结果摘要]`。
  */
 
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
-import { join, isAbsolute } from "node:path";
+import { join, isAbsolute,        } from "node:path";
 
 interface ExecResult {
   stdout: string;
@@ -28,8 +28,6 @@ interface HookApi {
   exec(command: string, args: string[], options?: { timeout?: number }): Promise<ExecResult>;
   on(event: "tool_result", handler: (e: ToolResultEvent) => unknown): void;
 }
-
-const OBS_WRITE_CMDS: Record<string, true> = { create: true, append: true, prepend: true, rename: true, delete: true };
 
 let cachedVaultPath: string | undefined;
 
@@ -62,13 +60,6 @@ function target(input: Record<string, unknown>, toolName: string): { path: strin
     const p = typeof input.path === "string" ? input.path : undefined;
     return p ? { path: p, op: toolName } : undefined;
   }
-  if (toolName === "ob-cli") {
-    const cmd = typeof input.command === "string" ? input.command : undefined;
-    if (!cmd || !OBS_WRITE_CMDS[cmd]) return undefined;
-    const args = (input.args ?? {}) as Record<string, unknown>;
-    const p = typeof args.path === "string" ? args.path : typeof args.file === "string" ? args.file : typeof args.to === "string" ? args.to : "";
-    return p ? { path: p, op: cmd } : undefined;
-  }
   return undefined;
 }
 
@@ -86,14 +77,10 @@ export default function registerOpsLogHook(api: HookApi): void {
     const t = target(event.input, event.toolName);
     if (!t || !t.path.toLowerCase().endsWith(".md")) return undefined;
     const vault = await vaultPath(api);
-    // ob-cli 天然作用于 vault（path 是库相对路径）；write/edit 需确认落在 vault 下
-    if (event.toolName !== "ob-cli" && !isInVault(t.path, vault)) return undefined;
-    const rel =
-      event.toolName === "ob-cli"
-        ? t.path.replace(/^[/\\]+/, "")
-        : t.path.startsWith(vault)
-          ? t.path.slice(vault.length).replace(/^[/\\]+/, "")
-          : t.path;
+    if (!isInVault(t.path, vault)) return undefined;
+    const rel = t.path.startsWith(vault)
+      ? t.path.slice(vault.length).replace(/^[/\\]+/, "")
+      : t.path;
     if (rel.startsWith("meta/") || rel.startsWith(".vault-meta/")) return undefined;
 
     // 只记录成功的修改

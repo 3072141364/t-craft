@@ -1,16 +1,16 @@
 /**
  * frontmatter hook：对 obsidian vault 文档的**所有修改操作**校验并同步 YAML frontmatter。
- * - 命中：`write`（整篇）、`edit`（局部改）、`ob-cli` create/append/prepend。
- * - 仅当目标落在 ob-cli 解析出的 vault 根下（.md）时生效；非 vault 文档不拦。
- * - `write`/`create`：校验必填字段，并通过改写输入把 `updated` 刷新为今天。
- * - `edit`/`append`/`prepend`：读目标文档，确保 contains 必填 frontmatter；缺失则拦截。
+ * - 命中：`write`（整篇）、`edit`（局部改）。
+ * - 仅当目标落在 vault 根下（.md）时生效；非 vault 文档不拦。
+ * - `write`：校验必填字段，并通过改写输入把 `updated` 刷新为今天。
+ * - `edit`：读目标文档，确保 contains 必填 frontmatter；缺失则拦截。
  *
  * 说明：omp 未从 `@oh-my-pi/pi-coding-agent` 导出 hook 类型，这里用局部结构化类型对齐
  * HookAPI / ToolCallEvent / ToolCallEventResult，避免依赖未导出类型与 `any`。
  */
 
 import { readFileSync, existsSync } from "node:fs";
-import { join, isAbsolute } from "node:path";
+import { join, isAbsolute,    } from "node:path";
 
 interface ExecResult {
   stdout: string;
@@ -46,8 +46,7 @@ const REQUIREMENT_TYPES: Record<string, true> = { prd: true };
 // 知识类文档：area/(知识领域) 目录 + 实际知识类型（术语/wiki/技术）——必填 source+authority
 const KNOWLEDGE_TYPES: Record<string, true> = { 术语: true, wiki: true, 技术: true };
 const TASK_TYPES: Record<string, true> = { 任务: true };
-const WRITE_TOOLS: Record<string, true> = { write: true, edit: true, "ob-cli": true };
-const OBCLI_WRITE_CMDS: Record<string, true> = { create: true, append: true, prepend: true };
+const WRITE_TOOLS: Record<string, true> = { write: true, edit: true };
 
 let cachedVaultPath: string | undefined;
 
@@ -166,32 +165,6 @@ export default function registerFrontmatterHook(api: HookApi): void {
       return undefined;
     }
 
-    // ---------- ob-cli：create（校验+刷新），append/prepend（读现有文档确保有） ----------
-    const command = typeof input.command === "string" ? input.command : undefined;
-    if (!command || !OBCLI_WRITE_CMDS[command]) return undefined;
-    const args = (input.args ?? {}) as Record<string, unknown>;
-    const pathArg = typeof args.path === "string" ? args.path : typeof args.file === "string" ? args.file : "";
-    if (!pathArg) return undefined;
-    const absPath = isAbsolute(pathArg) ? pathArg : join((await vaultPath(api)) || "", pathArg);
-    if (!absPath.toLowerCase().endsWith(".md")) return undefined;
-    const vault = await vaultPath(api);
-    const rel = pathArg.replace(/^[/\\]+/, "");
-
-    if (command === "create") {
-      const content = typeof args.content === "string" ? args.content : "";
-      const problem = validateFrontmatter(content, rel);
-      if (problem) return { block: true, reason: `obsidian 文档 frontmatter 校验未通过：${problem} 补齐后再写。` };
-      const refreshed = refreshUpdated(content);
-      if (refreshed !== content) return { input: { ...input, args: { ...args, content: refreshed } } };
-      return undefined;
-    }
-
-    // append / prepend：确保目标现有文档有 frontmatter
-    const exists = existsSync(absPath) ? readFileSync(absPath, "utf8") : undefined;
-    const problem = exists
-      ? validateFrontmatter(exists, rel)
-      : "目标文档不存在（append/prepend 需先有带 frontmatter 的文档）。";
-    if (problem) return { block: true, reason: `obsidian 文档 frontmatter 校验未通过：${problem} 先补 frontmatter。` };
     return undefined;
   });
 }
