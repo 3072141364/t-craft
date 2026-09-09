@@ -12,14 +12,14 @@
       "name": "vibe-code",
       "description": "vibe coding 研发流程 + 代码工具：需求/离码文档/实现/审查/git/查证/注释/调试/构建/技术图(11 技能)；含 4 个 /traft- 命令",
       "category": "development",
-      "version": "0.3.0",
+      "version": "0.3.1",
       "source": "./skills/vibe-code"
     },
     {
       "name": "obsidian",
       "description": "obsidian 知识库：检索/emoji/CLI 技能 + 知识库管理(traft-obsidian) + 任务(traft-task) + 周级 todo(traft-todos)",
       "category": "development",
-      "version": "0.10.0",
+      "version": "0.11.1",
       "source": "./skills/obsidian"
     },
     {
