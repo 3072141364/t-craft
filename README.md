@@ -27,7 +27,7 @@
 | `traft-code-comment` | 注释规范（非必要不注释、结构化标记） |
 | `traft-code-debug` | 问题分析 / bug 定位 |
 | `traft-code-make` | 项目命令体系路由（format / test / lint / build） |
-| `traft-code-graph` | 技术图绘制（路由 archify，内置技能） |
+| `traft-code-graph` | 技术图绘制（路由 archify，`npx skills add tt-a1i/archify -g` 安装） |
 
 **命令**（`/xxx`，explicit）：
 

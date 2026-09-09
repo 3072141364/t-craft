@@ -5,11 +5,11 @@ description: 技术图绘制--架构/流程/时序/UML/C4/网络拓扑等,由 ar
 
 # traft-code-graph 技能
 
-技术图绘制：把自然语言描述的技术图需求交给 **archify**（harness 内置技能）。本技能只做**路由 + 落盘约定**，不自造图。
+技术图绘制：把自然语言描述的技术图需求交给 **archify**（`npx skills` 安装的第三方技能）。本技能只做**路由 + 落盘约定**，不自造图。
 
 **职责边界**：
 - 负责：收敛图意图、路由到 `skill://archify` 生成、落盘约定（HTML+SVG 默认，PNG 等导出落盘）。
-- 不负责：手写 SVG/ASCII 冒充技术图、安装图工具（archify 内置，无需安装）。超出边界直接说明，不硬接。
+- 不负责：手写 SVG/ASCII 冒充技术图、安装图工具（archify 走 `npx skills`，不走 marketplace）。超出边界直接说明，不硬接。
 
 ## 1. 触发条件（TRIGGER）
 
@@ -31,15 +31,17 @@ description: 技术图绘制--架构/流程/时序/UML/C4/网络拓扑等,由 ar
 
 ### 2.2 禁止执行(NEVER DO)
 1. 不自己手写 SVG/ASCII 图冒充技术图。
-2. 不安装图工具（archify 为内置技能，无需 marketplace）。
+2. 不安装图工具（archify 走 `npx skills`，不走 marketplace）。
 
 ### 2.3 条件执行(CONDITIONAL)
-- 需要的输入：图意图描述（或可粘贴的 Mermaid 输入）；图须反映真实代码时需仓库上下文。
-- 缺失时：意图含糊 → 先按 Step 1 收敛，不直接生成。
+- 需要的输入：图意图描述（或可粘贴的 Mermaid 输入）；图须反映真实代码时需仓库上下文；archify 已安装。
+- 缺失时：
+  - 意图含糊 → 先按 Step 1 收敛，不直接生成。
+  - archify 未安装 → 提示 `npx skills add tt-a1i/archify -g`（git: `https://github.com/tt-a1i/archify`），安装后再画。
 
 ## 3. 知识底座（CONTEXT）
 
-- **archify（内置技能 `skill://archify`）能力**：
+- **archify（`skill://archify`，`npx skills` 安装）能力**：
   - 图型：架构 / 工作流 / 时序 / 数据流 / 生命周期 / 状态机；接受自然语言需求或粘贴的 Mermaid（flowchart / sequenceDiagram / stateDiagram）。
   - 输出：可探索的独立 HTML（内联 SVG），暗/亮主题，可选 trace 动效；可导出 PNG / JPEG / WebP / SVG / WebM。
   - 实据：图须对应真实代码时，先检查仓库证据。
