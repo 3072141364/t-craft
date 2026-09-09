@@ -25,10 +25,12 @@ description: 创建新技能的技能——维护技能创建原则：结构（�
 
 ### 2.1 务必执行(ALWAYS DO)
 1. **结构原则**：SKILL.md 按 `templates/skill-template.md` 六节组织——职责边界 / 触发表（正例≥3、反例≥1）/ 规则三段（ALWAYS/NEVER/CONDITIONAL）/ 知识底座（含「约定变更时同步更新本节」）/ 工作流（每步带完成标志）/ 输出规范（固定格式 + 字段要求 + 自检）/ 示例（好/差）。
-2. **命名原则**：vibe-code 插件内 `traft-*` 前缀；其他位置按目标命名空间；description 写「做什么 + 何时触发（路由靠它）」。
-3. **禁绝对路径**：技能文档与脚本内一律相对路径或 `skill://<name>/...` 引用；交付前 grep `/Users/` 确认无残留。
-4. **实现原则（脚本优先）**：技能涉及可执行操作（转换/生成/统计等）时，**能写脚本就用脚本实现**（放 `scripts/`，文档相对引用），agent 直接调脚本而不是每次手写逻辑——减少 token 消耗；脚本 `python3 -m py_compile` 通过。
-5. **注册同步**：新技能进 README 技能表（更新技能数）、`traft-guideline` 路由表（如适用）；bump `package.json` + marketplace 版本。
+2. **渐进式披露**：SKILL.md 保持 <500 行理想；大参考资料（>300 行）放 `references/` 按需读并在文件内加目录；多领域技能按 variant 拆文件（每领域一篇，只读相关那篇）。
+3. **命名原则**：vibe-code 插件内 `traft-*` 前缀；其他位置按目标命名空间；description 写「做什么（简述）+ 何时触发（触发关键字）」。
+4. **禁绝对路径**：技能文档与脚本内一律相对路径或 `skill://<name>/...` 引用；交付前 grep `/Users/` 确认无残留。
+5. **实现原则（脚本优先）**：技能涉及可执行操作（转换/生成/统计等）时，**能写脚本就用脚本实现**（放 `scripts/`，文档相对引用），agent 直接调脚本而不是每次手写逻辑——减少 token 消耗；脚本 `python3 -m py_compile` 通过。
+6. **写作风格**：指令用祈使句；**解释 why 而非堆 MUST**（说明理由比强约束有效）；输出格式给精确模板（"ALWAYS use this exact template"式）；示例 Input/Output 成对。
+7. **注册同步**：新技能进 README 技能表（更新技能数）、`traft-guideline` 路由表（如适用）；bump `package.json` + marketplace 版本。
 
 ### 2.2 禁止执行(NEVER DO)
 1. 不在技能里写绝对路径（目录/脚本/引用）。
@@ -42,7 +44,7 @@ description: 创建新技能的技能——维护技能创建原则：结构（�
 
 - **模板**：`templates/skill-template.md`（六节结构 + 每节写作说明）
 - **命名**：vibe-code 插件内 `traft-*`；其他位置按目标命名空间
-- **结构约定**：技能 = `SKILL.md` + 可选 `scripts/`（脚本实现）+ 可选 `templates/`（模板）
+- **结构约定**：技能 = `SKILL.md`（frontmatter name/description 必填）+ 可选资源三件套——`scripts/`（确定性/重复任务的可执行代码）、`references/`（按需加载的大文档，渐进披露）、`assets/`（输出用模板/图标/字体）
 - **注册点**：`README.md` 技能表、`skills/vibe-code/README.md`、`traft-guideline` 横切表、`package.json` + `.omp-plugin/marketplace.json` 版本
 - **约定变更时同步更新本节。**
 
