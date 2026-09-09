@@ -12,7 +12,7 @@
       "name": "vibe-code",
       "description": "vibe coding 研发流程 + 代码工具：需求/离码文档/实现/审查/git/查证/注释/调试/构建/技术图(11 技能)；含 4 个 /traft- 命令",
       "category": "development",
-      "version": "0.3.1",
+      "version": "0.3.2",
       "source": "./skills/vibe-code"
     },
     {
@@ -30,15 +30,6 @@
         "source": "git-subdir",
         "url": "https://github.com/anthropics/claude-code.git",
         "path": "plugins/frontend-design"
-      }
-    },
-    {
-      "name": "fireworks-tech-graph",
-      "description": "自然语言生成技术图(NL->SVG/PNG,多种图型与风格)；traft-code-graph 的依赖",
-      "category": "development",
-      "source": {
-        "source": "github",
-        "repo": "yizhiyanhua-ai/fireworks-tech-graph"
       }
     },
     {

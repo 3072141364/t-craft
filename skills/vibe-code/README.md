@@ -18,7 +18,7 @@ vibe coding 研发流程 + 代码工具技能集，面向 omp（oh-my-pi）harne
 | `traft-code-comment` | 注释规范（非必要不注释、结构化标记） |
 | `traft-code-debug` | 问题分析 / bug 定位 |
 | `traft-code-make` | 项目命令体系路由（格式 / 测试 / lint / 构建） |
-| `traft-code-graph` | 技术图绘制（架构/流程/时序/UML/C4，包装 fireworks-tech-graph） |
+| `traft-code-graph` | 技术图绘制（架构/流程/时序/UML/C4，路由 archify 内置技能） |
 
 ## 命令（`/xxx`，explicit）
 
@@ -31,9 +31,8 @@ vibe coding 研发流程 + 代码工具技能集，面向 omp（oh-my-pi）harne
 ```
 /marketplace add <你的GitHub用户名>/t-craft
 /marketplace install vibe-code@t-craft
-/marketplace install fireworks-tech-graph@t-craft   # traft-code-graph 的依赖,同一 marketplace
 ```
 
-**本地先测**（不推送）：`/marketplace add .`（或仓库绝对路径）→ 安装 `vibe-code` 与 `fireworks-tech-graph` 两个插件。
+**本地先测**（不推送）：`/marketplace add .`（或仓库绝对路径）→ 安装 `vibe-code` 插件。
 
 更新：`/marketplace update t-craft` → `/marketplace install --force vibe-code@t-craft`。

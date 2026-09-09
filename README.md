@@ -9,7 +9,6 @@
 | `vibe-code` | `./skills/vibe-code` | vibe coding 研发流程 + 代码工具（11 技能 + 4 命令） |
 | `obsidian` | `./skills/obsidian` | obsidian 知识库：6 个技能 + 3 命令 + frontmatter hook |
 | `gitnexus` | `./skills/gitnexus` | GitNexus 代码智能：调用链 / 影响面 / PR 审查 / 重构 / bug 排查（7 技能 + MCP 配置） |
-| `fireworks-tech-graph` | github: `yizhiyanhua-ai/fireworks-tech-graph` | 自然语言生成技术图（`traft-code-graph` 的依赖） |
 | `frontend-design` | github(子路径): `anthropics/claude-code` → `plugins/frontend-design` | 前端/UI 设计技能（独立视觉/字体/配色，避免 AI 模板感） |
 
 ## vibe-code（研发流程 + 代码工具）
@@ -28,7 +27,7 @@
 | `traft-code-comment` | 注释规范（非必要不注释、结构化标记） |
 | `traft-code-debug` | 问题分析 / bug 定位 |
 | `traft-code-make` | 项目命令体系路由（format / test / lint / build） |
-| `traft-code-graph` | 技术图绘制（包装 fireworks-tech-graph） |
+| `traft-code-graph` | 技术图绘制（路由 archify，内置技能） |
 
 **命令**（`/xxx`，explicit）：
 
@@ -63,7 +62,6 @@
 /marketplace install vibe-code@t-craft
 /marketplace install obsidian@t-craft
 /marketplace install gitnexus@t-craft
-/marketplace install fireworks-tech-graph@t-craft
 /marketplace install frontend-design@t-craft
 ```
 
