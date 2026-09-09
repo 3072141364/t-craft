@@ -7,7 +7,7 @@
 | plugin | 来源 | 内容 |
 |--------|------|------|
 | `vibe-code` | `./skills/vibe-code` | vibe coding 研发流程 + 代码工具（11 技能 + 4 命令） |
-| `obsidian` | `./skills/obsidian` | obsidian 知识库：7 个技能 + 3 命令 + frontmatter hook |
+| `obsidian` | `./skills/obsidian` | obsidian 知识库：6 个技能 + 3 命令 + frontmatter hook |
 | `gitnexus` | `./skills/gitnexus` | GitNexus 代码智能：调用链 / 影响面 / PR 审查 / 重构 / bug 排查（7 技能 + MCP 配置） |
 | `fireworks-tech-graph` | github: `yizhiyanhua-ai/fireworks-tech-graph` | 自然语言生成技术图（`traft-code-graph` 的依赖） |
 | `frontend-design` | github(子路径): `anthropics/claude-code` → `plugins/frontend-design` | 前端/UI 设计技能（独立视觉/字体/配色，避免 AI 模板感） |
@@ -42,13 +42,12 @@
 |------|------|
 | `traft-obsidian` | vault 知识库管理（卡片 / 双链 / emoji 规范） |
 | `traft-obsidian-cli` | obsidian CLI 命令参考（何时用 CLI vs 文件系统） |
-| `traft-obsidian-query` | vault 检索（grep 替代原 ob-query 工具） |
 | `traft-obsidian-emoji` | emoji 速查（直接读 emoji-cheatsheet 文件） |
 | `traft-task` | 任务管理（视图+生命周期） |
 | `traft-todos` | 周级临时小任务（Tasks checkbox，勾掉即完成） |
-| `traft-query` | vault BM25 检索 / 证据接地查询 |
+| `traft-query` | vault 快速查询知识点 / 证据接地（grep 替代原 ob-query） |
 
-工具：`traft-obsidian-query`（vault 检索）＋ `traft-obsidian-emoji`（emoji 速查）＋ `traft-obsidian-cli`（CLI 命令参考）; `frontmatter` hook 校验。
+工具：`traft-query`（vault 检索）＋ `traft-obsidian-emoji`（emoji 速查）＋ `traft-obsidian-cli`（CLI 命令参考）; `frontmatter` hook 校验。
 命令：`/traft-task`　`/traft-query`　`/traft-todos`
 
 ## gitnexus（代码智能）
