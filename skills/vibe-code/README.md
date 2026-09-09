@@ -22,19 +22,20 @@ vibe coding 研发流程 + 代码工具技能集，面向 omp（oh-my-pi）harne
 | `traft-perfetto-trace` | 通用事件可视化（Chrome Trace Event schema → ui.perfetto.dev；耗时/进展/重合度 + 查询 SQL） |
 | `traft-create-skill` | 创建新技能（结构/命名/禁绝对路径/脚本优先原则 + 内置模板 + 注册同步） |
 
-## 命令（`/xxx`，explicit）
+## 规则（rules，随插件分发）
 
-`/traft-requirements`　`/traft-code-review`　`/traft-branch`　`/traft-commit`
-
-> 说明：技能名用 `traft-*`，命令名用 `tcraft-*`（t-craft 的产品名），两套独立注册，不冲突。
+见仓库根 README「vibe-code 规则」表：6 条 always-apply（code-intel-tools / polish-expression / py-data-model / py-dict-instead-of-if-elif / py-version-syntax / zh-answer）+ 3 条 rulebook（py-env-tools / py-format-tools / py-logging）。
 
 ## 安装
 
+本地（推荐，改动即时生效）：
+
 ```
-/marketplace add <你的GitHub用户名>/t-craft
-/marketplace install vibe-code@t-craft
+git clone <你的GitHub用户名>/t-craft
+cd t-craft
+omp plugin link skills/vibe-code
 ```
 
-**本地先测**（不推送）：`/marketplace add .`（或仓库绝对路径）→ 安装 `vibe-code` 插件。
+marketplace（备用分发）：`/marketplace add <你的GitHub用户名>/t-craft` → `/marketplace install vibe-code@t-craft`。
 
-更新：`/marketplace update t-craft` → `/marketplace install --force vibe-code@t-craft`。
+更新：link 方式 `git pull` 即同步；marketplace 方式 bump 版本后 `/marketplace update t-craft` → `/marketplace install --force vibe-code@t-craft`。

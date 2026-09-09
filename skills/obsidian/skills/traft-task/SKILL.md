@@ -51,7 +51,7 @@ compatibility: Obsidian Tasks 插件 + task-component.components 视图（archiv
 - **视图**：`archive/component/task-component.components`（表格/看板按 priority/日历按 start/画廊/甘特 start→doneTime），不在 vault 根；换电脑把 `templates/task-component.components` 拷到 `archive/component/`。
 - **过滤规则**：视图只收 `tags` 含 `task` 的 note（进甘特/看板须 + `start`/`doneTime` + `project`）。
 - **分工**：`traft-todos` 管临时小任务（周报 checkbox 行）；任务 note 与领域 note 用双链关联，无父子字段。
-- **查询**：`grep -rl` 按 frontmatter 字段（priority/status/project）检索；`/traft-task 查 进行中` 快速筛。
+- **查询**：`grep -rl` 按 frontmatter 字段（priority/status/project）检索。
 - **约定变更时同步更新本节。**
 
 ## 4. 工作流程（WORKFLOW）
@@ -63,7 +63,7 @@ compatibility: Obsidian Tasks 插件 + task-component.components 视图（archiv
 
 ### Step 2: 更新 / 查看
 - IF 更新 → 改对应 frontmatter 字段（`status`/`priority`/`start`/`doneTime`/子任务），hook 校验。
-- IF 查看 → 用 `task-component.components` 视图，或 `grep -rl`/`/traft-task 查 进行中` 按状态/优先级/负责人筛。
+- IF 查看 → 用 `task-component.components` 视图，或 `grep -rl` 按状态/优先级/负责人筛。
 - 完成标志：字段合法且视图/检索结果与用户意图一致。
 
 ### Step 3: 每周评估 / 归档
