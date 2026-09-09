@@ -19,6 +19,7 @@ vibe coding 研发流程 + 代码工具技能集，面向 omp（oh-my-pi）harne
 | `traft-code-debug` | 问题分析 / bug 定位 |
 | `traft-code-make` | 项目命令体系路由（格式 / 测试 / lint / 构建） |
 | `traft-code-graph` | 技术图绘制（架构/流程/时序/UML/C4，路由 archify，`npx skills add tt-a1i/archify -g`） |
+| `traft-perfetto-trace` | 通用事件可视化（Chrome Trace Event schema → ui.perfetto.dev；耗时/进展/重合度 + 查询 SQL） |
 
 ## 命令（`/xxx`，explicit）
 

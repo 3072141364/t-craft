@@ -6,7 +6,7 @@
 
 | plugin | 来源 | 内容 |
 |--------|------|------|
-| `vibe-code` | `./skills/vibe-code` | vibe coding 研发流程 + 代码工具（11 技能 + 4 命令） |
+| `vibe-code` | `./skills/vibe-code` | vibe coding 研发流程 + 代码工具（12 技能 + 4 命令） |
 | `obsidian` | `./skills/obsidian` | obsidian 知识库：6 个技能 + 3 命令 + frontmatter hook |
 | `gitnexus` | `./skills/gitnexus` | GitNexus 代码智能：调用链 / 影响面 / PR 审查 / 重构 / bug 排查（7 技能 + MCP 配置） |
 | `frontend-design` | github(子路径): `anthropics/claude-code` → `plugins/frontend-design` | 前端/UI 设计技能（独立视觉/字体/配色，避免 AI 模板感） |
@@ -28,6 +28,7 @@
 | `traft-code-debug` | 问题分析 / bug 定位 |
 | `traft-code-make` | 项目命令体系路由（format / test / lint / build） |
 | `traft-code-graph` | 技术图绘制（路由 archify，`npx skills add tt-a1i/archify -g` 安装） |
+| `traft-perfetto-trace` | 通用事件可视化（Chrome Trace Event JSON schema → ui.perfetto.dev，含查询 SQL 速查） |
 
 **命令**（`/xxx`，explicit）：
 

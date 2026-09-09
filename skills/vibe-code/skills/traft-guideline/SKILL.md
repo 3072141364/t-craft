@@ -57,6 +57,7 @@ traft（全称 t-craft）技能组导航入口：维护研发流程六阶段路�
 | `traft-code-debug` | 排查问题、定位根因（③④ 常驻） |
 | `traft-code-graph` | 技术图（架构 / 流程 / 泳道 / UML / C4） |
 | `traft-code-make` | 项目命令体系路由：格式化 / 测试 / lint / 构建 / 清理，一条 make 命令 |
+| `traft-perfetto-trace` | 通用事件可视化：多任务并发/事件耗时 → ui.perfetto.dev（耗时/进展/重合度 + 查询 SQL） |
 
 ### 3.3 其他线
 
