@@ -1,6 +1,7 @@
 ---
 name: traft-task
 description: 任务管理技能。用任务 note(schema 已 hook 校验)+ `task-component.components` 多视图(表格/看板/日历/画廊/甘特)管理任务；一个任务=一篇带 `task` tag 的 note，含优先级/负责人/起止/项目。每周评估、每月底归档。何时触发:"建任务","加个任务","更新任务进度","查看进行中的任务","这个任务什么优先级/截止","每周评估","归档任务"。
+compatibility: Obsidian Tasks 插件 + task-component.components 视图（archive/component/）
 ---
 
 # traft-task 技能

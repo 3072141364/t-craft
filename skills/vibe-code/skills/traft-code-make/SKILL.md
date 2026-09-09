@@ -1,6 +1,7 @@
 ---
 name: traft-code-make
 description: 项目命令体系路由--把开发意图(格式化 / 测试 / lint / 构建 / 初始化 / 清理)映射到项目的 make 目标，一条命令执行，不拆多步手动跑。前提：项目根有 Makefile(make help 自文档)；无 Makefile 的项目不激活。何时激活："跑下测试"，"格式化"，"lint 一下"，"构建项目"，"初始化环境"，"清理一下"，或任何"跑一下项目的 X"。
+compatibility: make + 项目根 Makefile（无 Makefile 不激活）
 ---
 
 # traft-code-make 技能

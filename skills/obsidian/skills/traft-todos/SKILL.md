@@ -1,6 +1,7 @@
 ---
 name: traft-todos
 description: todo任务管理技能，任务列表统一在周报文档记录。与 traft-task 区别，视图任务负责管项目进度与需求进展；todo 负责临时任务、本周工作记录；何时触发:"加个todo","记个临时任务","这周做过啥","生成周报","勾掉这个task","todo状态"，“更新一下todo任务状态”。
+compatibility: Obsidian Tasks 插件
 ---
 
 # traft-todos 技能

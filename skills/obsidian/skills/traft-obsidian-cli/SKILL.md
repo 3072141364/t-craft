@@ -1,6 +1,7 @@
 ---
 name: traft-obsidian-cli
 description: Obsidian CLI 命令行技能——在需要与 Obsidian 应用交互（打开文件、切换主题、调试插件、同步控制）时激活；纯文件读写走文件系统工具更快。何时触发:"打开这个文件到 Obsidian"、"换主题"、"重载插件"、"同步状态"、"恢复文件版本"。
+compatibility: obsidian CLI + Obsidian 应用运行中
 ---
 
 # traft-obsidian-cli 技能

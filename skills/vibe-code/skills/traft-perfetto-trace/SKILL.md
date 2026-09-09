@@ -1,6 +1,7 @@
 ---
 name: traft-perfetto-trace
 description: 通用事件可视化技能——基于 Chrome Trace Event JSON schema，把多个任务并发/事件耗时数据转成 https://ui.perfetto.dev 可打开的 trace.json，可视化耗时、进展、重合度。触发时机——"多个任务并发怎么看"、"事件耗时可视化"、"转 perfetto 格式"、"按组展示任务时间轴"。
+compatibility: python3（scripts/trace_builder.py）
 ---
 
 # traft-perfetto-trace 技能

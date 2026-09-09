@@ -1,6 +1,7 @@
 ---
 name: traft-code-graph
 description: 技术图绘制--架构/流程/时序/UML/C4/网络拓扑等,由 archify 生成;只保留最终 HTML + 整体 JSON 两个文件,不保留风格图片导出。何时激活:要画技术图/架构图/流程图/时序图/UML/C4/系统图;写方案配图、周报配图、文章思路图时。
+compatibility: archify（npx skills add tt-a1i/archify -g 安装）
 ---
 
 # traft-code-graph 技能

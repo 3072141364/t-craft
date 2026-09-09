@@ -10,16 +10,16 @@
   "plugins": [
     {
       "name": "vibe-code",
-      "description": "vibe coding 研发流程 + 代码工具：需求/离码文档/实现/审查/git/查证/注释/调试/构建/技术图/perfetto 可视化/建技能(13 技能)；含 4 个 /traft- 命令",
+      "description": "vibe coding 研发流程 + 代码工具：需求/离码文档/实现/审查/git/查证/注释/调试/构建/技术图/perfetto 可视化/建技能(13 技能)；9 条代码规则常驻",
       "category": "development",
-      "version": "0.3.5",
+      "version": "0.3.6",
       "source": "./skills/vibe-code"
     },
     {
       "name": "obsidian",
       "description": "obsidian 知识库：检索/emoji/CLI 技能 + 知识库管理(traft-obsidian) + 任务(traft-task) + 周级 todo(traft-todos)",
       "category": "development",
-      "version": "0.11.1",
+      "version": "0.11.2",
       "source": "./skills/obsidian"
     },
     {

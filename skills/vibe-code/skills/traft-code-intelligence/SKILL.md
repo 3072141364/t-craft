@@ -1,6 +1,7 @@
 ---
 name: traft-code-intelligence
 description: 代码查证路由--找符号、追调用、影响面、执行流时按问题类型在 gitnexus / LSP / 内置 read 工具组间选对工具，别肉眼 grep 硬挖。何时激活：写代码、改代码、理解代码、代码 review 时；具体如"谁调用了 X"，"X 是怎么工作的"，"改 X 会影响什么"，"这个函数定义在哪"。
+compatibility: gitnexus（npm install -g gitnexus）+ 目标仓库已建索引; LSP 插件（pyright-lsp 等）
 ---
 
 # traft-code-intelligence 技能

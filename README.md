@@ -82,12 +82,10 @@ t-craft/
 ├── skills/
 │   ├── vibe-code/              # plugin: vibe-code
 │   │   ├── skills/<name>/SKILL.md
-│   │   ├── commands/*.md
 │   │   ├── README.md / package.json
 │   ├── obsidian/               # plugin: obsidian
 │   │   ├── tools/obsidian/index.ts
 │   │   ├── skills/<name>/SKILL.md
-│   │   ├── commands/*.md
 │   │   └── package.json
 │   └── gitnexus/               # plugin: gitnexus
 │       ├── skills/<name>/SKILL.md
@@ -96,6 +94,5 @@ t-craft/
 
 ## 设计原则
 
-- **skill 意图触发，命令显式调用**：同一件事两条路，先想"明确走流程（命令）还是交意图匹配（skill）"。
 - **研发流程六阶段路由**：由 `traft-guideline` 调度，每阶段读对应 skill 的 `skill://` 全文执行；`progress.md` 是阶段状态真源。
 - **以项目文件实际内容为准**：分支模型、版本真源、格式化命令等从项目上下文（CLAUDE.md / AGENTS.md 等）发现，不硬编码。
