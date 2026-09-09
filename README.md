@@ -29,7 +29,7 @@
 | `traft-code-make` | 项目命令体系路由（format / test / lint / build） |
 | `traft-code-graph` | 技术图绘制（路由 archify，`npx skills add tt-a1i/archify -g` 安装） |
 | `traft-perfetto-trace` | 通用事件可视化（Chrome Trace Event JSON schema → ui.perfetto.dev，含查询 SQL 速查） |
-| `traft-create-skill` | 创建新技能（脚本生成骨架 + 内置模板 + 注册同步，禁绝对路径） |
+| `traft-create-skill` | 创建新技能（结构/命名/禁绝对路径/脚本优先原则 + 内置模板 + 注册同步） |
 
 **命令**（`/xxx`，explicit）：
 
