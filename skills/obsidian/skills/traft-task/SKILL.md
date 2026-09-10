@@ -48,7 +48,7 @@ compatibility: Obsidian Tasks 插件 + task-component.components 视图（archiv
 
 - **载体**：任务 note `project/<项目>/requirements/<YYYYMMDD-任务名>.md`，一个任务一篇，frontmatter 字段见 5.2。
 - **模板**：`skill://traft-task/../templates/task.md`（即 `skills/obsidian/templates/task.md`），建任务复制它。
-- **视图**：`archive/component/task-component.components`（表格/看板按 priority/日历按 start/画廊/甘特 start→doneTime），不在 vault 根；换电脑把 `templates/task-component.components` 拷到 `archive/component/`。
+- **视图**：`archive/component/task-component.components`（表格/看板按 priority/日历按 start/画廊/甘特 start→doneTime），不在 vault 根；新用户把 `templates/task-component.components` 拷到 `archive/component/`。
 - **过滤规则**：视图只收 `tags` 含 `task` 的 note（进甘特/看板须 + `start`/`doneTime` + `project`）。
 - **分工**：`traft-todos` 管临时小任务（周报 checkbox 行）；任务 note 与领域 note 用双链关联，无父子字段。
 - **查询**：`grep -rl` 按 frontmatter 字段（priority/status/project）检索。

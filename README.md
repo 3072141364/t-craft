@@ -64,7 +64,7 @@
 
 依赖：`npm install -g gitnexus`；插件自带 `.mcp.json` 注册 `gitnexus mcp` 服务器（确保 `~/.omp/agent/mcp.json` 的 `enabledServers` 含 `gitnexus`）；对要用它的仓库跑 `gitnexus analyze` 建索引。
 
-## 安装（跨电脑）
+## 安装（新用户）
 
 本地自研插件走 **link**（`omp plugin link` 指向本地源码，走 omp-plugins native 加载）：
 
@@ -88,7 +88,7 @@ omp plugin link skills/gitnexus
 **特点与注意**：
 
 - link 到本地源码 → 改 `skills/<plugin>/` 下内容**即时生效**，不用 bump 版本重装。
-- link 是本地绝对路径，**换机器需重新 clone + link**；仓库更新后 `git pull` 即同步插件内容。
+- link 是本地绝对路径，**新用户需重新 clone + link**；仓库更新后 `git pull` 即同步插件内容。
 - marketplace.json 仍保留本地插件条目（供他人在别的环境用 marketplace 方式安装），本机不用这条路，避免 `claude-plugins` 源的外围 disabled 显示。
 
 ## 仓库布局
