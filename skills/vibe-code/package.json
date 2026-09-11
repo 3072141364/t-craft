@@ -1,6 +1,6 @@
 {
   "name": "vibe-code",
-  "version": "0.3.6",
-  "description": "vibe coding 研发流程 + 代码工具：需求/离码文档/实现/审查/git/查证/注释/调试/构建/技术图/perfetto 可视化/建技能(13 技能)；9 条代码规则常驻",
+  "version": "0.3.7",
+  "description": "vibe coding 研发流程 + 代码工具：需求/离码文档/实现/审查/git/查证/注释/调试/构建/技术图/perfetto 可视化/建技能(13 技能)；10 条代码规则常驻",
   "omp": {}
 }

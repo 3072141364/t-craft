@@ -24,7 +24,7 @@ vibe coding 研发流程 + 代码工具技能集，面向 omp（oh-my-pi）harne
 
 ## 规则（rules，随插件分发）
 
-见仓库根 README「vibe-code 规则」表：6 条 always-apply（code-intel-tools / polish-expression / py-data-model / py-dict-instead-of-if-elif / py-version-syntax / zh-answer）+ 3 条 rulebook（py-env-tools / py-format-tools / py-logging）。
+见仓库根 README「vibe-code 规则」表：7 条 always-apply（comment-minimal / code-intel-tools / polish-expression / py-data-model / py-dict-instead-of-if-elif / py-version-syntax / zh-answer）+ 3 条 rulebook（py-env-tools / py-format-tools / py-logging）。
 
 ## 安装
 

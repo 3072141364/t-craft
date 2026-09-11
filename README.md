@@ -6,7 +6,7 @@
 
 | plugin | 来源 | 内容 |
 |--------|------|------|
-| `vibe-code` | `./skills/vibe-code`（link） | vibe coding 研发流程 + 代码工具（13 技能 + 9 条规则） |
+| `vibe-code` | `./skills/vibe-code`（link） | vibe coding 研发流程 + 代码工具（13 技能 + 10 条规则） |
 | `obsidian` | `./skills/obsidian`（link） | obsidian 知识库：6 个技能 + frontmatter hook |
 | `gitnexus` | `./skills/gitnexus`（link） | GitNexus 代码智能：调用链 / 影响面 / PR 审查 / 重构 / bug 排查（7 技能 + MCP 配置） |
 | `frontend-design` | github(子路径): `anthropics/claude-code` → `plugins/frontend-design` | 前端/UI 设计技能（独立视觉/字体/配色，避免 AI 模板感） |
@@ -41,6 +41,7 @@
 | `py-dict-instead-of-if-elif` | always-apply | 同性质映射用 dict 而非 if/elif 链 |
 | `py-version-syntax` | always-apply | 语法/类型注解匹配项目 Python 版本 |
 | `zh-answer` | always-apply | 中文作答，术语/命令保留原文 |
+| `comment-minimal` | always-apply | 注释纪律：非必要不注释，见名知意，仅对外接口/trick 逻辑必须注释 |
 | `py-env-tools` | rulebook（按需） | 环境工具优先级：项目约定 > uv > poetry > …；conda 非必要不用 |
 | `py-format-tools` | rulebook（按需） | 格式化：项目约定 > ruff（≤120） |
 | `py-logging` | rulebook（按需） | 日志：项目约定 > loguru > 内置 logging |
@@ -83,7 +84,7 @@ omp plugin link skills/gitnexus
 /marketplace install frontend-design@t-craft
 ```
 
-**验证**：新开会话问模型"系统提示里有几条 always-apply 规则"（应为 6 条 + 3 条 rulebook）。
+**验证**：新开会话问模型"系统提示里有几条 always-apply 规则"（应为 7 条 + 3 条 rulebook）。
 
 **特点与注意**：
 
